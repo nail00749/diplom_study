@@ -1,0 +1,3 @@
+[submodule "VideoLearn"]
+	path = VideoLearn
+	url = https://github.com/Wifelly/VideoLearn.git

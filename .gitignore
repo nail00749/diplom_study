@@ -1,3 +1,8 @@
 # Project exclude paths
 /server/dist/
 /server/node_modules/
+/server/.env
+/server/yarn.lock
+/client/node_modules/
+/client/yarn.lock
+/client/package-lock.json

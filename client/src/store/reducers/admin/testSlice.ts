@@ -9,9 +9,9 @@ export interface TestState {
     description: string
     descriptionError: boolean
     isUpdate: boolean | undefined
-    id?: number
+    id?: string
     lesson: ILesson | null
-    lessonError: boolean
+    lessonError: boolean,
 }
 
 const initialState: TestState = {
@@ -49,10 +49,15 @@ export const testSlice = createSlice({
             if (action.payload) {
                 const {test, lessons, isUpdate} = action.payload
                 state.description = test.description
-                const lesson = lessons?.find(l => l.id === test.lesson_id)
+                const lesson = lessons?.find(l => l._id === test.lesson)
                 state.lesson = lesson as ILesson
                 state.questions = test.questions
                 state.isUpdate = isUpdate
+                if(isUpdate){
+                    state.id = test!._id
+                }
+
+
             }
             state.open = true
         },
@@ -98,7 +103,7 @@ export const testSlice = createSlice({
             const answer: IAnswer = {
                 text: '',
                 is_correct: false,
-                id: Date.now().toString()
+                id: Date.now()
             }
             state.questions[action.payload].answers.push(answer)
         },

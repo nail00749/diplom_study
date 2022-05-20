@@ -1,9 +1,9 @@
 
 export interface IUser {
     email: string
-    id?: number
+    _id?: number
     password?: string
-    role?: 'user' | 'teacher' | 'admin'
+    role: 'user' | 'teacher' | 'admin'
     name?: string
     surname?: string
     telegram?: string

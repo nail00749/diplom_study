@@ -1,18 +1,33 @@
-import React, {FC, useMemo} from 'react'
-import {Transition} from "./Transition";
-import {Dialog, Box, FormControl, MenuItem, Typography, IconButton} from "@mui/material";
+import React, {FC, useMemo, useState, useEffect, useRef} from 'react'
+import {Box, FormControl, MenuItem, Typography, IconButton} from "@mui/material";
 import {DataGrid, GridColDef, GridRenderCellParams} from '@mui/x-data-grid';
 import {useGetAllUsersQuery, useSetRoleMutation} from "../../services/adminAPI";
 import Select, {SelectChangeEvent} from '@mui/material/Select';
-import CloseIcon from "@mui/icons-material/Close";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {toggleUsersData} from "../../store/reducers/service/ServiceSlice";
+import {IUser} from "../../models/IUser";
+import {useGetMeDataQuery} from "../../services/userAPI";
+
 
 const UsersData: FC = () => {
-    let {data: users} = useGetAllUsersQuery('')
-    const [update] = useSetRoleMutation()
-    const {showUsersData} = useAppSelector(state => state.serviceReducer)
-    const dispatch = useAppDispatch()
+    const {data, isSuccess: successData} = useGetAllUsersQuery()
+    const {data: meData} = useGetMeDataQuery()
+    const [update, {isSuccess}] = useSetRoleMutation()
+    const [users, setUsers] = useState<IUser[]>([]);
+    const currentUser = useRef<IUser | null>(null)
+
+
+    useEffect(() => {
+        if (data && meData) {
+            setUsers(data.filter(user => user._id !== meData._id))
+        }
+    }, [successData])
+
+    useEffect(() => {
+        if (isSuccess && currentUser.current) {
+            const {_id, role} = currentUser.current
+            setUsers(users => users.map(user => user._id === _id ? {...user, role} : user))
+        }
+    }, [isSuccess]);
+
 
     const columns: GridColDef[] = useMemo(() => {
         return [
@@ -26,21 +41,21 @@ const UsersData: FC = () => {
                 width: 100,
                 editable: true,
                 renderCell: (params: GridRenderCellParams) => (
-                    <FormControl>
-                        <Select
-                            sx = {{
-                                height: 50
-                            }}
-                            value = {params.value}
-                            label = "Role"
-                            variant = 'standard'
-                            onChange = {changeRole(params)}
-                        >
-                            <MenuItem value = {'admin'}>admin</MenuItem>
-                            <MenuItem value = {'teacher'}>teacher</MenuItem>
-                            <MenuItem value = {'user'}>user</MenuItem>
-                        </Select>
-                    </FormControl>
+                  <FormControl>
+                      <Select
+                        sx = {{
+                            height: 50
+                        }}
+                        value = {params.value}
+                        label = "Role"
+                        variant = 'standard'
+                        onChange = {changeRole(params)}
+                      >
+                          <MenuItem value = {'admin'}>admin</MenuItem>
+                          <MenuItem value = {'teacher'}>teacher</MenuItem>
+                          <MenuItem value = {'user'}>user</MenuItem>
+                      </Select>
+                  </FormControl>
                 )
             }
         ]
@@ -52,52 +67,47 @@ const UsersData: FC = () => {
             id: params.id,
             role: e.target.value
         }
+        currentUser.current = {...params.row, role: e.target.value}
         await update(data)
     }
 
-    const handlerClose = () => dispatch(toggleUsersData())
-
     return (
-        <Dialog
-            open = {showUsersData}
-            TransitionComponent = {Transition}
-            onClose = {handlerClose}
-        >
-            <Box
-                p = {3}
-            >
-                <Box
-                    sx = {{
-                        display: 'flex',
-                        alignItems: 'center'
-                    }}
-                >
-                    <IconButton
-                        onClick = {handlerClose}
-                    >
-                        <CloseIcon/>
-                    </IconButton>
-                    <Typography variant = 'h5' component = 'span'>
-                        Edit users data
-                    </Typography>
-                </Box>
-                <Box
-                    sx = {{
-                        height: 400,
-                        width: '100%',
-                    }}
-                >
-                    <DataGrid
-                        rows = {users}
-                        columns = {columns}
-                        rowsPerPageOptions = {[10]}
-                        sx = {{
-                            width: '560px'
-                        }}
-                    />
-                </Box>
-            </Box>
-        </Dialog>
+      <Box
+        p = {3}
+      >
+          <Box
+            sx = {{
+                display: 'flex',
+                alignItems: 'center'
+            }}
+          >
+              <Typography variant = 'h5' component = 'span' color = 'text.primary'>
+                  Edit users data
+              </Typography>
+          </Box>
+          <Box
+            sx = {{
+                height: 400,
+                width: '100%',
+                maxWidth: '100vw',
+                overflowX: 'auto'
+            }}
+          >
+              {
+                users &&
+                <DataGrid
+                  rows = {users}
+                  columns = {columns}
+                  rowsPerPageOptions = {[10]}
+                  sx = {{
+                      minWidth: '320px',
+                  }}
+                  getRowId = {(row) => row._id}
+                />
+              }
+          </Box>
+      </Box>
+
     )
 }
 

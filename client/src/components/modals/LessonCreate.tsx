@@ -64,10 +64,10 @@ const CourseCreate: FC = () => {
         const data = {
             title,
             description,
-            course_id: course!.id
+            course: course!._id
         }
         if (isUpdate) {
-            await update({...data, id} as ILesson)
+            await update({...data, _id: id} as ILesson)
         } else {
             await create(data)
         }

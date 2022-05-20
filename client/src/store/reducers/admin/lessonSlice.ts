@@ -11,7 +11,7 @@ interface lessonAdmin {
     course: ICourse | null
     courseError: boolean
     isUpdate: boolean | undefined
-    id?: number
+    id?: string
 }
 
 interface actionOpen {
@@ -43,8 +43,8 @@ export const lessonAdminAPI = createSlice({
                 if (isUpdate) {
                     state.title = lesson.title
                     state.description = lesson.description
-                    state.id = lesson.id
-                    const course = courses?.find(i => i.id === lesson.course_id)
+                    state.id = lesson._id
+                    const course = courses?.find(i => i._id === lesson.course)
                     state.course = course as ICourse
                 }
             }

@@ -1,7 +1,6 @@
 import React, {FC, useState} from 'react';
 import {
     Box,
-    Button,
     InputAdornment,
     FormControl,
     OutlinedInput,
@@ -16,11 +15,8 @@ import {showErrorAlert} from "../store/reducers/service/ServiceSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {setSaveSession} from "../store/reducers/user/UserSlice";
 
-type FormProps = {
-    setIsLogin: () => void
-}
 
-const AuthForm: FC<FormProps> = ({setIsLogin}) => {
+const AuthForm: FC = () => {
     const [username, setUsername] = useState<string>('');
     const [usernameError, setUsernameError] = useState(false);
     const [password, setPassword] = useState<string>('');
@@ -58,9 +54,13 @@ const AuthForm: FC<FormProps> = ({setIsLogin}) => {
         }
 
 
-        const data = new FormData()
+        /*const data = new FormData()
         data.append('username', username)
-        data.append('password', password)
+        data.append('password', password)*/
+        const data = {
+            email: username,
+            password
+        }
         await login(data)
     }
 
@@ -75,111 +75,98 @@ const AuthForm: FC<FormProps> = ({setIsLogin}) => {
     const handlerSaveSession = () => dispatch(setSaveSession())
 
     return (
-        <>
-            <form
-                onSubmit = {sendData}
-            >
-                <Box
-                    mt = {3}
-                    mb = {3}
-                >
-                    <FormControl>
-                        <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
-                        <OutlinedInput
-                            id = "outlined-adornment-email"
-                            type = {'text'}
-                            value = {username}
-                            onChange = {handlerLogin}
-                            endAdornment = {
-                                <InputAdornment
-                                    position = "end"
-                                    sx = {{
-                                        marginLeft: '13px'
-                                    }}
+      <>
+          <form
+            onSubmit = {sendData}
+          >
+              <Box
+                mt = {3}
+                mb = {3}
+              >
+                  <FormControl>
+                      <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
+                      <OutlinedInput
+                        id = "outlined-adornment-email"
+                        type = {'text'}
+                        value = {username}
+                        onChange = {handlerLogin}
+                        endAdornment = {
+                            <InputAdornment
+                              position = "end"
+                              sx = {{
+                                  marginLeft: '13px'
+                              }}
+                            >
+                                <AccountCircle/>
+                            </InputAdornment>
+                        }
+                        label = "email"
+                        autoComplete = {'username'}
+                        error = {usernameError}
+                        disabled = {isLoading}
+                      />
+                  </FormControl>
+              </Box>
+              <Box>
+                  <FormControl>
+                      <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
+                      <OutlinedInput
+                        id = "outlined-adornment-password"
+                        type = {showPassword ? 'text' : 'password'}
+                        value = {password}
+                        onChange = {handlerPassword}
+                        endAdornment = {
+                            <InputAdornment position = "end">
+                                <IconButton
+                                  aria-label = "toggle password visibility"
+                                  onClick = {handlerShowPassword}
+                                  onMouseDown = {handlerMouseDown}
+                                  edge = "end"
+                                  disabled = {isLoading}
                                 >
-                                    <AccountCircle/>
-                                </InputAdornment>
-                            }
-                            label = "email"
-                            autoComplete = {'username'}
-                            error = {usernameError}
-                            disabled = {isLoading}
-                        />
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl>
-                        <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            id = "outlined-adornment-password"
-                            type = {showPassword ? 'text' : 'password'}
-                            value = {password}
-                            onChange = {handlerPassword}
-                            endAdornment = {
-                                <InputAdornment position = "end">
-                                    <IconButton
-                                        aria-label = "toggle password visibility"
-                                        onClick = {handlerShowPassword}
-                                        onMouseDown = {handlerMouseDown}
-                                        edge = "end"
-                                        disabled = {isLoading}
-                                    >
-                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label = "Password"
-                            autoComplete = {'current-password'}
-                            error = {passwordError}
-                            disabled = {isLoading}
-                        />
-                    </FormControl>
-                </Box>
-                <Box
-                    mt = {3}
-                    mb = {1}
-                    display = 'flex'
-                    justifyContent = 'center'
-                >
-                    <LoadingButton
-                        loading = {isLoading}
-                        type = 'submit'
-                        variant = 'contained'
-                    >
-                        Authorize
-                    </LoadingButton>
-                    <FormGroup
-                        sx = {{
-                            ml: 3
-                        }}
-                    >
-                        <FormControlLabel
-                            control = {
-                                <Checkbox
-                                    checked = {saveSession}
-                                    onChange = {handlerSaveSession}
-                                />
-                            }
-                            label = {'Save'}
-                        />
-                    </FormGroup>
-                </Box>
-            </form>
-            <Box
+                                    {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label = "Password"
+                        autoComplete = {'current-password'}
+                        error = {passwordError}
+                        disabled = {isLoading}
+                      />
+                  </FormControl>
+              </Box>
+              <Box
+                mt = {3}
+                mb = {1}
                 display = 'flex'
                 justifyContent = 'center'
-            >
-                <Button
-                    onClick = {() => {
-                        setIsLogin()
+              >
+                  <LoadingButton
+                    loading = {isLoading}
+                    type = 'submit'
+                    variant = 'contained'
+                  >
+                      Authorize
+                  </LoadingButton>
+                  <FormGroup
+                    sx = {{
+                        ml: 3
                     }}
-                    variant = 'outlined'
-                    disabled = {isLoading}
-                >
-                    {'Sign up'}
-                </Button>
-            </Box>
-        </>
+                  >
+                      <FormControlLabel
+                        control = {
+                            <Checkbox
+                              checked = {saveSession}
+                              onChange = {handlerSaveSession}
+                            />
+                        }
+                        label = {'Save'}
+                      />
+                  </FormGroup>
+              </Box>
+          </form>
+
+      </>
 
     );
 };

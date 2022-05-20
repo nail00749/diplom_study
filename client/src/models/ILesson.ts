@@ -1,9 +1,10 @@
 import {ITest} from "./ITest";
+import {ICourse} from "./ICourse";
 
 export interface ILesson {
     title: string
-    id?: number
+    _id?: string
     description: string | null
-    course_id?: number | undefined
-    tests?: ITest[]
+    course?: string | undefined | ICourse
+    test?: ITest
 }

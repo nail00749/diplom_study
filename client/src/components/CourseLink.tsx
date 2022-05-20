@@ -12,7 +12,7 @@ const CourseLink: FC<CourseLinkProps> = ({course}) => {
 
     return (
         <StyleLink
-            to = {`/course/${course.id}`}
+            to = {`/course/${course._id}`}
         >
             <Box
                 mb = {3}

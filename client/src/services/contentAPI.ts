@@ -1,27 +1,29 @@
 import {ICourse} from "../models/ICourse";
-import {emptyContentAPI} from "./emptyContentAPI";
+import {baseAPI} from "./baseAPI";
 import {ILesson} from "../models/ILesson";
-import {ISubscribation} from "../models/ISubscribation";
+import {ISubscription} from "../models/ISubscription";
 
 
-export const contentAPI = emptyContentAPI.injectEndpoints({
+export const contentAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         getAllCourses: build.query<ICourse[], void>({
-            query: () => '/courses',
-            providesTags: ['Course']
+            query: () => '/course',
+            providesTags: ['Courses']
         }),
         getCourse: build.query<ICourse, string>({
-            query: (id) => `/courses/${id}`,
+            query: (id) => `/course/${id}`,
+            providesTags: ['Course']
         }),
         getAllLessons: build.query<ILesson[], void>({
-            query: () => '/lessons',
-            providesTags: () => ['Lesson']
+            query: () => '/lesson',
+            providesTags: () => ['Lessons']
         }),
         getLesson: build.query<ILesson, string>({
-            query: (id) => `/lessons/${id}`,
+            query: (id) => `/lesson/${id}`,
+            providesTags: () => ['Lesson']
         }),
-        getAllSubscribes: build.query<ISubscribation[], void>({
-            query: () => '/courses'
+        getAllSubscribes: build.query<ICourse[], void>({
+            query: () => '/course'
         })
     }),
     overrideExisting: true

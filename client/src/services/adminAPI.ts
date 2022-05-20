@@ -1,20 +1,22 @@
-import {emptyContentAPI} from "./emptyContentAPI";
+import {baseAPI} from "./baseAPI";
 import {ICourse} from "../models/ICourse";
 import {ILesson} from "../models/ILesson";
+import {IUser} from '../models/IUser';
+import {ITest} from "../models/ITest";
 
-export const adminAPI = emptyContentAPI.injectEndpoints({
+export const adminAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
         createCourse: build.mutation({
             query: (body) => ({
-                url: '/courses',
+                url: '/course',
                 method: 'POST',
                 body
             }),
-            invalidatesTags: ['Course']
+            invalidatesTags: ['Courses']
         }),
-        updateCourse: build.mutation<ICourse, ICourse>({
-            query: (body) => ({
-                url: `/courses/?course_id=${body.id}`,
+        updateCourse: build.mutation<ICourse, { body: FormData, _id: string }>({
+            query: ({_id, body}) => ({
+                url: `/course/?course_id=${_id}`,
                 method: 'PATCH',
                 body
             }),
@@ -22,45 +24,45 @@ export const adminAPI = emptyContentAPI.injectEndpoints({
         }),
         createLesson: build.mutation({
             query: (body) => ({
-                url: '/lessons',
+                url: '/lesson',
                 method: 'POST',
                 body
             }),
             invalidatesTags: ['Lesson']
         }),
-        updateLesson: build.mutation<ILesson, ILesson>({
-            query: (body) => ({
-                url: `/lessons/?lesson_id=${body.id}`,
+        updateLesson: build.mutation<ILesson, any>({
+            query: ({_id, ...body}) => ({
+                url: `/lesson/?lesson_id=${_id}`,
                 method: 'PATCH',
                 body,
             }),
-            invalidatesTags: ['Course', 'Lesson']
+            invalidatesTags: ['Courses', 'Lessons', 'Lesson']
         }),
         createTest: build.mutation({
             query: (body) => ({
-                url: '/tests',
+                url: '/test',
                 method: 'POST',
                 body
             })
         }),
-        updateTest: build.mutation({
-            query: (body) => ({
-                url: `/tests/?test_id=${body.id}`,
+        updateTest: build.mutation<ITest, ITest>({
+            query: ({_id, ...body}) => ({
+                url: `/test/?test_id=${_id}`,
                 method: 'PATCH',
                 body
-            })
+            }),
+            invalidatesTags: ['Lesson']
         }),
-        getAllUsers: build.query({
+        getAllUsers: build.query<IUser[], void>({
             query: () => ('/users'),
             providesTags: ['Users']
         }),
         setRole: build.mutation({
-            query: (body) => ({
-                url: `/admin/users/${body.id}`,
+            query: ({id, ...body}) => ({
+                url: `/admin/users/${id}`,
                 method: 'PATCH',
                 body
             }),
-            invalidatesTags: ['Users']
         })
     }),
     overrideExisting: true

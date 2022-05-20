@@ -4,6 +4,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useGetCourseQuery} from "../services/contentAPI";
 import {useAppDispatch} from "../hooks/redux";
 import {openModal} from "../store/reducers/admin/courseSlice";
+import {BaseURL} from "../config";
 
 const Course: FC = () => {
     const {courseId} = useParams()
@@ -23,11 +24,10 @@ const Course: FC = () => {
                 title: course.title,
                 description: course.description,
                 isUpdate: true,
-                id: course.id
+                id: course._id
             }))
         }
     }
-
 
     return (
         <Box>
@@ -45,19 +45,35 @@ const Course: FC = () => {
 						<Typography>{course.description}</Typography>
 						<Box>
                             {
-                                course.lessons && course.lessons.map(item =>
+                                course.lessons && course.lessons.map(lesson =>
                                     <Box
-                                        key={item.id}
+                                        key = {lesson._id}
                                     >
                                         <Link
-                                            to = {`/lesson/${item.id}`}
+                                            to = {`/lesson/${lesson._id}`}
                                         >
-                                            {item.title}
+                                            {lesson.title}
                                         </Link>
                                     </Box>
                                 )
                             }
 						</Box>
+                        {course.image_path &&
+							<Box
+								sx = {{
+                                    maxWidth: '500px',
+                                }}
+							>
+								<img
+									style = {{
+                                        maxWidth: '100%',
+                                        borderRadius: 8
+                                    }}
+									src = {BaseURL + course.image_path}
+									alt = ''
+								/>
+							</Box>
+                        }
 					</>
                 }
             </Box>

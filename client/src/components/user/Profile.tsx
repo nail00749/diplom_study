@@ -59,130 +59,132 @@ const Profile: FC = () => {
     };
 
     return (
-        <Box
-            sx = {{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-            }}
-        >
-            {
-                (isAuthenticated && user) &&
-				<>
-					<UserAvatar/>
-					<Box
-						sx = {{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            width: '100%',
-                            my: 2
-                        }}
-					>
-                        {
-                            !isEdit ?
-                                <>
-                                    <Box
-                                        mr = {5}
+      <Box
+        sx = {{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}
+      >
+          {
+            (isAuthenticated && user) &&
+            <>
+                <UserAvatar/>
+                <Box
+                  sx = {{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      width: '100%',
+                      my: 2
+                  }}
+                >
+                    {
+                        !isEdit ?
+                          <>
+                              <Box
+                                mr = {5}
+                              >
+                                  <Typography
+                                    variant = 'h5'
+                                    color='text.primary'
+                                  >
+                                      {`Email: ${user.email}`}
+                                  </Typography>
+                                  {
+                                    user.name &&
+                                    <Typography
+                                      variant = 'h6'
+                                      color='text.primary'
                                     >
-                                        <Typography
-                                            variant = 'h5'
-                                            color='text.primary'
-                                        >
-                                            {`Email: ${user.email}`}
-                                        </Typography>
-                                        {
-                                            user.name &&
-											<Typography
-												variant = 'h6'
-												color='text.primary'
-											>
-                                                {`Name: ${user.name}`}
-											</Typography>
-                                        }
-                                        {
-                                            user.surname &&
-											<Typography
-												variant = 'h6'
-												color='text.primary'
-											>
-                                                {`Surname: ${user.surname}`}
-											</Typography>
-                                        }
-                                        {
-                                            user.telegram &&
-											<Typography
-												variant = 'h6'
-												color='text.primary'
-											>
-                                                {`Telegram: ${user.telegram}`}
-											</Typography>
-                                        }
-                                    </Box>
-                                    <Box>
-                                        <Button
-                                            fullWidth
-                                            variant = 'outlined'
-                                            onClick = {handlerIsEdit}
-                                        >
-                                            Edit profile
-                                        </Button>
-                                    </Box>
-                                </> :
-                                <>
-                                    <Box
-                                        my = {3}
+                                        {`Name: ${user.name}`}
+                                    </Typography>
+                                  }
+                                  {
+                                    user.surname &&
+                                    <Typography
+                                      variant = 'h6'
+                                      color='text.primary'
                                     >
-                                        <TextField
-                                            label = 'Name'
-                                            name = 'name'
-                                            onChange = {handlerData}
-                                            value = {userData.name}
-                                        />
-                                    </Box>
-                                    <Box>
-                                        <TextField
-                                            label = 'Surname'
-                                            name = 'surname'
-                                            onChange = {handlerData}
-                                            value = {userData.surname}
-                                        />
-                                    </Box>
-                                    <Box
-                                        my = {3}
+                                        {`Surname: ${user.surname}`}
+                                    </Typography>
+                                  }
+                                  {
+                                    user.telegram &&
+                                    <Typography
+                                      variant = 'h6'
+                                      color='text.primary'
                                     >
-                                        <TextField
-                                            label = 'Telegram'
-                                            name = 'telegram'
-                                            onChange = {handlerData}
-                                            value = {userData.telegram}
-                                        />
-                                    </Box>
-                                    <Box>
-                                        <LoadingButton
-                                            loading = {isLoading}
-                                            color = 'success'
-                                            variant = 'contained'
-                                            sx = {{
-                                                mr: 1
-                                            }}
-                                            onClick = {handlerUpdate}
-                                        >
-                                            Save
-                                        </LoadingButton>
-                                        <Button
-                                            variant = 'contained'
-                                            onClick = {handlerCancel}
-                                        >
-                                            Cancel
-                                        </Button>
-                                    </Box>
-                                </>
-                        }
-					</Box>
-				</>
-            }
-        </Box>
+                                        {`Telegram: ${user.telegram}`}
+                                    </Typography>
+                                  }
+                              </Box>
+                              <Box
+                                mt={1}
+                              >
+                                  <Button
+                                    fullWidth
+                                    variant = 'outlined'
+                                    onClick = {handlerIsEdit}
+                                  >
+                                      Edit profile
+                                  </Button>
+                              </Box>
+                          </> :
+                          <>
+                              <Box
+                                my = {3}
+                              >
+                                  <TextField
+                                    label = 'Name'
+                                    name = 'name'
+                                    onChange = {handlerData}
+                                    value = {userData.name}
+                                  />
+                              </Box>
+                              <Box>
+                                  <TextField
+                                    label = 'Surname'
+                                    name = 'surname'
+                                    onChange = {handlerData}
+                                    value = {userData.surname}
+                                  />
+                              </Box>
+                              <Box
+                                my = {3}
+                              >
+                                  <TextField
+                                    label = 'Telegram'
+                                    name = 'telegram'
+                                    onChange = {handlerData}
+                                    value = {userData.telegram}
+                                  />
+                              </Box>
+                              <Box>
+                                  <LoadingButton
+                                    loading = {isLoading}
+                                    color = 'success'
+                                    variant = 'contained'
+                                    sx = {{
+                                        mr: 1
+                                    }}
+                                    onClick = {handlerUpdate}
+                                  >
+                                      Save
+                                  </LoadingButton>
+                                  <Button
+                                    variant = 'contained'
+                                    onClick = {handlerCancel}
+                                  >
+                                      Cancel
+                                  </Button>
+                              </Box>
+                          </>
+                    }
+                </Box>
+            </>
+          }
+      </Box>
     )
 }
 

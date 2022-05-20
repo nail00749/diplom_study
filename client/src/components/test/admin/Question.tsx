@@ -58,7 +58,7 @@ const Question: FC<QuestionProps> = ({index, value}) => {
                 >
                     <FormGroup>
                         <FormControlLabel
-                            disabled = {value.is_extended  || Boolean((value.answers && value.answers.length))}
+                            disabled = {value.is_multiple  || Boolean((value.answers && value.answers.length))}
                             control = {
                                 <Checkbox
                                     checked={value.is_extended}

@@ -1,8 +1,9 @@
 import {ILesson} from "./ILesson";
 
 export interface ICourse {
-    id?: number,
-    title: string | null,
-    description: string | null,
+    _id?: string,
+    title: string,
+    description: string,
     lessons?: ILesson[],
+    image_path?: string
 }

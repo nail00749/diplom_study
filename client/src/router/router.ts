@@ -3,22 +3,19 @@ import Login from "../scenes/Login";
 import Main from '../scenes/Main';
 import Course from "../scenes/Course";
 import Lesson from '../scenes/Lesson';
-import Stream from "../scenes/Stream";
 import Admin from '../scenes/Admin';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import SettingsInputAntennaIcon from '@mui/icons-material/SettingsInputAntenna';
-
 
 export interface IRoute {
     path: string,
-    component: React.ComponentType,
+    component: React.FunctionComponent<any>,
     exact?: boolean
 }
 
 export interface ILink {
     link: string,
-    icon?: React.ComponentType,
+    icon?: any,
     text: string,
 }
 
@@ -33,7 +30,7 @@ export enum RouteNames {
 
 export const linksNavigationUser: ILink[] = [
     {link: RouteNames.HOME, text: 'HOME', icon: HomeIcon},
-    {link: RouteNames.STREAM, text: 'STREAM', icon: SettingsInputAntennaIcon}
+    /*{link: RouteNames.STREAM, text: 'STREAM', icon: SettingsInputAntennaIcon}*/
 ]
 
 export const linksNavigationAdmin: ILink[] = [
@@ -49,7 +46,7 @@ export const authRoute: IRoute[] = [
     {path: RouteNames.HOME, component: Main, exact: true},
     {path: RouteNames.COURSE, component: Course, exact: false},
     {path: RouteNames.LESSON, component: Lesson, exact: false},
-    {path: RouteNames.STREAM, component: Stream, exact: false},
+    /*{path: RouteNames.STREAM, component: Stream, exact: false},*/
 ]
 
 export const adminRoutes: IRoute[] = [

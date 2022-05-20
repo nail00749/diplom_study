@@ -1,4 +1,4 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {createApi, fetchBaseQuery, retry} from "@reduxjs/toolkit/dist/query/react";
 import {BaseURL} from "../config";
 import {
     fetchAuthError,
@@ -7,18 +7,21 @@ import {
 } from "../store/reducers/user/UserSlice";
 import {IUser} from "../models/IUser";
 
+
+const baseQuery = retry(fetchBaseQuery({
+    baseUrl: BaseURL + '/api',
+    prepareHeaders: (headers) => {
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token')
+        if (token) {
+            headers.set('Authorization', `Bearer ${token}`)
+        }
+        return headers
+    }
+}), {maxRetries: 3})
+
 export const userAPI = createApi({
     reducerPath: 'userAPI',
-    baseQuery: fetchBaseQuery({
-        baseUrl: BaseURL,
-        prepareHeaders: (headers) => {
-            const token = sessionStorage.getItem('token') || localStorage.getItem('token')
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`)
-            }
-            return headers
-        }
-    }),
+    baseQuery: baseQuery,
     tagTypes: ['User'],
     endpoints: (build) => ({
         login: build.mutation({
@@ -53,7 +56,7 @@ export const userAPI = createApi({
             invalidatesTags: ['User']
         }),
         getMeData: build.query<IUser, void>({
-            query: () => '/users/me/',
+            query: () => '/users/me',
             providesTags: ['User']
         }),
         updateAvatar: build.mutation<IUser, FormData>({

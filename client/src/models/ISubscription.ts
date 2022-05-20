@@ -1,6 +1,6 @@
 import { ICourse } from "./ICourse";
 
-export interface ISubscribation {
+export interface ISubscription {
     id: number
     course_id: number | undefined
     subscriber_id: number | undefined

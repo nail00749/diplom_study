@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,} from "@mui/material";
+import {Box, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,} from "@mui/material";
 import {AccountCircle, Visibility, VisibilityOff} from '@mui/icons-material';
 import {useRegisterMutation} from "../services/userAPI";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -74,99 +74,85 @@ const RegisterForm: FC<FormProps> = ({setIsLogin}) => {
     }
 
     return (
-        <>
-            <form
-                onSubmit = {sendData}
-            >
-                <Box
-                    mt = {3}
-                    mb = {3}
-                >
-                    <FormControl>
-                        <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
-                        <OutlinedInput
-                            id = "outlined-adornment-email"
-                            type = {'text'}
-                            value = {username}
-                            onChange = {handlerLogin}
-                            endAdornment = {
-                                <InputAdornment
-                                    position = "end"
-                                    sx = {{
-                                        marginLeft: '13px'
-                                    }}
+      <>
+          <form
+            onSubmit = {sendData}
+          >
+              <Box
+                mt = {3}
+                mb = {3}
+              >
+                  <FormControl>
+                      <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
+                      <OutlinedInput
+                        id = "outlined-adornment-email"
+                        type = {'text'}
+                        value = {username}
+                        onChange = {handlerLogin}
+                        endAdornment = {
+                            <InputAdornment
+                              position = "end"
+                              sx = {{
+                                  marginLeft: '13px'
+                              }}
+                            >
+                                <AccountCircle/>
+                            </InputAdornment>
+                        }
+                        label = "email"
+                        error = {usernameError}
+                        disabled={isLoading}
+                      />
+                  </FormControl>
+              </Box>
+              <Box>
+                  <FormControl>
+                      <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
+                      <OutlinedInput
+                        id = "outlined-adornment-password"
+                        type = {showPassword ? 'text' : 'password'}
+                        value = {password}
+                        onChange = {handlerPassword}
+                        endAdornment = {
+                            <InputAdornment position = "end">
+                                <IconButton
+                                  aria-label = "toggle password visibility"
+                                  onClick = {handlerShowPassword}
+                                  onMouseDown = {handlerMouseDown}
+                                  edge = "end"
                                 >
-                                    <AccountCircle/>
-                                </InputAdornment>
-                            }
-                            label = "email"
-                            error = {usernameError}
-                            disabled={isLoading}
-                        />
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl>
-                        <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            id = "outlined-adornment-password"
-                            type = {showPassword ? 'text' : 'password'}
-                            value = {password}
-                            onChange = {handlerPassword}
-                            endAdornment = {
-                                <InputAdornment position = "end">
-                                    <IconButton
-                                        aria-label = "toggle password visibility"
-                                        onClick = {handlerShowPassword}
-                                        onMouseDown = {handlerMouseDown}
-                                        edge = "end"
-                                    >
-                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label = "Password"
-                            error = {passwordError}
-                            disabled={isLoading}
-                        />
-                    </FormControl>
-                </Box>
-                <Box
-                    mt = {3}
-                    mb = {1}
-                    display = 'flex'
-                    justifyContent = 'center'
-                >
-                    <LoadingButton
-                        loading = {isLoading}
-                        variant = {'contained'}
-                        type = 'submit'
-                    >
-                        Register
-                    </LoadingButton>
-                </Box>
-            </form>
-            <Box
+                                    {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label = "Password"
+                        error = {passwordError}
+                        disabled={isLoading}
+                      />
+                  </FormControl>
+              </Box>
+              <Box
+                mt = {3}
+                mb = {1}
                 display = 'flex'
                 justifyContent = 'center'
-            >
-                <Button
-                    variant = 'outlined'
-                    onClick = {() => {
-                        setIsLogin()
-                    }}
-                    disabled={isLoading}
-                >
-                    {'Log in'}
-                </Button>
-            </Box>
+              >
+                  <LoadingButton
+                    loading = {isLoading}
+                    variant = {'contained'}
+                    type = 'submit'
+                  >
+                      Register
+                  </LoadingButton>
+              </Box>
+          </form>
 
-            <RegisterSuccess
-                open = {isOpenSuccess}
-                setClose = {setIsOpenSuccess}
-                setPageLogin = {setIsLogin}
-            />
-        </>
+          <RegisterSuccess
+            open = {isOpenSuccess}
+            setClose = {setIsOpenSuccess}
+            setPageLogin = {setIsLogin}
+          />
+      </>
     );
 };
 

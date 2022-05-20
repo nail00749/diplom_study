@@ -27,6 +27,7 @@ import {ILesson} from "../../models/ILesson";
 import {Transition} from "./Transition";
 import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
 import {LoadingButton} from "@mui/lab";
+import {ITest} from "../../models/ITest";
 
 const CourseCreate: FC = () => {
     const {
@@ -36,7 +37,8 @@ const CourseCreate: FC = () => {
         descriptionError,
         lesson,
         lessonError,
-        isUpdate
+        isUpdate,
+        id
     } = useAppSelector(state => state.testReducer)
     const [lessonInputValue, setLessonInputValue] = useState('');
     const {data: lessons} = useGetAllLessonsQuery()
@@ -71,15 +73,13 @@ const CourseCreate: FC = () => {
         const data = {
             description,
             questions,
-            lesson_id: lesson!.id
+            lesson: lesson!._id
         }
         if (isUpdate) {
-            await update(data)
+            await update({...data, _id: id} as ITest)
         } else {
             await create(data)
         }
-
-
     };
 
     const handlerDescription = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeDescription(e.target.value))

@@ -6,6 +6,7 @@ import {logOut} from "../../store/reducers/user/UserSlice";
 import NavigationMenu from "./NavigationMenu";
 import {useGetMeDataQuery} from "../../services/userAPI";
 import {BaseURL} from "../../config";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Topbar: FC = () => {
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -23,59 +24,59 @@ const Topbar: FC = () => {
     const handlerLogOut = () => dispatch(logOut())
 
     return (
-        <AppBar
-            position = 'static'
-        >
-            <Toolbar>
-                <NavigationMenu/>
-                <Box
+      <AppBar
+        position = 'static'
+      >
+          <Toolbar>
+              <NavigationMenu/>
+              <Box
+                sx = {{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    width: '100%'
+                }}
+              >
+                  <Tooltip title = {'open'}>
+                      <IconButton
+                        onClick = {handlerOpenMenu}
+                      >
+                          {
+                              user && user.avatar_path ?
+                                <Avatar
+                                  src = {BaseURL + user.avatar_path}
+                                />
+                                :
+                                <AccountCircle/>
+                          }
+                      </IconButton>
+                  </Tooltip>
+                  <Menu
                     sx = {{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        width: '100%'
+                        mt: '30px'
                     }}
-                >
-                    <Tooltip title = {'open'}>
-                        <IconButton
-                            onClick = {handlerOpenMenu}
-                        >
-                            {
-                                user && user.avatar_path ?
-                                    <Avatar
-                                        src = {BaseURL + user.avatar_path}
-                                    />
-                                    :
-                                    <AccountCircle/>
-                            }
-                        </IconButton>
-                    </Tooltip>
-                    <Menu
-                        sx = {{
-                            mt: '30px'
-                        }}
-                        anchorEl = {anchorElUser}
-                        anchorOrigin = {{
-                            vertical: 'top',
-                            horizontal: 'right'
-                        }}
-                        keepMounted
-                        transformOrigin = {{
-                            vertical: 'top',
-                            horizontal: 'right'
-                        }}
-                        open = {Boolean(anchorElUser)}
-                        onClose = {handleCloseMenu}
-                    >
-                        <MenuItem
-                            onClick = {handlerLogOut}
-                        >
-                            <Typography>Log out</Typography>
-                        </MenuItem>
-                    </Menu>
-                </Box>
-
-            </Toolbar>
-        </AppBar>
+                    anchorEl = {anchorElUser}
+                    anchorOrigin = {{
+                        vertical: 'top',
+                        horizontal: 'right'
+                    }}
+                    keepMounted
+                    transformOrigin = {{
+                        vertical: 'top',
+                        horizontal: 'right'
+                    }}
+                    open = {Boolean(anchorElUser)}
+                    onClose = {handleCloseMenu}
+                  >
+                      <MenuItem
+                        onClick = {handlerLogOut}
+                      >
+                          <LogoutIcon/>
+                          <Typography ml={.5}>Log out</Typography>
+                      </MenuItem>
+                  </Menu>
+              </Box>
+          </Toolbar>
+      </AppBar>
 
     )
 }

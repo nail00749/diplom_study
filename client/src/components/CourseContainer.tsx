@@ -1,5 +1,5 @@
-import {Box, Typography} from '@mui/material';
-import React, {FC, ReactElement, useCallback} from 'react';
+import {Box, LinearProgress} from '@mui/material';
+import React, {FC, useCallback} from 'react';
 import UserCourse from "./Course/UserCourse";
 import TeacherCourse from "./Course/TeacherCourse";
 import {useGetMeDataQuery} from "../services/userAPI";
@@ -7,38 +7,37 @@ import {useGetMeDataQuery} from "../services/userAPI";
 const CourseContainer: FC = () => {
     const {data: user} = useGetMeDataQuery()
 
-    const roleCourses = useCallback((): ReactElement | null => {
+    const roleCourses = useCallback(() => {
         if (user) {
             switch (user.role) {
                 case 'user':
                     return <UserCourse/>
                 case 'teacher':
                     return <TeacherCourse/>
+                case 'admin':
+                    return <TeacherCourse/>
+                default:
+                    return <LinearProgress/>
             }
         }
-        return null
+        return (
+          <Box
+            mt={5}
+            px={3}
+          >
+              <LinearProgress/>
+          </Box>
+        )
     }, [user])
 
     return (
-        <Box
-            sx = {{
-                border: '1px solid',
-                borderRadius: 3,
-                minWidth: '25vw'
-            }}
-            p = {3}
-        >
-            <Typography
-                component = 'h3'
-                mb = {3}
-                color='text.primary'
-            >
-                Courses
-            </Typography>
-            {
-                roleCourses()
-            }
-        </Box>
+      <Box
+        sx = {{
+            width: '100%'
+        }}
+      >
+          {roleCourses()}
+      </Box>
     );
 };
 

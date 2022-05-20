@@ -1,29 +1,31 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface courseAdmin {
-    open: boolean,
-    title: string | null,
-    titleError: boolean,
-    description: string | null,
-    descriptionError: boolean,
-    isUpdate: boolean | undefined,
-    id?: number
+interface courseState {
+    open: boolean
+    title: string
+    titleError: boolean
+    description: string
+    descriptionError: boolean
+    isUpdate: boolean | undefined
+    id?: string
+    file?: any
 }
 
 interface actionOpen {
-    title: string | null
-    description: string | null
+    title: string
+    description: string
     isUpdate?: boolean | undefined
-    id?: number | undefined
+    id?: string | undefined
 }
 
-const initialState: courseAdmin = {
+const initialState: courseState = {
     open: false,
     title: '',
     titleError: false,
     description: '',
     descriptionError: false,
-    isUpdate: false
+    isUpdate: false,
+    file: null
 }
 
 
@@ -41,10 +43,7 @@ export const courseAdminAPI = createSlice({
                     state.id = id
                 }
             }
-
             state.open = true
-
-
         },
         closeModal: () => initialState,
         changeName: (state, action: PayloadAction<string>) => {
@@ -54,6 +53,9 @@ export const courseAdminAPI = createSlice({
         changeDescription: (state, action: PayloadAction<string>) => {
             state.description = action.payload
             state.descriptionError = false
+        },
+        changeFile: (state, action: PayloadAction<any>) => {
+            state.file = action.payload
         },
         errorTitleChange: (state) => {
             state.titleError = true
@@ -70,7 +72,8 @@ export const {
     changeName: changeTitle,
     changeDescription,
     errorDescriptionChange,
-    errorTitleChange
+    errorTitleChange,
+    changeFile
 } = courseAdminAPI.actions
 
 export default courseAdminAPI.reducer

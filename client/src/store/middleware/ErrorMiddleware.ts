@@ -11,15 +11,16 @@ export const rtqQueryError: Middleware = (api: MiddlewareAPI) => (next) => (acti
     const {dispatch} = api
 
     if (isRejectedWithValue(action)) {
-        if (action.payload.status === 422) {
-            dispatch(showErrorAlert(action.payload.data.detail[0].msg))
-        } else {
-            dispatch(showErrorAlert(action.payload.data.detail))
+        if (action.payload && action.payload.data && action.payload.data.detail) {
+            if (action.payload.status === 422) {
+                dispatch(showErrorAlert(action.payload.data.detail[0].msg))
+            } else {
+                dispatch(showErrorAlert(action.payload.data.detail))
+            }
+            if (action.payload.status === 401) {
+                dispatch(logOut())
+            }
         }
-        if (action.payload.status === 401) {
-            dispatch(logOut())
-        }
-
 
     }
 

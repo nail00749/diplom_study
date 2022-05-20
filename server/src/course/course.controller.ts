@@ -1,19 +1,17 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, Query, UploadedFiles, UploadedFile} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, Query, UploadedFile} from '@nestjs/common';
 import {CourseService} from './course.service';
 import {CreateCourseDto} from './dto/create-course.dto';
 import {UpdateCourseDto} from './dto/update-course.dto';
-import {FastifyFileInterceptor, FastifyFilesInterceptor, FastifyFileFieldsInterceptor,} from 'nest-fastify-multer';
+import {FastifyFileInterceptor} from 'nest-fastify-multer';
 import {diskStorage} from 'multer';
 import * as path from 'path'
 import {editFileName} from "../utils/utils";
-import {log} from "util";
 
 
 @Controller('course')
 export class CourseController {
     constructor(private readonly courseService: CourseService) {
     }
-
 
     @Post()
     @FastifyFileInterceptor(
@@ -26,8 +24,9 @@ export class CourseController {
         }
     )
     create(@UploadedFile() file: Express.Multer.File, @Body() createCourseDto: CreateCourseDto) {
-        
-        createCourseDto.image_path = `/courses/${file.filename}`
+        if (file && file.filename) {
+            createCourseDto.image_path = `/courses/${file.filename}`
+        }
         return this.courseService.create(createCourseDto);
     }
 
@@ -52,7 +51,9 @@ export class CourseController {
         }
     )
     update(@Query('course_id') id: string, @UploadedFile() file: Express.Multer.File, @Body() updateCourseDto: UpdateCourseDto) {
-        updateCourseDto.image_path = `/courses/${file.filename}`
+        if (file && file.filename) {
+            updateCourseDto.image_path = `/courses/${file.filename}`
+        }
         return this.courseService.update(id, updateCourseDto);
     }
 

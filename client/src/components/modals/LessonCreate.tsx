@@ -5,11 +5,11 @@ import SaveIcon from '@mui/icons-material/Save';
 import {useCreateLessonMutation, useUpdateLessonMutation} from "../../services/adminAPI";
 import {useGetAllCoursesQuery} from "../../services/contentAPI";
 import {
+    closeModal,
     changeDescription,
     changeTitle,
     errorTitleChange,
     errorDescriptionChange,
-    closeModal,
     changeCourse,
     errorCourseChange
 } from "../../store/reducers/admin/lessonSlice";
@@ -18,6 +18,7 @@ import {ICourse} from "../../models/ICourse";
 import {ILesson} from "../../models/ILesson";
 import {LoadingButton} from "@mui/lab";
 import {Transition} from "./Transition";
+import {noop} from "../../utils";
 
 const CourseCreate: FC = () => {
     const {
@@ -39,7 +40,9 @@ const CourseCreate: FC = () => {
 
 
     useEffect(() => {
-        dispatch(closeModal())
+        if (isSuccessCreate || isSuccessUpdate) {
+            handleClose()
+        }
     }, [isSuccessCreate, isSuccessUpdate]);
 
 
@@ -82,92 +85,110 @@ const CourseCreate: FC = () => {
 
     const handleClose = () => dispatch(closeModal())
 
-    const mock = () => {
-    }
-
     return (
         <Dialog
             open = {open}
             TransitionComponent = {Transition}
-            onClose = {(isLoadingUpdate || isLoadingCreate) ? mock : handleClose}
+            onClose = {(isLoadingUpdate || isLoadingCreate) ? noop : handleClose}
+            sx = {{
+                borderRadius: 3
+            }}
         >
             <Box
-                p = {3}
-                px = {5}
+                sx = {{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    pb: 3,
+                }}
             >
                 <Box
                     sx = {{
                         display: 'flex',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        backgroundColor: 'grey.800',
+                        mb: 3,
+                        py: 3
                     }}
-                    mb = {2}
                 >
                     <IconButton
                         onClick = {handleClose}
                         disabled = {isLoadingCreate || isLoadingUpdate}
+                        color = {'error'}
+                        sx = {{
+                            ml: 2
+                        }}
                     >
                         <CloseIcon/>
                     </IconButton>
-                    <Typography variant = 'h5' component = 'span'>
+                    <Typography
+                        variant = 'h5'
+                        component = 'span'
+                        color = 'grey.400'
+                        sx = {{
+                            ml: 3
+                        }}
+                    >
                         {`Lesson ${isUpdate ? 'edit' : 'create'}`}
                     </Typography>
                 </Box>
-                <Box mb = {3}>
-                    <TextField
-                        label = 'Name'
-                        variant = 'filled'
-                        required
-                        onChange = {handlerName}
-                        value = {title}
-                        error = {titleError}
-                        disabled = {isLoadingCreate || isLoadingUpdate}
-                    />
+                <Box mx = {5}>
+                    <Box mb = {3}>
+                        <TextField
+                            label = 'Name'
+                            variant = 'filled'
+                            required
+                            onChange = {handlerName}
+                            value = {title}
+                            error = {titleError}
+                            disabled = {isLoadingCreate || isLoadingUpdate}
+                        />
+                    </Box>
+                    <Box mb = {3}>
+                        <TextField
+                            label = 'About'
+                            variant = 'filled'
+                            required
+                            onChange = {handlerAbout}
+                            value = {description}
+                            error = {descriptionError}
+                            disabled = {isLoadingCreate || isLoadingUpdate}
+                        />
+                    </Box>
+                    <Box mb = {3}>
+                        <Autocomplete
+                            renderInput = {params =>
+                                <TextField
+                                    {...params}
+                                    label = 'Course'
+                                    variant = 'filled'
+                                    required
+                                    fullWidth
+                                    error = {courseError}
+                                />
+                            }
+                            value = {course}
+                            options = {courses as readonly ICourse[]}
+                            onChange = {handleCourse}
+                            inputValue = {courseInputValue}
+                            onInputChange = {(e, newValue) => {
+                                setCourseInputValue(newValue)
+                            }}
+                            getOptionLabel = {(option: ICourse) => (option && option.title) || ''}
+                            disabled = {isLoadingCreate || isLoadingUpdate}
+                        />
+                    </Box>
                 </Box>
-                <Box mb = {3}>
-                    <TextField
-                        label = 'About'
-                        variant = 'filled'
-                        required
-                        onChange = {handlerAbout}
-                        value = {description}
-                        error = {descriptionError}
-                        disabled = {isLoadingCreate || isLoadingUpdate}
-                    />
+                <Box mx = {'auto'}>
+                    <LoadingButton
+                        loading = {isLoadingCreate || isLoadingUpdate}
+                        variant = 'outlined'
+                        color = 'success'
+                        endIcon = {<SaveIcon/>}
+                        onClick = {saveLesson}
+                    >
+                        Save
+                    </LoadingButton>
                 </Box>
-                <Box mb = {3}>
-                    <Autocomplete
-                        renderInput = {params =>
-                            <TextField
-                                {...params}
-                                label = 'Course'
-                                variant = 'filled'
-                                required
-                                fullWidth
-                                error = {courseError}
-                            />
-                        }
-                        value = {course}
-                        options = {courses as readonly ICourse[]}
-                        onChange = {handleCourse}
-                        inputValue = {courseInputValue}
-                        onInputChange = {(e, newValue) => {
-                            setCourseInputValue(newValue)
-                        }}
-                        getOptionLabel = {(option: ICourse) => (option && option.title) || ''}
-                        //renderOption = {(option) => <span>{option.title}</span>}
-                        disabled = {isLoadingCreate || isLoadingUpdate}
-                    />
-                </Box>
-                <LoadingButton
-                    loading = {isLoadingCreate || isLoadingUpdate}
-                    variant = 'outlined'
-                    color = 'success'
-                    endIcon = {<SaveIcon/>}
-                    onClick = {saveLesson}
-                >
-                    Save
-                </LoadingButton>
-
             </Box>
         </Dialog>
     )

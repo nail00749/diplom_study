@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {Dialog, Typography, IconButton, Box, TextField, useTheme, Button} from "@mui/material";
+import {Dialog, Typography, IconButton, Box, TextField, Button} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import {useCreateCourseMutation, useUpdateCourseMutation} from "../../services/adminAPI";
@@ -13,6 +13,7 @@ import {
 } from "../../store/reducers/admin/courseSlice";
 import {LoadingButton} from "@mui/lab";
 import {Transition} from "./Transition";
+import {noop} from "../../utils";
 
 const CourseCreate: FC = () => {
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateCourseMutation()
@@ -31,7 +32,9 @@ const CourseCreate: FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(closeModal())
+        if (isSuccessCreate || isSuccessUpdate) {
+            dispatch(closeModal())
+        }
     }, [isSuccessUpdate, isSuccessCreate]);
 
 
@@ -41,7 +44,6 @@ const CourseCreate: FC = () => {
             isError = true
             dispatch(errorTitleChange())
         }
-
         if (!description) {
             isError = true
             dispatch(errorDescriptionChange())
@@ -51,10 +53,6 @@ const CourseCreate: FC = () => {
             return
         }
 
-        /*const data = {
-            title,
-            description
-        }*/
         const data = new FormData()
         data.append('file', file)
         data.append('title', title)
@@ -74,14 +72,8 @@ const CourseCreate: FC = () => {
         if (e.target.files && e.target.files[0]) {
             dispatch(changeFile(e.target.files[0]))
         }
-
     }
-
-
     const handlerClose = () => dispatch(closeModal())
-
-    const noop = () => {
-    }
 
     return (
         <Dialog
@@ -103,7 +95,6 @@ const CourseCreate: FC = () => {
                     sx = {{
                         display: 'flex',
                         alignItems: 'center',
-                        /*justifyContent: 'center',*/
                         backgroundColor: 'grey.800',
                         mb: 3,
                         py: 3
@@ -162,9 +153,9 @@ const CourseCreate: FC = () => {
                     {
                         file &&
 						<Box>
-                            {`File: ${file.name.length > 18 ? file.name.substring(0, 15)+'...' : file.name}`}
+                            {`File: ${file.name.length > 18 ? file.name.substring(0, 15) + '...' : file.name}`}
 
-                        </Box>
+						</Box>
                     }
                     <Box
                         mb = {3}
@@ -181,7 +172,7 @@ const CourseCreate: FC = () => {
                                 type = 'file'
                                 hidden
                                 onChange = {handlerFile}
-                                accept='image/*'
+                                accept = 'image/*'
                             />
                         </Button>
 
@@ -206,7 +197,6 @@ const CourseCreate: FC = () => {
             </Box>
         </Dialog>
     )
-
 }
 
 export default React.memo(CourseCreate);

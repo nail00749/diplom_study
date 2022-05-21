@@ -15,6 +15,6 @@ export class AdminController {
   @UseGuards(JwtAuthGuard)
   @Patch('users/:id')
   updateUserData(@Param('id') id: string, @Body() userDto: UpdateUserDto) {
-    this.adminService.updateUserData(id, userDto);
+    this.adminService.updateUserData(userDto);
   }
 }

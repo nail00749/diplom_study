@@ -1,10 +1,10 @@
 import React, {FC, useMemo, useState, useEffect, useRef} from 'react'
-import {Box, FormControl, MenuItem, Typography, IconButton} from "@mui/material";
+import {Box, FormControl, MenuItem, Typography} from "@mui/material";
 import {DataGrid, GridColDef, GridRenderCellParams} from '@mui/x-data-grid';
-import {useGetAllUsersQuery, useSetRoleMutation} from "../../services/adminAPI";
+import {useGetAllUsersQuery, useSetRoleMutation} from "../services/adminAPI";
 import Select, {SelectChangeEvent} from '@mui/material/Select';
-import {IUser} from "../../models/IUser";
-import {useGetMeDataQuery} from "../../services/userAPI";
+import {IUser} from "../models/IUser";
+import {useGetMeDataQuery} from "../services/userAPI";
 
 
 const UsersData: FC = () => {
@@ -13,7 +13,6 @@ const UsersData: FC = () => {
     const [update, {isSuccess}] = useSetRoleMutation()
     const [users, setUsers] = useState<IUser[]>([]);
     const currentUser = useRef<IUser | null>(null)
-
 
     useEffect(() => {
         if (data && meData) {

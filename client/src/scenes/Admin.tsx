@@ -28,9 +28,10 @@ const Admin: FC = () => {
                 <Grid
                     item
                     xs = {12}
-                    md = {2}
+                    sm={4}
+                    md = {3}
                     pt = {5}
-                    pl = {3}
+                    px = {3}
                 >
                     <ButtonGroup
                         orientation = 'vertical'
@@ -81,7 +82,12 @@ const Admin: FC = () => {
                         </Box>
                     </ButtonGroup>
                 </Grid>
-                <Grid item xs = {12} md = {10}>
+                <Grid
+                    item
+                    xs = {12}
+                    sm={8}
+                    md = {9}
+                >
                     <UsersData/>
                 </Grid>
             </Grid>

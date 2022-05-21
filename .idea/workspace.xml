@@ -1,48 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="userFlow and UserSubscription">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/diplom_study.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/statistic.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/UserSubscription.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/IUserFlow.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/IUserSubscription.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/userFlowAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/userSubscriptionAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/store/reducers/modals/modalsSlice.ts" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="design fix in modal">
       <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/dto/update-user-flow.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/update-user-subscription.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/schemas/user-subscription.schemas.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.service.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/063057f5-7b80-4cf3-a11a-ac4fa2b7bca3.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/d92a6bff-d30a-4b39-9b38-d3c70e67ffec.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/AdminModalsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/AdminModalsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useInput.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/ISubscription.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/IUser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/adminAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/adminAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/contentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/contentAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +165,7 @@
       <workItem from="1653030382854" duration="351000" />
       <workItem from="1653032817642" duration="29440000" />
       <workItem from="1653126107155" duration="2803000" />
-      <workItem from="1653130206957" duration="16519000" />
+      <workItem from="1653130206957" duration="16892000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -239,7 +202,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653150553939</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="userFlow and UserSubscription">
+      <created>1653150676719</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653150676719</updated>
+    </task>
+    <task id="LOCAL-00007" summary="design fix in modal">
+      <created>1653150707438</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653150707438</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +257,8 @@
     <MESSAGE value="fix file check" />
     <MESSAGE value="fix edit role" />
     <MESSAGE value="userFlow and UserSubscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="userFlow and UserSubscription" />
+    <MESSAGE value="design fix in modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="design fix in modal" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

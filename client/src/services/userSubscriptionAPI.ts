@@ -8,10 +8,12 @@ export const userSubscriptionAPI = baseAPI.injectEndpoints({
                 url: '/user-subscription',
                 method: 'POST',
                 body
-            })
+            }),
+            invalidatesTags: ['Subscriptions']
         }),
         getAllUserSubscription: build.query<IUserSubscription[], void>({
-            query: () => '/user-subscription'
+            query: () => '/user-subscription',
+            providesTags: ['Subscriptions']
         })
     }),
     overrideExisting: true

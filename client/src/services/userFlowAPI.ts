@@ -9,10 +9,12 @@ export const userFlowAPI = baseAPI.injectEndpoints({
                 url: '/user-flow',
                 method: 'POST',
                 body
-            })
+            }),
+            invalidatesTags: ['Flows']
         }),
         getAllUserFlow: build.query<IUserFlow[], void>({
-            query: () => '/user-flow'
+            query: () => '/user-flow',
+            providesTags: ['Flows']
         })
     }),
     overrideExisting: true

@@ -3,11 +3,11 @@ import {Transition} from "./Transition";
 import {Autocomplete, Box, Dialog, IconButton, TextField, Typography, useMediaQuery,} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import {ICourse} from "../../models/ICourse";
-import {useGetAllCoursesQuery} from "../../services/contentAPI";
+import {useGetAllCoursesQuery} from "../../services/courseAPI";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {closeUserFlow} from "../../store/reducers/modals/modalsSlice";
 import {useCreateUserFlowMutation} from "../../services/userFlowAPI";
-import {noop} from '../../utils/index'
+import {noop} from '../../utils'
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';

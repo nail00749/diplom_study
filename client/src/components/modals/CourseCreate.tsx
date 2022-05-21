@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Dialog, Typography, IconButton, Box, TextField, Button} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
-import {useCreateCourseMutation, useUpdateCourseMutation} from "../../services/adminAPI";
+import {useCreateCourseMutation, useUpdateCourseMutation} from "../../services/courseAPI";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {
     closeModal,

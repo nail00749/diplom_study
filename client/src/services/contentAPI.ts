@@ -6,14 +6,7 @@ import {IUserSubscription} from "../models/IUserSubscription";
 
 export const contentAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getAllCourses: build.query<ICourse[], void>({
-            query: () => '/course',
-            providesTags: ['Courses']
-        }),
-        getCourse: build.query<ICourse, string>({
-            query: (id) => `/course/${id}`,
-            providesTags: ['Course']
-        }),
+
         getAllLessons: build.query<ILesson[], void>({
             query: () => '/lesson',
             providesTags: () => ['Lessons']
@@ -31,8 +24,6 @@ export const contentAPI = baseAPI.injectEndpoints({
 
 
 export const {
-    useGetAllCoursesQuery,
-    useGetCourseQuery,
     useGetAllLessonsQuery,
     useGetLessonQuery,
     useGetAllSubscribesQuery,

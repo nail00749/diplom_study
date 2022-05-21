@@ -1,8 +1,8 @@
 import React, {FC} from 'react'
 import {Box, Typography} from "@mui/material";
 import {useGetAllSubscribesQuery} from "../../services/contentAPI";
-import CourseLink from "../CourseLink";
 import {ICourse} from "../../models/ICourse";
+import StyleLink from "../UI/StyleLink";
 
 const UserCourse: FC = () => {
     const {data: subscribes} = useGetAllSubscribesQuery()
@@ -26,10 +26,21 @@ const UserCourse: FC = () => {
           {
               subscribes && subscribes.length ?
                 subscribes.map((sub: ICourse) =>
-                  <CourseLink
-                    key = {sub._id}
-                    course = {sub}
-                  />
+                    <StyleLink
+                        key={sub._id}
+                        to={`/course/${sub._id}`}
+                    >
+                        <Box
+                            mb = {3}
+                            py = {1.5}
+                            px = {3}
+                            sx = {{
+                                borderRadius: 3,
+                            }}
+                        >
+                            {sub.title}
+                        </Box>
+                    </StyleLink>
                 ) : 'У вас нет подписок на курсы'
           }
       </Box>

@@ -2,11 +2,12 @@ import React, {FC, useEffect, useState} from 'react';
 import {Box, Button, Typography} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import {openModal as openLessonModal} from "../store/reducers/admin/lessonSlice";
-import {useGetAllCoursesQuery, useGetAllLessonsQuery, useGetLessonQuery} from "../services/contentAPI";
+import {useGetAllLessonsQuery, useGetLessonQuery} from "../services/contentAPI";
 import {useAppDispatch} from "../hooks/redux";
 import PassTest from "../components/modals/PassTest";
 import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useGetMeDataQuery} from "../services/userAPI";
+import {useGetAllCoursesQuery} from "../services/courseAPI";
 
 const Lesson: FC = () => {
     const {lessonId} = useParams()

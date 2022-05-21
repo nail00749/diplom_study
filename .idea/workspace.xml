@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="design fix in modal">
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="course page and refactoring course methods">
+      <change afterPath="$PROJECT_DIR$/client/src/services/courseAPI.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/063057f5-7b80-4cf3-a11a-ac4fa2b7bca3.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/d92a6bff-d30a-4b39-9b38-d3c70e67ffec.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Course/UserCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/UserCourse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CourseLink.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Course.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Course.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Stream.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Stream.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/adminAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/adminAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/contentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/contentAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +66,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="29IIDVBWkqjiDxNwtE6hHGMSquj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -75,7 +87,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
-    <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\client\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\server\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -90,7 +102,7 @@
       <recent name="C:\Users\nail-\Desktop\diplom_study\client" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.http">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration name="rest-api | //list users" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="3" requestIdentifier="//list users" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -165,7 +177,8 @@
       <workItem from="1653030382854" duration="351000" />
       <workItem from="1653032817642" duration="29440000" />
       <workItem from="1653126107155" duration="2803000" />
-      <workItem from="1653130206957" duration="16892000" />
+      <workItem from="1653130206957" duration="21099000" />
+      <workItem from="1653158242140" duration="3663000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -216,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653150707438</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="provides tags">
+      <created>1653151298075</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653151298075</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +278,9 @@
     <MESSAGE value="fix edit role" />
     <MESSAGE value="userFlow and UserSubscription" />
     <MESSAGE value="design fix in modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="design fix in modal" />
+    <MESSAGE value="provides tags" />
+    <MESSAGE value="course page and refactoring course methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="course page and refactoring course methods" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

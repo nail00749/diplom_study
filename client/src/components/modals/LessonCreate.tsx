@@ -3,7 +3,7 @@ import {Dialog, Typography, IconButton, Box, TextField, Autocomplete} from "@mui
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import {useCreateLessonMutation, useUpdateLessonMutation} from "../../services/adminAPI";
-import {useGetAllCoursesQuery} from "../../services/contentAPI";
+import {useGetAllCoursesQuery} from "../../services/courseAPI";
 import {
     closeModal,
     changeDescription,

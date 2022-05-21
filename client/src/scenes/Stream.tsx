@@ -1,7 +1,7 @@
 import {Box, Button} from '@mui/material';
 import React, {FC, useRef, useState, useEffect} from 'react';
 import Webcam from "react-webcam";
-import {ReactFlvPlayer} from "@asurraa/react-ts-flv-player";
+
 
 const Stream: FC = () => {
     const [isActiveWebCam, setIsActiveWebCam] = useState<boolean>(false);
@@ -138,29 +138,6 @@ const Stream: FC = () => {
                         </Button>
                 }
             </Box>
-            {/*<video
-                style = {{
-                    width: 400,
-                    height: 300
-                }}
-                ref = {screenRef}
-                autoPlay
-            />*/}
-
-            {
-                url &&
-                <ReactFlvPlayer
-                    url = {url}
-                    isMuted = {false}
-                    isLive = {true}
-                    showControls = {false}
-                    enableStashBuffer = {true}
-                    videoProps = {{
-                        autoPlay: false
-                    }}
-                />
-            }
-
 
         </>
     );

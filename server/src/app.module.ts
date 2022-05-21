@@ -11,6 +11,8 @@ import { FileService } from './file/file.service';
 import { FileModule } from './file/file.module';
 import { LessonModule } from './lesson/lesson.module';
 import { TestModule } from './test/test.module';
+import { UserFlowModule } from './user-flow/user-flow.module';
+import { UserSubscriptionModule } from './user-subscription/user-subscription.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { TestModule } from './test/test.module';
     FileModule,
     LessonModule,
     TestModule,
+    UserFlowModule,
+    UserSubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService, FileService],

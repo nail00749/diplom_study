@@ -3,6 +3,7 @@ import {ICourse} from "../models/ICourse";
 import {ILesson} from "../models/ILesson";
 import {IUser} from '../models/IUser';
 import {ITest} from "../models/ITest";
+import {IUserFlow} from "../models/IUserFlow";
 
 export const adminAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
@@ -63,7 +64,8 @@ export const adminAPI = baseAPI.injectEndpoints({
                 method: 'PATCH',
                 body
             }),
-        })
+            invalidatesTags: ['Users']
+        }),
     }),
     overrideExisting: true
 })
@@ -77,7 +79,7 @@ export const {
     useUpdateLessonMutation,
     useGetAllUsersQuery,
     useSetRoleMutation,
-    useUpdateTestMutation
+    useUpdateTestMutation,
 } = adminAPI
 
 export const {reducer, middleware} = adminAPI

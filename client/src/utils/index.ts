@@ -3,3 +3,5 @@ const regexp = new RegExp(/^(([^<>()\\[\].,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(
 export const validateEmail = (email: string): boolean => {
     return regexp.test(email.toLowerCase())
 };
+
+export const noop = () => {}

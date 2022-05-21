@@ -1,7 +1,7 @@
 import {ICourse} from "../models/ICourse";
 import {baseAPI} from "./baseAPI";
 import {ILesson} from "../models/ILesson";
-import {ISubscription} from "../models/ISubscription";
+import {IUserSubscription} from "../models/IUserSubscription";
 
 
 export const contentAPI = baseAPI.injectEndpoints({

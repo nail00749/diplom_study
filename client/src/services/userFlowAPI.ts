@@ -4,7 +4,7 @@ import {IUserFlow} from "../models/IUserFlow";
 
 export const userFlowAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        createUserFlow: build.mutation<IUserFlow, IUserFlow>({
+        createUserFlow: build.mutation<IUserFlow, { name: string, date: Date, course: string, teacher: string }>({
             query: (body) => ({
                 url: '/user-flow',
                 method: 'POST',

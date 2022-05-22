@@ -24,14 +24,14 @@ const UserSubscription = () => {
     const {data: users} = useGetAllUsersQuery()
     const [create, {isLoading, isSuccess}] = useCreateUserSubscriptionMutation()
     const [students, setStudents] = useState<IUser[]>([])
-    const [teachers, setTeachers] = useState<IUser[]>([])
+
 
     const [courseInputValue, setCourseInputValue] = useState('');
     const [studentInputValue, setStudentInputValue] = useState('');
-    const [teacherInputValue, setTeacherInputValue] = useState('');
+
     const [flow, setFlow] = useState<{ value: IUserFlow | null, error: boolean }>({value: null, error: false})
     const [student, setStudent] = useState<{ value: IUser | null, error: boolean }>({value: null, error: false})
-    const [teacher, setTeacher] = useState<{ value: IUser | null, error: boolean }>({value: null, error: false})
+
     const [startDate, setStartDate] = useState<{ value: Date | null, error: boolean }>({
         value: new Date(),
         error: false
@@ -41,7 +41,6 @@ const UserSubscription = () => {
 
     useEffect(() => {
         if (users && users.length) {
-            setTeachers(users.filter(u => u.role === 'teacher'))
             setStudents(users.filter(u => u.role === 'user'))
         }
     }, [users])
@@ -54,11 +53,12 @@ const UserSubscription = () => {
 
     const handleCourse = (e: any, newValue: IUserFlow | null) => setFlow({value: newValue, error: false})
     const handleStudent = (e: any, newValue: IUser | null) => setStudent({value: newValue, error: false})
-    const handleTeacher = (e: any, newValue: IUser | null) => setTeacher({value: newValue, error: false})
+
 
     const handleClose = () => dispatch(closeUserSubscription())
 
     const handleChangeStartDate = (newValue: Date | null) => setStartDate({...startDate, value: newValue})
+
     const handleChangeEndDate = (newValue: Date | null) => setEndDate({...startDate, value: newValue})
 
     const handleSave = () => {
@@ -80,10 +80,7 @@ const UserSubscription = () => {
             setStudent({...student, error: true})
             isError = true
         }
-        if (!teacher.value) {
-            setStudent({...teacher, error: true})
-            isError = true
-        }
+
         if (startDate!.value! > endDate!.value!) {
             setStartDate({...startDate, error: true})
             setEndDate({...endDate, error: true})
@@ -96,7 +93,6 @@ const UserSubscription = () => {
         const data = {
             flow: flow!.value!._id,
             student: student!.value!._id,
-            teacher: teacher!.value!._id,
             start_date: startDate!.value,
             end_date: endDate!.value
         }
@@ -194,29 +190,6 @@ const UserSubscription = () => {
                             inputValue = {studentInputValue}
                             onInputChange = {(e, newValue) => {
                                 setStudentInputValue(newValue)
-                            }}
-                            getOptionLabel = {(option: IUser) => (option && option.email) || ''}
-                            disabled = {isLoading}
-                        />
-                    </Box>
-                    <Box mb = {3}>
-                        <Autocomplete
-                            renderInput = {params =>
-                                <TextField
-                                    {...params}
-                                    label = 'Teacher'
-                                    variant = 'filled'
-                                    required
-                                    fullWidth
-                                    error = {teacher.error}
-                                />
-                            }
-                            value = {teacher.value}
-                            options = {teachers as readonly IUser[]}
-                            onChange = {handleTeacher}
-                            inputValue = {teacherInputValue}
-                            onInputChange = {(e, newValue) => {
-                                setTeacherInputValue(newValue)
                             }}
                             getOptionLabel = {(option: IUser) => (option && option.email) || ''}
                             disabled = {isLoading}

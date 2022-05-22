@@ -17,6 +17,7 @@ const Course: FC = () => {
     const {data: user} = useGetMeDataQuery()
     const dispatch = useAppDispatch()
     const [activeStep] = useState(0)
+    console.log(123)
 
     useEffect(() => {
         if (!courseId) {

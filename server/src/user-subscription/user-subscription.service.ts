@@ -18,6 +18,15 @@ export class UserSubscriptionService {
         return this.userSubscriptionModel.find()
     }
 
+    findStudentCourse(id: string) {
+        return this.userSubscriptionModel.find({
+            student: id
+        }).populate({
+            path: 'flow',
+            populate: 'course'
+        })
+    }
+
     findOne(id: number) {
         return `This action returns a #${id} userSubscription`;
     }

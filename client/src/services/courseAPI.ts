@@ -1,5 +1,6 @@
 import {baseAPI} from "./baseAPI";
 import {ICourse} from "../models/ICourse";
+import {IUserSubscription} from "../models/IUserSubscription";
 
 
 export const courseAPI = baseAPI.injectEndpoints({
@@ -28,6 +29,9 @@ export const courseAPI = baseAPI.injectEndpoints({
             query: (id) => `/course/${id}`,
             providesTags: ['Course']
         }),
+        getStudentCourses: build.query<IUserSubscription[], void>({
+            query: () => '/user-subscription/course'
+        })
     }),
     overrideExisting: true
 })
@@ -37,6 +41,7 @@ export const {
     useUpdateCourseMutation,
     useGetAllCoursesQuery,
     useGetCourseQuery,
+    useGetStudentCoursesQuery
 } = courseAPI
 
 export const {reducer, middleware} = courseAPI

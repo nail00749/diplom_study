@@ -12,10 +12,6 @@ export class UserSubscription {
     @Type(() => User)
     student: User;
 
-    @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User'})
-    @Type(() => User)
-    teacher: User;
-
     @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: 'UserFlow'})
     @Type(() => UserFlow)
     flow: UserFlow;

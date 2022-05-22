@@ -16,9 +16,14 @@ import SaveIcon from "@mui/icons-material/Save";
 import {LoadingButton} from "@mui/lab";
 import {useInput} from "../../hooks/useInput";
 import {IUserFlow} from "../../models/IUserFlow";
+import {IUser} from "../../models/IUser";
+import {useGetAllUsersQuery} from "../../services/adminAPI";
+import setSystemTime = jest.setSystemTime;
 
 const UserFlow = () => {
     const {data: courses} = useGetAllCoursesQuery()
+    const {data: users} = useGetAllUsersQuery()
+    const [teachers, setTeachers] = useState<IUser[]>([])
     const {userFlowOpen} = useAppSelector(state => state.modalReducer)
     const [create, {isLoading, isSuccess}] = useCreateUserFlowMutation()
     const dispatch = useAppDispatch()
@@ -27,6 +32,15 @@ const UserFlow = () => {
     const [course, setCourse] = useState<{ value: ICourse | null, error: boolean }>({value: null, error: false})
     const [date, setDate] = useState<{ value: Date | null, error: boolean }>({value: new Date(), error: false})
     const matches = useMediaQuery('(max-width:600px)');
+    const [teacher, setTeacher] = useState<{ value: IUser | null, error: boolean }>({value: null, error: false})
+    const [teacherInputValue, setTeacherInputValue] = useState('');
+
+
+    useEffect(() => {
+        if (users && users.length) {
+            setTeachers(users.filter(u => u.role === 'teacher'))
+        }
+    }, [users])
 
     useEffect(() => {
         if (isSuccess) {
@@ -40,6 +54,8 @@ const UserFlow = () => {
 
     const handleChangeDate = (newValue: Date | null) => setDate({...date, value: newValue})
 
+    const handleTeacher = (e: any, newValue: IUser | null) => setTeacher({value: newValue, error: false})
+
     const handleSave = () => {
         let isError = false
         if (!name.value) {
@@ -50,6 +66,10 @@ const UserFlow = () => {
             setCourse({...course, error: true})
             isError = true
         }
+        if (!teacher.value) {
+            setTeacher({...teacher, error: true})
+            isError = true
+        }
         if (!date.value) {
             setDate({...date, error: true})
             isError = true
@@ -58,10 +78,11 @@ const UserFlow = () => {
             return
         }
 
-        const data: IUserFlow = {
+        const data = {
             name: name.value,
             date: date.value!,
-            course: course.value!._id!
+            course: course.value!._id!,
+            teacher: teacher!.value!._id!,
         }
         create(data)
     }
@@ -147,6 +168,29 @@ const UserFlow = () => {
                                 setCourseInputValue(newValue)
                             }}
                             getOptionLabel = {(option: ICourse) => (option && option.title) || ''}
+                            disabled = {isLoading}
+                        />
+                    </Box>
+                    <Box mb = {3}>
+                        <Autocomplete
+                            renderInput = {params =>
+                                <TextField
+                                    {...params}
+                                    label = 'Teacher'
+                                    variant = 'filled'
+                                    required
+                                    fullWidth
+                                    error = {teacher.error}
+                                />
+                            }
+                            value = {teacher.value}
+                            options = {teachers as readonly IUser[]}
+                            onChange = {handleTeacher}
+                            inputValue = {teacherInputValue}
+                            onInputChange = {(e, newValue) => {
+                                setTeacherInputValue(newValue)
+                            }}
+                            getOptionLabel = {(option: IUser) => (option && option.email) || ''}
                             disabled = {isLoading}
                         />
                     </Box>

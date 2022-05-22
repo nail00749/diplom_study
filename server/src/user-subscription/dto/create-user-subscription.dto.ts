@@ -1,7 +1,6 @@
 export class CreateUserSubscriptionDto {
-    student: string;
-    teacher: string;
-    course: string;
-    start_date: Date;
-    end_date: Date;
+    readonly student: string;
+    readonly course: string;
+    readonly start_date: Date;
+    readonly end_date: Date;
 }

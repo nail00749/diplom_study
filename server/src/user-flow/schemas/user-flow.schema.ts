@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Type} from "class-transformer";
 import {Course} from "../../course/scmehas/course.schema";
+import {User} from "../../users/schemas/user.schema";
 
 
 export type UserFlowDocument = UserFlow & mongoose.Document;
@@ -14,6 +15,10 @@ export class UserFlow {
     @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Course'})
     @Type(() => Course)
     course: Course;
+
+    @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User'})
+    @Type(() => User)
+    teacher: User;
 
     @Prop({required: true, type: Date})
     date: Date;

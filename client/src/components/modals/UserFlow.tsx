@@ -18,7 +18,6 @@ import {useInput} from "../../hooks/useInput";
 import {IUserFlow} from "../../models/IUserFlow";
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
-import setSystemTime = jest.setSystemTime;
 
 const UserFlow = () => {
     const {data: courses} = useGetAllCoursesQuery()

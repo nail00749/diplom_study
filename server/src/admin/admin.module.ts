@@ -9,6 +9,6 @@ import {FileService} from "../file/file.service";
 @Module({
   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
   controllers: [AdminController],
-  providers: [AdminService, UsersService, FileService]
+  providers: [AdminService]
 })
 export class AdminModule {}

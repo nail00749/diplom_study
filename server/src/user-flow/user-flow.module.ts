@@ -7,6 +7,7 @@ import {UserFlow, UserFlowSchema} from "./schemas/user-flow.schema";
 @Module({
   imports: [MongooseModule.forFeature([{name: UserFlow.name, schema: UserFlowSchema}])],
   controllers: [UserFlowController],
-  providers: [UserFlowService]
+  providers: [UserFlowService],
+  exports: [UserFlowService]
 })
 export class UserFlowModule {}

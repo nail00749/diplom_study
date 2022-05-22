@@ -15,13 +15,19 @@ export const userFlowAPI = baseAPI.injectEndpoints({
         getAllUserFlow: build.query<IUserFlow[], void>({
             query: () => '/user-flow',
             providesTags: ['Flows']
-        })
+        }),
+        getAllTeacherFlow: build.query<IUserFlow[], void>({
+            query: () => '/user-flow/teacher',
+            providesTags: ['Flows']
+        }),
+
     }),
     overrideExisting: true
 })
 
 export const {
     useGetAllUserFlowQuery,
+    useGetAllTeacherFlowQuery,
     useCreateUserFlowMutation,
 } = userFlowAPI
 

@@ -49,6 +49,12 @@ export class UsersController {
     }
 
     @UseGuards(JwtAuthGuard)
+    @Get('course-teacher/:course_id')
+    findTeachersFromCourse(@Param('course_id') course_id) {
+        return this.usersService.findTeachersFromCourse(course_id)
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Patch()
     update(@Req() req, @Body() updateUserDto: UpdateUserDto) {
         return this.usersService.update(req.user, updateUserDto);

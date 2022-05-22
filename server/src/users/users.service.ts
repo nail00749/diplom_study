@@ -5,11 +5,16 @@ import {User, UserDocument} from './schemas/user.schema';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import {FileService} from "../file/file.service";
+import {UserFlow, UserFlowDocument} from "../user-flow/schemas/user-flow.schema";
+import {UserFlowService} from "../user-flow/user-flow.service";
+
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>, private readonly fileService: FileService) {
+    constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+                /*@InjectModel(UserFlow.name) private readonly userFlowModel: Model<UserFlowDocument>*/
+                private readonly userFlowService: UserFlowService
+    ) {
     }
 
     async create(dto: CreateUserDto): Promise<Partial<User>> {
@@ -42,6 +47,11 @@ export class UsersService {
 
     updateAvatar(id, filePath) {
         return this.userModel.findByIdAndUpdate(id, {avatar_path: filePath})
+    }
+
+    async findTeachersFromCourse(course_id: string) {
+        const flows = await this.userFlowService.findFlowsByCourse(course_id).distinct('teacher')
+        return this.userModel.find().where('_id').in(flows).select('-password')
     }
 
 

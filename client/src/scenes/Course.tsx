@@ -9,6 +9,7 @@ import {ICourse} from '../models/ICourse'
 import {ILesson} from "../models/ILesson";
 import StyleLink from "../components/UI/StyleLink";
 import {useGetMeDataQuery} from "../services/userAPI";
+import TeachersFromCourse from "../components/TeachersFromCourse";
 
 const Course: FC = () => {
     const {courseId} = useParams()
@@ -49,9 +50,9 @@ const Course: FC = () => {
                     course &&
 					<>
 						<Grid
-                            container
-                            spacing={3}
-                        >
+							container
+							spacing = {3}
+						>
                             {course.image_path &&
 								<Grid
 									item
@@ -146,7 +147,7 @@ const Course: FC = () => {
                                             </Button>
                                         </Box> : null
                                 }
-								Преподователи
+								<TeachersFromCourse courseId = {String(courseId)}/>
 							</Grid>
 
 						</Grid>

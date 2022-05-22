@@ -7,7 +7,6 @@ import {
 } from "../store/reducers/user/UserSlice";
 import {IUser} from "../models/IUser";
 
-
 const baseQuery = retry(fetchBaseQuery({
     baseUrl: BaseURL + '/api',
     prepareHeaders: (headers) => {
@@ -66,7 +65,10 @@ export const userAPI = createApi({
                 body
             }),
             invalidatesTags: ['User']
-        })
+        }),
+        getTeachersFromCourse: build.query<IUser[], string>({
+            query: (courseId: string) => `/users/course-teacher/${courseId}`
+        }),
     })
 })
 
@@ -75,7 +77,8 @@ export const {
     useRegisterMutation,
     useGetMeDataQuery,
     useUpdateMutation,
-    useUpdateAvatarMutation
+    useUpdateAvatarMutation,
+    useGetTeachersFromCourseQuery,
 } = userAPI
 
 export const {reducer, middleware} = userAPI

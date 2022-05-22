@@ -2,7 +2,8 @@ export interface ITest {
     lesson: string
     description: string
     questions: IQuestion[]
-    _id?: string
+    _id?: string,
+    result?: any
 }
 
 export interface IQuestion {
@@ -10,12 +11,12 @@ export interface IQuestion {
     answers: IAnswer[],
     is_extended?: boolean,
     is_multiple?: boolean,
-    id?: string
+    id: string
 }
 
 export interface IAnswer {
     text: string,
     is_correct?: boolean,
-    id?: number
+    id: number
 
 }

@@ -1,14 +1,14 @@
 import {baseAPI} from "./baseAPI";
 import {IUserSubmission} from "../models/IUserSubmission";
 
-export const userSubmissionAPI = baseAPI.injectEndpoints({
+export const userTestResultAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-        getSubmission: build.query<IUserSubmission, string>({
-            query: () => ({url: '', params: {}})
+        getMyTestResult: build.query<IUserSubmission, string>({
+            query: (testId) => `/test/my-result/${testId}`
         }),
         passTest: build.mutation({
             query: ({id, ...other}) => ({
-                url: `/test/finish/${id}`,
+                url: `/test/finish`,
                 method: 'POST',
                 body: other,
             }),
@@ -18,6 +18,6 @@ export const userSubmissionAPI = baseAPI.injectEndpoints({
 })
 
 export const {
-    useGetSubmissionQuery,
+    useGetMyTestResultQuery,
     usePassTestMutation
-} = userSubmissionAPI
+} = userTestResultAPI

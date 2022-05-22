@@ -37,7 +37,6 @@ const CourseCreate: FC = () => {
         }
     }, [isSuccessUpdate, isSuccessCreate]);
 
-
     const saveCourse = async () => {
         let isError = false
         if (!title) {

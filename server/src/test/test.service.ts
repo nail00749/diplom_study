@@ -4,14 +4,25 @@ import {UpdateTestDto} from './dto/update-test.dto';
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
 import {TestDocument, Test} from "./schema/test.schema";
+import {TestResult, TestResultDocument} from "./schema/test-result.schema";
+import {TestResultDto} from "./dto/test-result.dto";
 
 @Injectable()
 export class TestService {
-    constructor(@InjectModel(Test.name) private readonly testModel: Model<TestDocument>) {
+    constructor(@InjectModel(Test.name) private readonly testModel: Model<TestDocument>,
+                @InjectModel(TestResult.name) private readonly testResultModel: Model<TestResultDocument>) {
     }
 
     create(createTestDto: CreateTestDto) {
         return this.testModel.create(createTestDto)
+    }
+
+    createTestResult(userId: string, testResult: TestResultDto) {
+        return this.testResultModel.create({...testResult, user: userId})
+    }
+
+    getMyTestResult(userId: string, testId: string) {
+        return this.testResultModel.findOne({user: userId, test: testId})
     }
 
     findAll() {

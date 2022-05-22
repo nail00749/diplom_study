@@ -8,6 +8,8 @@ import PassTest from "../components/modals/PassTest";
 import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useGetMeDataQuery} from "../services/userAPI";
 import {useGetAllCoursesQuery} from "../services/courseAPI";
+import {useGetMyTestResultQuery} from "../services/userTestResultAPI";
+import UserTest from "../components/Lesson/UserTest";
 
 const Lesson: FC = () => {
     const {lessonId} = useParams()
@@ -17,17 +19,12 @@ const Lesson: FC = () => {
     const {data: lessons} = useGetAllLessonsQuery()
     const {data: user} = useGetMeDataQuery()
     const dispatch = useAppDispatch()
-    const [openTest, setOpenTest] = useState(false)
 
     useEffect(() => {
         if (!lessonId) {
             navigate('/')
         }
     }, [lessonId, navigate])
-
-    const handlerTestModal = () => {
-        setOpenTest(prev => !prev)
-    }
 
     const handlerLessonEdit = () => {
         if (lesson) {
@@ -50,51 +47,44 @@ const Lesson: FC = () => {
     }
 
     return (
-      <Box>
-          <Box>
-              {
-                (user && (user.role === 'teacher' || user.role === 'admin')) &&
-                <>
-                    <Button
-                      variant = 'outlined'
-                      onClick = {handlerLessonEdit}
-                    >
-                        Edit lesson
-                    </Button>
-                    <Button
-                      variant = 'outlined'
-                      onClick = {handlerTestEdit}
-                    >
-                        Edit test
-                    </Button>
-                </>
-              }
-          </Box>
-          <Box>
-              {
-                lesson &&
-                <>
-                    <Typography>{lesson.title}</Typography>
-                    <Typography>{lesson.description}</Typography>
-                    <Button
-                      variant = 'outlined'
-                      onClick = {handlerTestModal}
-                    >
-                        Pass test
-                    </Button>
-                </>
-              }
-          </Box>
-          {
-            (lesson && lesson.test) &&
-            <PassTest
-              open = {openTest}
-              onClose = {handlerTestModal}
-              test={lesson.test}
-            />
-          }
-
-      </Box>
+        <Box
+            p = {3}
+        >
+            <Box>
+                {
+                    (user && (user.role === 'teacher' || user.role === 'admin')) &&
+					<>
+						<Button
+							variant = 'outlined'
+							onClick = {handlerLessonEdit}
+						>
+							Edit lesson
+						</Button>
+						<Button
+							variant = 'outlined'
+							onClick = {handlerTestEdit}
+						>
+							Edit test
+						</Button>
+					</>
+                }
+            </Box>
+            <Box>
+                {
+                    lesson &&
+					<>
+						<Typography> {lesson.title}</Typography>
+						<Typography>{lesson.description}</Typography>
+					</>
+                }
+                {
+                    (lesson && lesson.test && user && user.role === 'user') &&
+					<UserTest
+                        test={lesson.test}
+                    />
+                }
+            </Box>
+        </Box>
     );
 };
 

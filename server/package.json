@@ -36,6 +36,7 @@
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "date-fns": "^2.28.0",
     "fastify-multer": "^2.0.2",
     "fastify-multipart": "^5.4.0",
     "fastify-static": "^4.7.0",

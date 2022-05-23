@@ -29,7 +29,8 @@ export enum RouteNames {
     STREAM = '/stream',
     ADMIN = '/admin',
     FLOW = '/flow/:flowId',
-    LESSONTEACHER = '/lesson-teacher/:lessonId/:flowId'
+    LESSON_TEACHER = '/lesson-teacher/:lessonId/:flowId',
+    REGISTER_TEACHER = '/register-teacher/:registerId'
 }
 
 export const linksNavigationUser: ILink[] = [
@@ -44,6 +45,7 @@ export const linksNavigationAdmin: ILink[] = [
 export const publicRoute: IRoute[] = [
     {path: RouteNames.LOGIN, component: Login, exact: false},
     {path: RouteNames.HOME, component: Login, exact: true},
+    {path: RouteNames.REGISTER_TEACHER, component: Login, exact: false},
 ]
 
 export const authRoute: IRoute[] = [
@@ -51,7 +53,7 @@ export const authRoute: IRoute[] = [
     {path: RouteNames.COURSE, component: Course, exact: false},
     {path: RouteNames.LESSON, component: Lesson, exact: false},
     {path: RouteNames.FLOW, component: Flow, exact: false},
-    {path: RouteNames.LESSONTEACHER, component: TeacherLesson, exact: false}
+    {path: RouteNames.LESSON_TEACHER, component: TeacherLesson, exact: false}
     /*{path: RouteNames.STREAM, component: Stream, exact: false},*/
 ]
 

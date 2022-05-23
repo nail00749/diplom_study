@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="check test dev version">
-      <change afterPath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/module/dto/update-module.dto.ts" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/client/src/components/GenerateLink.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/models/IModule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/moduleAPI.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/admin/schemas/register-link.schema.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/module/module.controller.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/module/module.module.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/module/module.service.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/static/avatars/063057f5-7b80-4cf3-a11a-ac4fa2b7bca3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/static/avatars/d92a6bff-d30a-4b39-9b38-d3c70e67ffec.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/RegisterForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/adminAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/adminAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/baseAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/baseAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/middleware/ErrorMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/middleware/ErrorMiddleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/course/course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/scmehas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/dto/create-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/users/dto/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/dto/update-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/users/schemas/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/schemas/user.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/users.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/users.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,9 +122,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.http">
-    <configuration name="rest-api | //list users" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="3" requestIdentifier="//list users" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="rest-api | //login user" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="3" requestIdentifier="//login user" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -132,6 +129,9 @@
       <method v="2" />
     </configuration>
     <configuration name="rest-api | //me profile" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="4" requestIdentifier="//me profile" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api | //register" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" requestIdentifier="//register" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="rest-api | //updata user data" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="6" requestIdentifier="//updata user data" runType="Run single request">
@@ -161,18 +161,18 @@
       <item itemvalue="HTTP Request.rest-api | //login user" />
       <item itemvalue="HTTP Request.rest-api | //me profile" />
       <item itemvalue="HTTP Request.rest-api | //updata user data" />
-      <item itemvalue="HTTP Request.rest-api | //list users" />
       <item itemvalue="HTTP Request.rest-api | //login" />
       <item itemvalue="npm.http" />
       <item itemvalue="npm.start:dev" />
+      <item itemvalue="HTTP Request.rest-api | //register" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.rest-api | //register" />
         <item itemvalue="HTTP Request.rest-api | //updata user data" />
         <item itemvalue="HTTP Request.rest-api | //login user" />
         <item itemvalue="HTTP Request.rest-api | //me profile" />
         <item itemvalue="HTTP Request.rest-api | //login" />
-        <item itemvalue="HTTP Request.rest-api | //list users" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +200,7 @@
       <workItem from="1653158242140" duration="5459000" />
       <workItem from="1653210597421" duration="27356000" />
       <workItem from="1653248104729" duration="3596000" />
-      <workItem from="1653275487969" duration="11245000" />
+      <workItem from="1653275487969" duration="22178000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -300,7 +300,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653295965452</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="swagger">
+      <created>1653316684002</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653316684003</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactoring">
+      <created>1653321036030</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1653321036030</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +363,9 @@
     <MESSAGE value="Teachers From Course" />
     <MESSAGE value="pass test" />
     <MESSAGE value="check test dev version" />
-    <option name="LAST_COMMIT_MESSAGE" value="check test dev version" />
+    <MESSAGE value="swagger" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -6,21 +6,44 @@ import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import {UserFlowService} from "../user-flow/user-flow.service";
+import {AdminService} from "../admin/admin.service";
+import {intervalToDuration} from 'date-fns'
 
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-                private readonly userFlowService: UserFlowService
+                private readonly userFlowService: UserFlowService,
+                private readonly adminService: AdminService
     ) {
     }
 
     async create(dto: CreateUserDto): Promise<Partial<User>> {
+        let validLink = false
+        if (dto.link) {
+            const link = await this.adminService.getRegisterLink(dto.link)
+            if (!link) {
+                throw new HttpException('Ссылка не валидна', HttpStatus.FORBIDDEN);
+            }
+            const interval = intervalToDuration({
+                start: new Date(link.createdAt),
+                end: new Date()
+            })
+            if (interval.days >= 1) {
+                this.adminService.removeRegisterLink(dto.link)
+                throw new HttpException('Истек срок ссылки', HttpStatus.FORBIDDEN);
+            }
+            validLink = true
+        }
         const candidate = await this.userModel.findOne({email: dto.email});
         if (candidate) {
-            throw new HttpException('user already exist', HttpStatus.FORBIDDEN);
+            throw new HttpException('Пользователь уже существует', HttpStatus.FORBIDDEN);
         }
         const hash = await bcrypt.hash(dto.password, 10);
-        const {password, ...result} = await this.userModel.create({...dto, password: hash});
+        const {password, ...result} = await this.userModel.create({
+            ...dto,
+            password: hash,
+            role: validLink ? 'teacher' : 'user'
+        });
         return result;
     }
 
@@ -28,14 +51,12 @@ export class UsersService {
         return this.userModel.findOne({email: u.email}).select('-password');
     }
 
-    async findAll(): Promise<User[]> {
-        const users = await this.userModel.find().select('-password');
-        return users;
+    findAll(): Promise<User[]> {
+        return this.userModel.find().select('-password');
     }
 
-    async findOne(email: string): Promise<User | undefined> {
-        const user = await this.userModel.findOne({email});
-        return user;
+    findOne(email: string): Promise<User | undefined> {
+        return await this.userModel.findOne({email});
     }
 
     update(user: User, updateUserDto: UpdateUserDto) {

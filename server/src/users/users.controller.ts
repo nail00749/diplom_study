@@ -60,7 +60,6 @@ export class UsersController {
         return this.usersService.update(req.user, updateUserDto);
     }
 
-
     @UseGuards(JwtAuthGuard)
     @Patch('avatar')
     @FastifyFileInterceptor(

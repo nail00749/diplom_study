@@ -16,7 +16,7 @@ const baseQuery = retry(fetchBaseQuery({
         }
         return headers
     }
-}), {maxRetries: 3})
+}))
 
 export const userAPI = createApi({
     reducerPath: 'userAPI',

@@ -4,10 +4,12 @@ import AuthForm from "../components/AuthForm";
 import RegisterForm from "../components/RegisterForm";
 import {useGetAllCoursesQuery} from "../services/courseAPI";
 import {ICourse} from "../models/ICourse";
+import {useParams} from "react-router-dom";
 
 
 const Login: FC = () => {
-    const [isLogin, setIsLogin] = useState<boolean>(true);
+    const {registerId} = useParams()
+    const [isLogin, setIsLogin] = useState<boolean>(!Boolean(registerId));
     const {data: courses} = useGetAllCoursesQuery()
 
     const handlerForm = () => {

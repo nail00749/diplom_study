@@ -1,5 +1,5 @@
 import {IsEmail, IsNotEmpty} from 'class-validator';
-import {ApiProperty} from "@nestjs/swagger";
+import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
 
 export class CreateUserDto {
     @IsEmail()
@@ -9,4 +9,7 @@ export class CreateUserDto {
     @ApiProperty()
     @IsNotEmpty()
     readonly password: string;
+
+    @ApiPropertyOptional()
+    readonly link?: string
 }

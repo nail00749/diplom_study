@@ -34,6 +34,12 @@ export const adminAPI = baseAPI.injectEndpoints({
             }),
             invalidatesTags: ['Users']
         }),
+        generateLink: build.mutation<any, void>({
+            query: () => ({
+                url: '/admin/link',
+                method: "POST"
+            })
+        }),
     }),
     overrideExisting: true
 })
@@ -44,6 +50,7 @@ export const {
     useGetAllUsersQuery,
     useSetRoleMutation,
     useUpdateTestMutation,
+    useGenerateLinkMutation
 } = adminAPI
 
 export const {reducer, middleware} = adminAPI

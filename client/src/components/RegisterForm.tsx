@@ -7,6 +7,7 @@ import RegisterSuccess from "./modals/RegisterSuccess";
 import {validateEmail} from "../utils";
 import {showErrorAlert} from "../store/reducers/service/ServiceSlice";
 import {useAppDispatch} from "../hooks/redux";
+import {useParams} from "react-router-dom";
 
 
 interface FormProps {
@@ -21,7 +22,7 @@ const RegisterForm: FC<FormProps> = ({setIsLogin}) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [isOpenSuccess, setIsOpenSuccess] = useState(false);
     const dispatch = useAppDispatch()
-
+    const {registerId} = useParams()
     const [register, {isLoading, isSuccess}] = useRegisterMutation()
 
     useEffect(() => {
@@ -58,10 +59,11 @@ const RegisterForm: FC<FormProps> = ({setIsLogin}) => {
             dispatch(showErrorAlert(error))
             return
         }
-        const data = {
+        const data: any = {
             email: username,
             password
         }
+        registerId && (data.link = registerId)
         await register(data)
     }
 

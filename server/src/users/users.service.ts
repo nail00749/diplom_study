@@ -51,12 +51,12 @@ export class UsersService {
         return this.userModel.findOne({email: u.email}).select('-password');
     }
 
-    findAll(): Promise<User[]> {
+    findAll() {
         return this.userModel.find().select('-password');
     }
 
-    findOne(email: string): Promise<User | undefined> {
-        return await this.userModel.findOne({email});
+    findOne(email: string) {
+        return this.userModel.findOne({email});
     }
 
     update(user: User, updateUserDto: UpdateUserDto) {

@@ -20,17 +20,6 @@ export const rtqQueryError: Middleware = (api: MiddlewareAPI) => (next) => (acti
             }
             dispatch(showErrorAlert(msg))
         }
-        /*if (action.payload && action.payload.data && action.payload.data.detail) {
-            if (action.payload.status === 422) {
-                dispatch(showErrorAlert(action.payload.data.detail[0].msg))
-            } else {
-                dispatch(showErrorAlert(action.payload.data.detail))
-            }
-            if (action.payload.status === 401) {
-                dispatch(logOut())
-            }
-        }*/
-
     }
 
     return next(action)

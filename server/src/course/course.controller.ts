@@ -9,8 +9,9 @@ import {editFileName} from "../utils/utils";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import RoleGuard from "../auth/roles.guard";
 import {Role} from "../auth/Roles";
+import {ApiBearerAuth} from "@nestjs/swagger";
 
-
+@ApiBearerAuth()
 @Controller('course')
 export class CourseController {
     constructor(private readonly courseService: CourseService) {

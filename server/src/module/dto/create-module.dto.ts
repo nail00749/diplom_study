@@ -1,6 +1,7 @@
 import {ApiProperty} from "@nestjs/swagger";
+import {Lesson} from "../../lesson/schemas/lesson.schema";
 
-export class CreateLessonDto {
+export class CreateModuleDto {
     @ApiProperty()
     readonly title: string
 
@@ -8,5 +9,5 @@ export class CreateLessonDto {
     readonly description: string
 
     @ApiProperty()
-    readonly course: string
+    readonly lessons: Lesson[]
 }

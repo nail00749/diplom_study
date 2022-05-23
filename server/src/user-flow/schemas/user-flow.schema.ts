@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Type} from "class-transformer";
-import {Course} from "../../course/scmehas/course.schema";
+import {Course} from "../../course/schemas/course.schema";
 import {User} from "../../users/schemas/user.schema";
 
 export type UserFlowDocument = UserFlow & mongoose.Document;

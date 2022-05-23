@@ -13,6 +13,7 @@ import { LessonModule } from './lesson/lesson.module';
 import { TestModule } from './test/test.module';
 import { UserFlowModule } from './user-flow/user-flow.module';
 import { UserSubscriptionModule } from './user-subscription/user-subscription.module';
+import { ModuleModule } from './module/module.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { UserSubscriptionModule } from './user-subscription/user-subscription.mo
     TestModule,
     UserFlowModule,
     UserSubscriptionModule,
+    ModuleModule,
   ],
   controllers: [AppController],
   providers: [AppService, FileService],

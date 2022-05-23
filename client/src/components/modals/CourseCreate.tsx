@@ -14,6 +14,8 @@ import {
 import {LoadingButton} from "@mui/lab";
 import {Transition} from "./Transition";
 import {noop} from "../../utils";
+import {DndProvider, useDrag} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 const CourseCreate: FC = () => {
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateCourseMutation()
@@ -72,6 +74,7 @@ const CourseCreate: FC = () => {
             dispatch(changeFile(e.target.files[0]))
         }
     }
+
     const handlerClose = () => dispatch(closeModal())
 
     return (
@@ -178,6 +181,18 @@ const CourseCreate: FC = () => {
                     </Box>
                     <Box
                         sx = {{
+                            p: 3,
+                            bgColor: 'pink',
+                            height: 200,
+                            width: 200
+                        }}
+                    >
+                        {/*<LessonOrder/>*/}
+                    </Box>
+
+
+                    <Box
+                        sx = {{
                             display: 'flex',
                             justifyContent: 'center'
                         }}
@@ -199,3 +214,5 @@ const CourseCreate: FC = () => {
 }
 
 export default React.memo(CourseCreate);
+
+

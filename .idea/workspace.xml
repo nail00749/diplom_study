@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="pass test">
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/CheckTest.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/scenes/Flow.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/scenes/TeacherLesson.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="check test dev version">
+      <change afterPath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module/dto/update-module.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module/module.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module/module.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module/module.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/063057f5-7b80-4cf3-a11a-ac4fa2b7bca3.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/static/avatars/d92a6bff-d30a-4b39-9b38-d3c70e67ffec.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CourseContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CourseContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Lesson/UserTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Lesson/UserTest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Topbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Topbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/IUserFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/IUserFlow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Course.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Course.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/adminAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/adminAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/userFlowAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userFlowAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/userTestResultAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userTestResultAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/course/course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/course/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/scmehas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user-flow/user-flow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user-flow/user-flow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/dto/create-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/dto/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/dto/update-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/users/schemas/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/users/schemas/user.schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +105,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\server\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -202,7 +200,7 @@
       <workItem from="1653158242140" duration="5459000" />
       <workItem from="1653210597421" duration="27356000" />
       <workItem from="1653248104729" duration="3596000" />
-      <workItem from="1653275487969" duration="3285000" />
+      <workItem from="1653275487969" duration="11245000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -295,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653238765965</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="check test dev version">
+      <created>1653295965452</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295965452</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +348,8 @@
     <MESSAGE value="update interface" />
     <MESSAGE value="Teachers From Course" />
     <MESSAGE value="pass test" />
-    <option name="LAST_COMMIT_MESSAGE" value="pass test" />
+    <MESSAGE value="check test dev version" />
+    <option name="LAST_COMMIT_MESSAGE" value="check test dev version" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

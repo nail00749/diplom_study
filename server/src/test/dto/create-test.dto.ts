@@ -1,6 +1,13 @@
+import {ApiProperty} from "@nestjs/swagger";
+
 export class CreateTestDto {
+    @ApiProperty()
     lesson: number
+
+    @ApiProperty()
     description: string
+
+    @ApiProperty()
     questions: IQuestion[]
 }
 

@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Course} from "../../course/scmehas/course.schema";
+import {Course} from "../../course/schemas/course.schema";
 import {Type} from "class-transformer";
 import {Test} from "../../test/schema/test.schema";
 
@@ -13,10 +13,6 @@ export class Lesson {
 
     @Prop({required: true})
     description: string;
-
-    @Prop({required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Course'})
-    @Type(() => Course)
-    course: Course;
 
     @Type(() => Test)
     test: Test

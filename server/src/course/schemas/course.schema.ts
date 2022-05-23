@@ -1,9 +1,9 @@
+import * as mongoose from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Document} from 'mongoose';
-import {Lesson} from "../../lesson/schemas/lesson.schema";
 import {Type} from "class-transformer";
+import {Module} from "../../module/schemas/module.schema";
 
-export type CourseDocument = Course & Document;
+export type CourseDocument = Course & mongoose.Document;
 
 @Schema()
 export class Course {
@@ -16,8 +16,8 @@ export class Course {
     @Prop()
     image_path: string
 
-    @Type(() => Lesson)
-    lessons: Lesson[]
+    @Props({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Module'}]})
+    modules: Module[]
 
 }
 

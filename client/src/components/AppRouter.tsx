@@ -1,5 +1,5 @@
-import React, {FC, Suspense} from 'react';
-import {Route, Routes, BrowserRouter, Navigate} from 'react-router-dom';
+import React, {FC, Suspense, useEffect} from 'react';
+import {Route, Routes, BrowserRouter, Navigate, useLocation} from 'react-router-dom';
 import {adminRoutes, authRoute, publicRoute} from '../router/router';
 import {useAppSelector} from '../hooks/redux';
 import Topbar from './UI/Topbar';
@@ -13,8 +13,13 @@ const AppRouter: FC = () => {
     const {isAuthenticated} = useAppSelector(state => state.userReducer);
     const {data: user} = useGetMeDataQuery(undefined, {skip: !isAuthenticated});
 
+    useEffect(() => {
+        document.documentElement.scrollTo(0, 0)
+    }, [user])
+
     return (
         <BrowserRouter>
+            <Wrapper/>
             {isAuthenticated && <Topbar/>}
             {
                 (isAuthenticated && (user && (user.role === 'admin' || user.role === 'teacher')))
@@ -82,3 +87,12 @@ const AppRouter: FC = () => {
 };
 
 export default AppRouter;
+
+const Wrapper = () => {
+    const {pathname} = useLocation()
+    useEffect(() => {
+        document.documentElement.scrollTo(0, 0)
+    }, [pathname])
+
+    return null
+}

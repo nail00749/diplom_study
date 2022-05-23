@@ -5,7 +5,7 @@ import {
     FormControl,
     OutlinedInput,
     IconButton,
-    InputLabel, Checkbox, FormControlLabel, FormGroup,
+    InputLabel, Checkbox, FormControlLabel, FormGroup, Button,
 } from "@mui/material";
 import {AccountCircle, VisibilityOff, Visibility} from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -15,8 +15,11 @@ import {showErrorAlert} from "../store/reducers/service/ServiceSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {setSaveSession} from "../store/reducers/user/UserSlice";
 
+interface AuthFormProps {
+    setIsLogin: () => void
+}
 
-const AuthForm: FC = () => {
+const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
     const [username, setUsername] = useState<string>('');
     const [usernameError, setUsernameError] = useState(false);
     const [password, setPassword] = useState<string>('');
@@ -53,10 +56,6 @@ const AuthForm: FC = () => {
             return
         }
 
-
-        /*const data = new FormData()
-        data.append('username', username)
-        data.append('password', password)*/
         const data = {
             email: username,
             password
@@ -74,99 +73,121 @@ const AuthForm: FC = () => {
 
     const handlerSaveSession = () => dispatch(setSaveSession())
 
-    return (
-      <>
-          <form
-            onSubmit = {sendData}
-          >
-              <Box
-                mt = {3}
-                mb = {3}
-              >
-                  <FormControl>
-                      <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
-                      <OutlinedInput
-                        id = "outlined-adornment-email"
-                        type = {'text'}
-                        value = {username}
-                        onChange = {handlerLogin}
-                        endAdornment = {
-                            <InputAdornment
-                              position = "end"
-                              sx = {{
-                                  marginLeft: '13px'
-                              }}
-                            >
-                                <AccountCircle/>
-                            </InputAdornment>
-                        }
-                        label = "email"
-                        autoComplete = {'username'}
-                        error = {usernameError}
-                        disabled = {isLoading}
-                      />
-                  </FormControl>
-              </Box>
-              <Box>
-                  <FormControl>
-                      <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
-                      <OutlinedInput
-                        id = "outlined-adornment-password"
-                        type = {showPassword ? 'text' : 'password'}
-                        value = {password}
-                        onChange = {handlerPassword}
-                        endAdornment = {
-                            <InputAdornment position = "end">
-                                <IconButton
-                                  aria-label = "toggle password visibility"
-                                  onClick = {handlerShowPassword}
-                                  onMouseDown = {handlerMouseDown}
-                                  edge = "end"
-                                  disabled = {isLoading}
-                                >
-                                    {showPassword ? <VisibilityOff/> : <Visibility/>}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label = "Password"
-                        autoComplete = {'current-password'}
-                        error = {passwordError}
-                        disabled = {isLoading}
-                      />
-                  </FormControl>
-              </Box>
-              <Box
-                mt = {3}
-                mb = {1}
-                display = 'flex'
-                justifyContent = 'center'
-              >
-                  <LoadingButton
-                    loading = {isLoading}
-                    type = 'submit'
-                    variant = 'contained'
-                  >
-                      Authorize
-                  </LoadingButton>
-                  <FormGroup
-                    sx = {{
-                        ml: 3
-                    }}
-                  >
-                      <FormControlLabel
-                        control = {
-                            <Checkbox
-                              checked = {saveSession}
-                              onChange = {handlerSaveSession}
-                            />
-                        }
-                        label = {'Save'}
-                      />
-                  </FormGroup>
-              </Box>
-          </form>
+    //todo add password recover
 
-      </>
+    return (
+        <>
+            <form
+                onSubmit = {sendData}
+            >
+                <Box
+
+                    sx = {{
+                        my: 3,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                    }}
+
+                >
+                    <FormControl
+                        sx = {{
+                            mb: 2
+                        }}
+                    >
+                        <InputLabel htmlFor = "outlined-adornment-email">Email</InputLabel>
+                        <OutlinedInput
+                            id = "outlined-adornment-email"
+                            type = {'text'}
+                            value = {username}
+                            onChange = {handlerLogin}
+                            endAdornment = {
+                                <InputAdornment
+                                    position = "end"
+                                    sx = {{
+                                        marginLeft: '13px'
+                                    }}
+                                >
+                                    <AccountCircle/>
+                                </InputAdornment>
+                            }
+                            label = "email"
+                            autoComplete = {'username'}
+                            error = {usernameError}
+                            disabled = {isLoading}
+                        />
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel htmlFor = "outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id = "outlined-adornment-password"
+                            type = {showPassword ? 'text' : 'password'}
+                            value = {password}
+                            onChange = {handlerPassword}
+                            endAdornment = {
+                                <InputAdornment position = "end">
+                                    <IconButton
+                                        aria-label = "toggle password visibility"
+                                        onClick = {handlerShowPassword}
+                                        onMouseDown = {handlerMouseDown}
+                                        edge = "end"
+                                        disabled = {isLoading}
+                                    >
+                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            label = "Password"
+                            autoComplete = {'current-password'}
+                            error = {passwordError}
+                            disabled = {isLoading}
+                        />
+                    </FormControl>
+                </Box>
+                <Box
+                    my = {2}
+                    display = 'flex'
+                    justifyContent = 'center'
+                    alignItems = 'center'
+                >
+                    <FormGroup>
+                        <FormControlLabel
+                            control = {
+                                <Checkbox
+                                    checked = {saveSession}
+                                    onChange = {handlerSaveSession}
+                                    size = 'small'
+                                />
+                            }
+                            label = {'Запомнить'}
+                        />
+                    </FormGroup>
+                    <Button>Забыли пароль?</Button>
+                </Box>
+                <Box>
+                    <LoadingButton
+                        loading = {isLoading}
+                        type = 'submit'
+                        variant = 'contained'
+                        fullWidth
+                    >
+                        Войти
+                    </LoadingButton>
+                </Box>
+                <Box
+                    display = 'flex'
+                    justifyContent = 'center'
+                    my = {2}
+                >
+                    <Button
+                        onClick = {setIsLogin}
+                    >
+                        {'Нет аккаунта?'}
+                    </Button>
+                </Box>
+            </form>
+
+        </>
 
     );
 };

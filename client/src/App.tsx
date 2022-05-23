@@ -7,8 +7,7 @@ import './config/index.css'
 import {BaseURL} from "./config";
 
 export const ColorModeContext = React.createContext({
-    toggleColorMode: () => {
-    }
+    toggleColorMode: () => {}
 });
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -97,8 +96,6 @@ const App = () => {
             }
         </Box>
     );
-
-
 }
 
 export default function ToggleColorMode() {

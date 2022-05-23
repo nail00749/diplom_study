@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
 
 const appReducer = (state: any, action: any) => {
     if (action.type === 'logOut') {
-        console.log(111)
         localStorage.clear()
         sessionStorage.clear()
         state = undefined

@@ -53,14 +53,14 @@ const RegisterSuccess: FC<RegisterSuccessProps> = ({open, setClose, setPageLogin
                             my: 4
                         }}
                     >
-                        Register Success
+                        Успешная регистрация
                     </Typography>
                     <Button
                         variant = 'outlined'
                         color = 'success'
                         onClick = {handlerSuccess}
                     >
-                        Go next
+                        Продолжить
                     </Button>
                 </Box>
             </Container>

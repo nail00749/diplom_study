@@ -4,7 +4,6 @@ import {Type} from "class-transformer";
 import {Course} from "../../course/scmehas/course.schema";
 import {User} from "../../users/schemas/user.schema";
 
-
 export type UserFlowDocument = UserFlow & mongoose.Document;
 
 @Schema()
@@ -25,3 +24,13 @@ export class UserFlow {
 }
 
 export const UserFlowSchema = SchemaFactory.createForClass(UserFlow);
+
+
+UserFlowSchema.virtual('subscriptions', {
+    ref: 'UserSubscription',
+    localField: '_id',
+    foreignField: 'flow',
+})
+
+UserFlowSchema.set('toObject', {virtuals: true})
+UserFlowSchema.set('toJSON', {virtuals: true})

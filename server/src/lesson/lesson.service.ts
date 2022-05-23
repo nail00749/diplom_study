@@ -18,9 +18,16 @@ export class LessonService {
         return this.lessonModel.find()
     }
 
-  findOne(id: string) {
-    return this.lessonModel.findById(id).populate('test')
-  }
+    findOne(id: string) {
+        return this.lessonModel.findById(id).populate('test')
+    }
+
+    async lessonFlow(lessonId: string, flowId: string) {
+        const lesson = this.lessonModel.findById(lessonId).populate({
+            path: 'test'
+        })
+        return lesson
+    }
 
     update(id: string, updateLessonDto: UpdateLessonDto) {
         return this.lessonModel.findByIdAndUpdate(id, updateLessonDto)

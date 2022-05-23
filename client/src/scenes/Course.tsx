@@ -14,10 +14,16 @@ import TeachersFromCourse from "../components/TeachersFromCourse";
 const Course: FC = () => {
     const {courseId} = useParams()
     const navigate = useNavigate()
-    const {data: course} = useGetCourseQuery(String(courseId))
+    const {data: course, refetch} = useGetCourseQuery(String(courseId))
     const {data: user} = useGetMeDataQuery()
     const dispatch = useAppDispatch()
-    const [activeStep] = useState(0)
+    const [activeStep, setActiveStep] = useState(0)
+
+
+    useEffect(() => {
+        console.log('123')
+        refetch()
+    }, [])
 
     useEffect(() => {
         if (!courseId) {
@@ -27,6 +33,15 @@ const Course: FC = () => {
 
     useEffect(() => {
         //todo check step
+        if (course && course.lessons) {
+            course.lessons.forEach((lesson: ILesson, index) => {
+                if (lesson.test && lesson.test.result) {
+                    if (lesson.test.result.mark !== -1) {
+                        setActiveStep(index + 1)
+                    }
+                }
+            })
+        }
     }, [course])
 
     const handlerEdit = () => {
@@ -86,7 +101,7 @@ const Course: FC = () => {
                                                     >
                                                         <StepLabel>
                                                             {
-                                                                index <= activeStep || user.role === 'teacher' ?
+                                                                index <= activeStep || user.role === 'teacher' || index === 0 ?
                                                                     <StyleLink to = {`/lesson/${lesson._id}`}>
                                                                         {lesson.title}
                                                                     </StyleLink> :

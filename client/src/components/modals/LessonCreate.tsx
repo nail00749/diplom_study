@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {Dialog, Typography, IconButton, Box, TextField, Autocomplete} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
-import {useCreateLessonMutation, useUpdateLessonMutation} from "../../services/adminAPI";
+import {useCreateLessonMutation, useUpdateLessonMutation} from "../../services/lessonAPI";
 import {useGetAllCoursesQuery} from "../../services/courseAPI";
 import {
     closeModal,

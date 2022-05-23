@@ -12,6 +12,7 @@ export const userTestResultAPI = baseAPI.injectEndpoints({
                 method: 'POST',
                 body: other,
             }),
+            invalidatesTags: ['Course']
         }),
     }),
     overrideExisting: true

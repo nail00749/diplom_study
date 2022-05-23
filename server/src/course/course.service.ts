@@ -18,9 +18,18 @@ export class CourseService {
         return this.courseModel.find()
     }
 
-    findOne(id: string) {
+    findOne(id: string, userId: string) {
         return this.courseModel.findById(id).populate({
-            path: 'lessons'
+            path: 'lessons',
+            populate: {
+                path: 'test',
+                populate: {
+                    path: 'result',
+                    match: {
+                        user: userId
+                    }
+                }
+            }
         })
     }
 

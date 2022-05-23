@@ -26,8 +26,20 @@ export class UserFlowService {
         return this.userFlowModel.find({course: courseId})
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} userFlow`;
+    findOne(userId: string, flowId: string) {
+        return this.userFlowModel.findById(flowId).populate([{
+            path: 'course',
+            populate: {
+                path: 'lessons'
+            }
+        },
+            {
+                path: 'subscriptions',
+                populate: {
+                    path: 'student'
+                }
+            }
+        ])
     }
 
     update(id: number, updateUserFlowDto: UpdateUserFlowDto) {

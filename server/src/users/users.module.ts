@@ -12,7 +12,6 @@ import {UserFlowModule} from "../user-flow/user-flow.module";
     imports: [
         MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),
         UserFlowModule
-        //MongooseModule.forFeature([{name: UserFlow.name, schema: UserFlowSchema}]),
     ],
     controllers: [UsersController],
     providers: [UsersService, FileService],

@@ -7,23 +7,6 @@ import {IUserFlow} from "../models/IUserFlow";
 
 export const adminAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-
-        createLesson: build.mutation({
-            query: (body) => ({
-                url: '/lesson',
-                method: 'POST',
-                body
-            }),
-            invalidatesTags: ['Lesson']
-        }),
-        updateLesson: build.mutation<ILesson, any>({
-            query: ({_id, ...body}) => ({
-                url: `/lesson/?lesson_id=${_id}`,
-                method: 'PATCH',
-                body,
-            }),
-            invalidatesTags: ['Courses', 'Lessons', 'Lesson']
-        }),
         createTest: build.mutation({
             query: (body) => ({
                 url: '/test',
@@ -57,9 +40,7 @@ export const adminAPI = baseAPI.injectEndpoints({
 
 
 export const {
-    useCreateLessonMutation,
     useCreateTestMutation,
-    useUpdateLessonMutation,
     useGetAllUsersQuery,
     useSetRoleMutation,
     useUpdateTestMutation,

@@ -18,11 +18,20 @@ const rootReducer = combineReducers({
     modalReducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [baseAPI.reducerPath]: baseAPI.reducer,
-
 })
 
+const appReducer = (state: any, action: any) => {
+    if (action.type === 'logOut') {
+        console.log(111)
+        localStorage.clear()
+        sessionStorage.clear()
+        state = undefined
+    }
+    return rootReducer(state, action)
+}
+
 export const store = configureStore({
-    reducer: rootReducer,
+    reducer: appReducer,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware()
             .concat([

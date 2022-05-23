@@ -6,6 +6,8 @@ import Lesson from '../scenes/Lesson';
 import Admin from '../scenes/Admin';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import Flow from '../scenes/Flow';
+import TeacherLesson from "../scenes/TeacherLesson";
 
 export interface IRoute {
     path: string,
@@ -26,6 +28,8 @@ export enum RouteNames {
     LESSON = '/lesson/:lessonId',
     STREAM = '/stream',
     ADMIN = '/admin',
+    FLOW = '/flow/:flowId',
+    LESSONTEACHER = '/lesson-teacher/:lessonId/:flowId'
 }
 
 export const linksNavigationUser: ILink[] = [
@@ -46,6 +50,8 @@ export const authRoute: IRoute[] = [
     {path: RouteNames.HOME, component: Main, exact: true},
     {path: RouteNames.COURSE, component: Course, exact: false},
     {path: RouteNames.LESSON, component: Lesson, exact: false},
+    {path: RouteNames.FLOW, component: Flow, exact: false},
+    {path: RouteNames.LESSONTEACHER, component: TeacherLesson, exact: false}
     /*{path: RouteNames.STREAM, component: Stream, exact: false},*/
 ]
 

@@ -1,5 +1,6 @@
 import {ICourse} from "./ICourse";
 import {IUser} from "./IUser";
+import {IUserSubscription} from "./IUserSubscription";
 
 export interface IUserFlow {
     _id: string
@@ -7,4 +8,5 @@ export interface IUserFlow {
     date: Date
     course: ICourse
     teacher: IUser
+    subscriptions?: IUserSubscription[]
 }

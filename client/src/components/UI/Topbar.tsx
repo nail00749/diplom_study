@@ -21,7 +21,11 @@ const Topbar: FC = () => {
 
     const handleCloseMenu = () => setAnchorElUser(null)
 
-    const handlerLogOut = () => dispatch(logOut())
+    const handlerLogOut = () => {
+        dispatch({type: 'logOut'})
+        dispatch(logOut())
+    }
+
 
     return (
       <AppBar

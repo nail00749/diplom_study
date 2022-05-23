@@ -5,14 +5,11 @@ import {User, UserDocument} from './schemas/user.schema';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import {UserFlow, UserFlowDocument} from "../user-flow/schemas/user-flow.schema";
 import {UserFlowService} from "../user-flow/user-flow.service";
-
 
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-                /*@InjectModel(UserFlow.name) private readonly userFlowModel: Model<UserFlowDocument>*/
                 private readonly userFlowService: UserFlowService
     ) {
     }

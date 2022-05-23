@@ -26,9 +26,10 @@ export class UserFlowController {
         return this.userFlowService.findTeacherFlow(req.user.id)
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.userFlowService.findOne(+id);
+    findOne(@Req() req, @Param('id') id) {
+        return this.userFlowService.findOne(req.user.id, id);
     }
 
     @Patch(':id')

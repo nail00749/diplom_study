@@ -30,7 +30,7 @@ const TeacherCourse: FC = () => {
                     flows.map((flow: IUserFlow) =>
                         <StyleLink
                             key = {flow.course._id}
-                            to = {`/course/${flow.course._id}`}
+                            to = {`/flow/${flow._id}`}
                         >
                             <Box
                                 mb = {3}

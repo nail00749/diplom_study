@@ -7,7 +7,8 @@ import './config/index.css'
 import {BaseURL} from "./config";
 
 export const ColorModeContext = React.createContext({
-    toggleColorMode: () => {}
+    toggleColorMode: () => {
+    }
 });
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -40,6 +41,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
 const App = () => {
     const [statusServer, setStatusServer] = useState<'connecting' | 'success' | 'error'>('connecting')
 
+
     useEffect(() => {
         (async function checkConnection() {
             try {
@@ -51,7 +53,6 @@ const App = () => {
                 setStatusServer('error')
             }
         })()
-
     }, [])
 
     return (

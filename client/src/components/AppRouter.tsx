@@ -1,7 +1,7 @@
 import React, {FC, Suspense, useEffect} from 'react';
 import {Route, Routes, BrowserRouter, Navigate, useLocation} from 'react-router-dom';
 import {adminRoutes, authRoute, publicRoute} from '../router/router';
-import {useAppSelector} from '../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../hooks/redux';
 import Topbar from './UI/Topbar';
 import ServiceAlert from './UI/serviceAlert';
 import {useGetMeDataQuery} from '../services/userAPI';
@@ -12,10 +12,28 @@ const AdminModalsContainer = React.lazy(() => import('./modals/AdminModalsContai
 const AppRouter: FC = () => {
     const {isAuthenticated} = useAppSelector(state => state.userReducer);
     const {data: user} = useGetMeDataQuery(undefined, {skip: !isAuthenticated});
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         document.documentElement.scrollTo(0, 0)
     }, [user])
+
+    useEffect(() => {
+        function message_broadcast(e: any) {
+            if (e?.key != 'message') {
+                return
+            }
+            let message = JSON.parse(e.newValue)
+            if (!message) {
+                return
+            }
+            if (message.command === 'Delete session') {
+                dispatch({type: 'logOut'})
+            }
+        }
+        window.addEventListener('storage', message_broadcast)
+    }, [])
+
 
     return (
         <BrowserRouter>

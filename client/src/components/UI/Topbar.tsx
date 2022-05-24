@@ -22,6 +22,12 @@ const Topbar: FC = () => {
     const handleCloseMenu = () => setAnchorElUser(null)
 
     const handlerLogOut = () => {
+        const message = {
+            command: 'Delete session',
+            uuid: Date.now()
+        }
+        localStorage.setItem('message', JSON.stringify(message))
+        localStorage.removeItem('message')
         dispatch({type: 'logOut'})
         dispatch(logOut())
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="WS-213.7172.31">
+    <data-source name="@localhost" uuid="c4587522-370d-40c2-a023-52444f3eeb8a">
+      <database-info product="Mongo DB" version="5.0.3" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.14" dbms="MONGO" exact-version="5.0.3" exact-driver-version="1.14" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>forget</secret-storage>
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="study_platform" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

@@ -4,6 +4,7 @@ import LessonCreate from "./LessonCreate";
 import TestCreate from "./TestCreate";
 import UserFlow from "./UserFlow";
 import UserSubscription from "./UserSubscription";
+import ModuleCreate from "./ModuleCreate";
 
 const AdminModalsContainer: FC = () => {
     return (
@@ -13,6 +14,7 @@ const AdminModalsContainer: FC = () => {
             <TestCreate/>
             <UserFlow/>
             <UserSubscription/>
+            <ModuleCreate/>
         </>
     )
 }

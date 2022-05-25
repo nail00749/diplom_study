@@ -4,7 +4,7 @@ import {Autocomplete, Box, Dialog, IconButton, TextField, Typography, useMediaQu
 import CloseIcon from "@mui/icons-material/Close";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {closeUserSubscription} from "../../store/reducers/modals/modalsSlice";
-import {noop} from '../../utils/index'
+import {noop} from '../../utils'
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
@@ -18,7 +18,7 @@ import {useGetAllUsersQuery} from "../../services/adminAPI";
 import {useGetAllUserFlowQuery} from "../../services/userFlowAPI";
 
 const UserSubscription = () => {
-    const {userSubscriptionOpen} = useAppSelector(state => state.modalReducer)
+    const {userSubscriptionOpen} = useAppSelector(state => state.modalsReducer)
     const dispatch = useAppDispatch()
     const {data: flows} = useGetAllUserFlowQuery()
     const {data: users} = useGetAllUsersQuery()

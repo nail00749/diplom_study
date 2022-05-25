@@ -23,7 +23,7 @@ const UserFlow = () => {
     const {data: courses} = useGetAllCoursesQuery()
     const {data: users} = useGetAllUsersQuery()
     const [teachers, setTeachers] = useState<IUser[]>([])
-    const {userFlowOpen} = useAppSelector(state => state.modalReducer)
+    const {userFlowOpen} = useAppSelector(state => state.modalsReducer)
     const [create, {isLoading, isSuccess}] = useCreateUserFlowMutation()
     const dispatch = useAppDispatch()
     const [courseInputValue, setCourseInputValue] = useState('');

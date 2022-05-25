@@ -3,7 +3,8 @@ import {rtqQueryError} from './middleware/ErrorMiddleware'
 import userReducer from './reducers/user/UserSlice'
 import testReducer from './reducers/admin/testSlice'
 import serviceReducer from './reducers/service/ServiceSlice'
-import modalReducer from './reducers/modals/modalsSlice'
+import modalsReducer from './reducers/modals/modalsSlice'
+import moduleReducer from './reducers/admin/moduleSlice'
 import courseAdminReducer from './reducers/admin/courseSlice'
 import lessonAdminReducer from './reducers/admin/lessonSlice'
 import {userAPI} from "../services/userAPI";
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     serviceReducer,
     courseAdminReducer,
     lessonAdminReducer,
-    modalReducer,
+    modalsReducer,
+    moduleReducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [baseAPI.reducerPath]: baseAPI.reducer,
 })

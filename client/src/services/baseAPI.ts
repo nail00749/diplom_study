@@ -19,6 +19,6 @@ const baseQuery = retry(fetchBaseQuery({
 export const baseAPI = createApi({
     reducerPath: 'contentAPI',
     baseQuery: baseQuery,
-    tagTypes: ['Courses', 'Course', 'Lessons','Lesson', 'Test', 'Users', 'User', 'Flows', 'Subscriptions'],
+    tagTypes: ['Courses', 'Course', 'Lessons','Lesson', 'Test', 'Users', 'User', 'Flows', 'Subscriptions', 'Modules', 'Module'],
     endpoints: () => ({}),
 })

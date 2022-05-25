@@ -6,7 +6,7 @@ import serviceReducer from './reducers/service/ServiceSlice'
 import modalsReducer from './reducers/modals/modalsSlice'
 import moduleReducer from './reducers/admin/moduleSlice'
 import courseReducer from './reducers/admin/courseSlice'
-import lessonAdminReducer from './reducers/admin/lessonSlice'
+import lessonReducer from './reducers/admin/lessonSlice'
 import {userAPI} from "../services/userAPI";
 import {baseAPI} from "../services/baseAPI";
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     testReducer,
     serviceReducer,
     courseReducer,
-    lessonAdminReducer,
+    lessonReducer,
     modalsReducer,
     moduleReducer,
     [userAPI.reducerPath]: userAPI.reducer,

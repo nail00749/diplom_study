@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="logOut between several tabs">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SortListByDrag.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/BaseModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/ModalHeader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/ModuleCreate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/models/IModule.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/moduleAPI.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/moduleSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/Pipes/fieldToArrayPipe.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/module/module.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/module/module.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/module/module.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="module  fix bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/AdminModalsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/AdminModalsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/UserSubscription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/UserSubscription.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/ICourse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/ICourse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/baseAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/baseAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/ILesson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/ILesson.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/TeacherLesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/TeacherLesson.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/reducers/admin/lessonSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/lessonSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +184,7 @@
       <workItem from="1653248104729" duration="3596000" />
       <workItem from="1653275487969" duration="22714000" />
       <workItem from="1653386970524" duration="26491000" />
-      <workItem from="1653473794477" duration="1789000" />
+      <workItem from="1653473794477" duration="8214000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -335,7 +319,56 @@
       <option name="project" value="LOCAL" />
       <updated>1653395456241</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="dragable list component">
+      <created>1653480455126</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1653480455126</updated>
+    </task>
+    <task id="LOCAL-00021" summary="module entity">
+      <created>1653480620448</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1653480620448</updated>
+    </task>
+    <task id="LOCAL-00022" summary="admin page add btn module">
+      <created>1653480655221</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1653480655221</updated>
+    </task>
+    <task id="LOCAL-00023" summary="module backend entity">
+      <created>1653480686413</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1653480686413</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fix role changing to admin">
+      <created>1653486606020</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1653486606020</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update course logic">
+      <created>1653486700547</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1653486700547</updated>
+    </task>
+    <task id="LOCAL-00026" summary="module  fix bug">
+      <created>1653486728037</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1653486728037</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +403,6 @@
       <path value="$PROJECT_DIR$/server" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="base user and roles features" />
     <MESSAGE value="init client" />
     <MESSAGE value="fiches for upload files and connect front and back and some fixes" />
     <MESSAGE value="fix file check" />
@@ -389,7 +421,14 @@
     <MESSAGE value="register link for teacher" />
     <MESSAGE value="refactor" />
     <MESSAGE value="logOut between several tabs" />
-    <option name="LAST_COMMIT_MESSAGE" value="logOut between several tabs" />
+    <MESSAGE value="dragable list component" />
+    <MESSAGE value="module entity" />
+    <MESSAGE value="admin page add btn module" />
+    <MESSAGE value="module backend entity" />
+    <MESSAGE value="fix role changing to admin" />
+    <MESSAGE value="update course logic" />
+    <MESSAGE value="module  fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="module  fix bug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

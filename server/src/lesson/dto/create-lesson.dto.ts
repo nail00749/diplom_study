@@ -1,4 +1,4 @@
-import {ApiProperty} from "@nestjs/swagger";
+import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
 
 export class CreateLessonDto {
     @ApiProperty()
@@ -9,4 +9,7 @@ export class CreateLessonDto {
 
     @ApiProperty()
     readonly course: string
+
+    @ApiPropertyOptional()
+    video_path: string
 }

@@ -3,8 +3,7 @@ import {ILesson} from "../models/ILesson";
 
 export const lessonAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
-
-        createLesson: build.mutation({
+        createLesson: build.mutation<ILesson, FormData>({
             query: (body) => ({
                 url: '/lesson',
                 method: 'POST',
@@ -12,15 +11,15 @@ export const lessonAPI = baseAPI.injectEndpoints({
             }),
             invalidatesTags: ['Lessons']
         }),
-        updateLesson: build.mutation<ILesson, any>({
-            query: ({_id, ...body}) => ({
-                url: `/lesson/?lesson_id=${_id}`,
+        updateLesson: build.mutation<ILesson, FormData>({
+            query: (body) => ({
+                url: `/lesson/`,
                 method: 'PATCH',
                 body,
             }),
             invalidatesTags: ['Courses', 'Lessons', 'Lesson']
         }),
-        getFlowLesson: build.query<ILesson, {lessonId: string, flowId: string}>({
+        getFlowLesson: build.query<ILesson, { lessonId: string, flowId: string }>({
             query: (params) => ({
                 url: '/lesson/flow',
                 params

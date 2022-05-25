@@ -14,6 +14,9 @@ export class Lesson {
     @Prop({required: true})
     description: string;
 
+    @Prop()
+    video_path: string
+
     @Type(() => Test)
     test: Test
 }

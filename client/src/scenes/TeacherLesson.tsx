@@ -5,7 +5,6 @@ import {useGetFlowLessonQuery} from "../services/lessonAPI";
 import {openModal as openLessonModal} from "../store/reducers/admin/lessonSlice";
 import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useAppDispatch} from "../hooks/redux";
-import {useGetAllCoursesQuery} from "../services/courseAPI";
 import {useGetAllLessonsQuery} from "../services/contentAPI";
 import {useGetMeDataQuery} from "../services/userAPI";
 
@@ -14,7 +13,6 @@ const TeacherLesson = () => {
     const navigate = useNavigate()
     const {data: lesson} = useGetFlowLessonQuery({lessonId: String(lessonId), flowId: String(flowId)})
     const dispatch = useAppDispatch()
-    const {data: courses} = useGetAllCoursesQuery()
     const {data: lessons} = useGetAllLessonsQuery()
     const {data: user} = useGetMeDataQuery()
 
@@ -28,7 +26,6 @@ const TeacherLesson = () => {
         if (lesson) {
             dispatch(openLessonModal({
                 lesson,
-                courses,
                 isUpdate: true,
             }))
         }

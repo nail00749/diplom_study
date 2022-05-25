@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {Dialog, Typography, IconButton, Box, TextField, Button} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
@@ -6,32 +6,36 @@ import {useCreateCourseMutation, useUpdateCourseMutation} from "../../services/c
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {
     closeModal,
-    changeTitle,
-    changeDescription,
     errorTitleChange,
-    errorDescriptionChange, changeFile
+    errorDescriptionChange,
+    changeCourse
 } from "../../store/reducers/admin/courseSlice";
 import {LoadingButton} from "@mui/lab";
 import {Transition} from "./Transition";
 import {noop} from "../../utils";
-import {DndProvider, useDrag} from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
+import {ICourse} from "../../models/ICourse";
+import BaseModal from "./BaseModal";
+import {useGetAllModulesQuery} from "../../services/moduleAPI";
+import SortListByDrag from "../SortListByDrag";
+import {moduleSlice} from "../../store/reducers/admin/moduleSlice";
+import {IModule} from "../../models/IModule";
 
 const CourseCreate: FC = () => {
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateCourseMutation()
     const [update, {isLoading: isLoadingUpdate, isSuccess: isSuccessUpdate}] = useUpdateCourseMutation()
+    const {data: modules} = useGetAllModulesQuery()
 
     const {
         open,
-        title,
         titleError,
-        description,
         descriptionError,
         isUpdate,
         id,
-        file
-    } = useAppSelector(state => state.courseAdminReducer)
+        course
+    } = useAppSelector(state => state.courseReducer)
     const dispatch = useAppDispatch()
+    const fileRef = useRef<File | null>(null)
+    const modulesRef = useRef<any>(null)
 
     useEffect(() => {
         if (isSuccessCreate || isSuccessUpdate) {
@@ -41,11 +45,11 @@ const CourseCreate: FC = () => {
 
     const saveCourse = async () => {
         let isError = false
-        if (!title) {
+        if (!course.title) {
             isError = true
             dispatch(errorTitleChange())
         }
-        if (!description) {
+        if (!course.description) {
             isError = true
             dispatch(errorDescriptionChange())
         }
@@ -55,9 +59,15 @@ const CourseCreate: FC = () => {
         }
 
         const data = new FormData()
-        data.append('file', file)
-        data.append('title', title)
-        data.append('description', description)
+        data.append('title', course.title!)
+        data.append('description', course.description!)
+        if (fileRef && fileRef.current) {
+            data.append('file', fileRef.current)
+        }
+        if(modulesRef && modulesRef.current){
+            data.append('modules', JSON.stringify(modulesRef.current.map((module: IModule) => module._id)))
+        }
+
         if (isUpdate && id) {
             await update({body: data, _id: id})
         } else {
@@ -65,151 +75,120 @@ const CourseCreate: FC = () => {
         }
     };
 
-    const handlerName = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeTitle(e.target.value))
-
-    const handlerAbout = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeDescription(e.target.value))
+    const handleCourse = (key: keyof ICourse) => (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCourse({
+        ...course,
+        [key]: e.target.value
+    }))
 
     const handlerFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            dispatch(changeFile(e.target.files[0]))
+            fileRef.current = e.target.files[0]
         }
     }
 
-    const handlerClose = () => dispatch(closeModal())
+    const handleChangeOptions = (list: any) => {
+        modulesRef.current = list
+    }
+
+    const handleClose = () => dispatch(closeModal())
 
     return (
-        <Dialog
+        <BaseModal
             open = {open}
-            TransitionComponent = {Transition}
-            onClose = {(isLoadingUpdate || isLoadingCreate) ? noop : handlerClose}
-            sx = {{
-                borderRadius: 3
-            }}
+            onClose = {handleClose}
+            disabled = {isLoadingCreate || isLoadingUpdate}
+            title = {'Создание курса'}
         >
+
+
             <Box
-                sx = {{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    pb: 3,
-                }}
+                mx = {5}
             >
+                <Box
+                    mb = {3}
+                >
+                    <TextField
+                        label = 'Заголовок'
+                        variant = 'filled'
+                        required
+                        onChange = {handleCourse('title')}
+                        value = {course.title}
+                        error = {titleError}
+                        disabled = {isLoadingCreate || isLoadingUpdate}
+                    />
+                </Box>
+                <Box
+                    mb = {3}
+                >
+                    <TextField
+                        label = 'Описание'
+                        variant = 'filled'
+                        required
+                        onChange = {handleCourse('description')}
+                        value = {course.description}
+                        error = {descriptionError}
+                        disabled = {isLoadingCreate || isLoadingUpdate}
+                    />
+                </Box>
+                <Box
+                    sx = {{
+                        mb: 3,
+                        overflowY: 'auto',
+                        maxHeight: 250
+                    }}
+                >
+                    {
+                        modules &&
+                        <SortListByDrag
+                            initList={course.modules}
+                            options = {modules}
+                            changeOptions={handleChangeOptions}
+                            disabled = {isLoadingCreate || isLoadingUpdate}
+                        />
+                    }
+                </Box>
+                {
+                    (fileRef && fileRef.current) &&
+					<Box>
+                        {`File: ${fileRef.current.name.length > 18 ? fileRef.current.name.substring(0, 15) + '...' : fileRef.current.name}`}
+					</Box>
+                }
+                <Box
+                    mb = {3}
+                >
+                    <Button
+                        variant = 'contained'
+                        component = "label"
+                        fullWidth
+                    >
+                        Upload file
+                        <input
+                            type = 'file'
+                            hidden
+                            onChange = {handlerFile}
+                            accept = 'image/*'
+                        />
+                    </Button>
+                </Box>
                 <Box
                     sx = {{
                         display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: 'grey.800',
-                        mb: 3,
-                        py: 3
+                        justifyContent: 'center'
                     }}
                 >
-                    <IconButton
-                        onClick = {handlerClose}
-                        disabled = {isLoadingCreate || isLoadingUpdate}
-                        color = {'error'}
-                        sx = {{
-                            ml: 2
-                        }}
+                    <LoadingButton
+                        loading = {isLoadingCreate || isLoadingUpdate}
+                        variant = 'outlined'
+                        color = 'success'
+                        endIcon = {<SaveIcon/>}
+                        onClick = {saveCourse}
                     >
-                        <CloseIcon/>
-                    </IconButton>
-                    <Typography
-                        variant = 'h5'
-                        component = 'span'
-                        color = 'grey.400'
-                        sx = {{
-                            ml: 3
-                        }}
-                    >
-                        {`Course ${isUpdate ? 'edit' : 'create'}`}
-                    </Typography>
-                </Box>
-                <Box
-                    mx = {5}
-                >
-                    <Box
-                        mb = {3}
-                    >
-                        <TextField
-                            label = 'Title'
-                            variant = 'filled'
-                            required
-                            onChange = {handlerName}
-                            value = {title}
-                            error = {titleError}
-                            disabled = {isLoadingCreate || isLoadingUpdate}
-                        />
-                    </Box>
-                    <Box
-                        mb = {3}
-                    >
-                        <TextField
-                            label = 'About'
-                            variant = 'filled'
-                            required
-                            onChange = {handlerAbout}
-                            value = {description}
-                            error = {descriptionError}
-                            disabled = {isLoadingCreate || isLoadingUpdate}
-                        />
-                    </Box>
-                    {
-                        file &&
-						<Box>
-                            {`File: ${file.name.length > 18 ? file.name.substring(0, 15) + '...' : file.name}`}
-
-						</Box>
-                    }
-                    <Box
-                        mb = {3}
-                    >
-                        <Button
-                            variant = 'contained'
-                            component = "label"
-                            sx = {{
-                                width: '100%'
-                            }}
-                        >
-                            Upload file
-                            <input
-                                type = 'file'
-                                hidden
-                                onChange = {handlerFile}
-                                accept = 'image/*'
-                            />
-                        </Button>
-
-                    </Box>
-                    <Box
-                        sx = {{
-                            p: 3,
-                            bgColor: 'pink',
-                            height: 200,
-                            width: 200
-                        }}
-                    >
-                        {/*<LessonOrder/>*/}
-                    </Box>
-
-
-                    <Box
-                        sx = {{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <LoadingButton
-                            loading = {isLoadingCreate || isLoadingUpdate}
-                            variant = 'outlined'
-                            color = 'success'
-                            endIcon = {<SaveIcon/>}
-                            onClick = {saveCourse}
-                        >
-                            Save
-                        </LoadingButton>
-                    </Box>
+                        Save
+                    </LoadingButton>
                 </Box>
             </Box>
-        </Dialog>
+
+        </BaseModal>
     )
 }
 

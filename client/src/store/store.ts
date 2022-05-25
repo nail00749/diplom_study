@@ -5,7 +5,7 @@ import testReducer from './reducers/admin/testSlice'
 import serviceReducer from './reducers/service/ServiceSlice'
 import modalsReducer from './reducers/modals/modalsSlice'
 import moduleReducer from './reducers/admin/moduleSlice'
-import courseAdminReducer from './reducers/admin/courseSlice'
+import courseReducer from './reducers/admin/courseSlice'
 import lessonAdminReducer from './reducers/admin/lessonSlice'
 import {userAPI} from "../services/userAPI";
 import {baseAPI} from "../services/baseAPI";
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     userReducer,
     testReducer,
     serviceReducer,
-    courseAdminReducer,
+    courseReducer,
     lessonAdminReducer,
     modalsReducer,
     moduleReducer,

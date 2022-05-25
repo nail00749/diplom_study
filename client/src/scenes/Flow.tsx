@@ -77,7 +77,7 @@ const Flow = () => {
                             >
                                 Уроки
                             </Typography>
-                            {
+                            {/*{
                                 flow.course.lessons &&
 								<Stepper
 									orientation = 'vertical'
@@ -102,7 +102,7 @@ const Flow = () => {
                                         )
                                     }
 								</Stepper>
-                            }
+                            }*/}
 						</Grid>
 					</>
                 }

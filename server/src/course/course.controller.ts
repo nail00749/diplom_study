@@ -10,6 +10,7 @@ import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import RoleGuard from "../auth/roles.guard";
 import {Role} from "../auth/Roles";
 import {ApiBearerAuth} from "@nestjs/swagger";
+import {FieldToArrayPipe} from "../Pipes/fieldToArrayPipe";
 
 @ApiBearerAuth()
 @Controller('course')
@@ -28,14 +29,16 @@ export class CourseController {
             })
         }
     )
-    create(@UploadedFile() file: Express.Multer.File, @Body() createCourseDto: CreateCourseDto) {
+    create(@UploadedFile() file: Express.Multer.File,
+           @Body() createCourseDto: CreateCourseDto,
+           @Body('modules', FieldToArrayPipe) modules
+    ) {
         if (file && file.filename) {
             createCourseDto.image_path = `/courses/${file.filename}`
         }
-        return this.courseService.create(createCourseDto);
+        return this.courseService.create({...createCourseDto, modules: modules});
     }
 
-    @UseGuards(JwtAuthGuard)
     @Get()
     findAll() {
         return this.courseService.findAll();

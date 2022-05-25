@@ -1,14 +1,17 @@
-import {ApiProperty} from "@nestjs/swagger";
+import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
 
 export class CreateCourseDto {
-  @ApiProperty()
-  readonly title: string;
+    @ApiProperty()
+    readonly title: string;
 
-  @ApiProperty()
-  readonly description: string;
+    @ApiProperty()
+    readonly description: string;
 
-  @ApiProperty()
-  readonly teacher: string;
+    @ApiProperty()
+    readonly teacher: string;
 
-  image_path: string
+    image_path: string
+
+    @ApiPropertyOptional()
+    modules: string[]
 }

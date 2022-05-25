@@ -20,10 +20,9 @@ const Course: FC = () => {
     const [activeStep, setActiveStep] = useState(0)
 
 
-    useEffect(() => {
-        console.log('123')
+    /*useEffect(() => {
         refetch()
-    }, [])
+    }, [])*/
 
     useEffect(() => {
         if (!courseId) {
@@ -31,7 +30,7 @@ const Course: FC = () => {
         }
     }, [courseId, navigate])
 
-    useEffect(() => {
+    /*useEffect(() => {
         //todo check step
         if (course && course.lessons) {
             course.lessons.forEach((lesson: ILesson, index) => {
@@ -42,7 +41,7 @@ const Course: FC = () => {
                 }
             })
         }
-    }, [course])
+    }, [course])*/
 
     const handlerEdit = () => {
         if (course) {
@@ -89,7 +88,7 @@ const Course: FC = () => {
 											alt = ''
 										/>
 									</Box>
-                                    {(course.lessons && user) &&
+                                    {/*{(course.lessons && user) &&
 										<Stepper
 											activeStep = {activeStep}
 											orientation = 'vertical'
@@ -118,7 +117,7 @@ const Course: FC = () => {
                                                 )
                                             }
 										</Stepper>
-                                    }
+                                    }*/}
 								</Grid>
                             }
 							<Grid

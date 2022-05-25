@@ -16,7 +16,7 @@ export class Course {
     @Prop()
     image_path: string
 
-    @Props({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Module'}]})
+    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Module'}]})
     modules: Module[]
 
 }

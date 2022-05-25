@@ -19,7 +19,8 @@ export class CourseService {
     }
 
     findOne(id: string, userId: string) {
-        return this.courseModel.findById(id).populate({
+        return this.courseModel.findById(id)
+           /* .populate({
             path: 'lessons',
             populate: {
                 path: 'test',
@@ -30,7 +31,7 @@ export class CourseService {
                     }
                 }
             }
-        })
+        })*/
     }
 
     update(id: string, updateCourseDto: UpdateCourseDto) {

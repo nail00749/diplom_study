@@ -16,7 +16,7 @@ export class ModuleService {
 
     findAll() {
         return this.moduleModel.find().populate({
-            path: 'lesson'
+            path: 'lessons'
         })
     }
 

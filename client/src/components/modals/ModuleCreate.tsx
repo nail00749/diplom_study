@@ -10,7 +10,6 @@ import {IModule} from "../../models/IModule";
 import BaseModal from "./BaseModal";
 import {useGetAllLessonsQuery} from "../../services/contentAPI";
 import {ILesson} from "../../models/ILesson";
-import lessonSlice, {changeCourse} from "../../store/reducers/admin/lessonSlice";
 import ListIcon from '@mui/icons-material/List';
 import SortListByDrag from "../SortListByDrag";
 import {LoadingButton} from "@mui/lab";
@@ -134,9 +133,7 @@ const ModuleCreate = () => {
                     <Button
                         variant = 'contained'
                         component = "label"
-                        sx = {{
-                            width: '100%'
-                        }}
+                        fullWidth
                     >
                         Upload file
                         <input

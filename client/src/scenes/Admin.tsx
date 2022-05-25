@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Box, Button, ButtonGroup, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import {useAppDispatch} from "../hooks/redux";
 import {openModal as openCourse} from "../store/reducers/admin/courseSlice";
+import {openModal as openModule} from "../store/reducers/admin/moduleSlice";
 import {openModal as openLesson} from "../store/reducers/admin/lessonSlice";
 import {openModal as openTest} from "../store/reducers/admin/testSlice";
 import UsersData from "../components/UsersData";
@@ -14,15 +15,17 @@ const Admin: FC = () => {
     const {data: user} = useGetMeDataQuery()
     const dispatch = useAppDispatch()
 
-    const handlerCourseModal = () => dispatch(openCourse())
+    const handleCourseModal = () => dispatch(openCourse())
 
-    const handlerLessonModal = () => dispatch(openLesson())
+    const handleModuleModal = () => dispatch(openModule())
 
-    const handlerTestModal = () => dispatch(openTest())
+    const handleLessonModal = () => dispatch(openLesson())
 
-    const handlerUserFlow = () => dispatch(openUserFlow())
+    const handleTestModal = () => dispatch(openTest())
 
-    const handlerUserSubscription = () => dispatch(openUserSubscription())
+    const handleUserFlow = () => dispatch(openUserFlow())
+
+    const handleUserSubscription = () => dispatch(openUserSubscription())
 
     return (
         <>
@@ -48,42 +51,42 @@ const Admin: FC = () => {
                     >
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerCourseModal}
+                                onClick = {handleCourseModal}
                             >
                                 Курс
                             </Button>
                         </Box>
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerCourseModal}
+                                onClick = {handleModuleModal}
                             >
                                 Модуль
                             </Button>
                         </Box>
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerLessonModal}
+                                onClick = {handleLessonModal}
                             >
                                 Урок
                             </Button>
                         </Box>
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerTestModal}
+                                onClick = {handleTestModal}
                             >
                                 Тест
                             </Button>
                         </Box>
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerUserFlow}
+                                onClick = {handleUserFlow}
                             >
                                 Поток
                             </Button>
                         </Box>
                         <Box mb = {2}>
                             <Button
-                                onClick = {handlerUserSubscription}
+                                onClick = {handleUserSubscription}
                             >
                                 Подписка
                             </Button>
@@ -97,7 +100,7 @@ const Admin: FC = () => {
                 <Grid
                     item
                     xs = {12}
-                    sm = {8}
+                    sm = {12}
                     md = {6}
                 >
                     <UsersData/>

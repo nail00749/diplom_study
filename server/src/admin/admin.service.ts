@@ -25,7 +25,8 @@ export class AdminService {
         return this.registerLinkModel.remove({link})
     }
 
-    updateUserData(user: UpdateUserDto) {
-        return this.userModel.findOneAndUpdate({email: user.email}, {role: user.role}, {new: true});
+    async updateUserData(dto: UpdateUserDto) {
+        const user = await this.userModel.findOneAndUpdate({email: dto.email}, {role: dto.role}, {new: true});
+        return user
     }
 }

@@ -6,4 +6,5 @@ export interface ILesson {
     _id?: string
     description: string | null
     test?: ITest
+    video_path?: string
 }

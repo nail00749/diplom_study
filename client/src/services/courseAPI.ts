@@ -15,11 +15,11 @@ export const courseAPI = baseAPI.injectEndpoints({
         }),
         updateCourse: build.mutation<ICourse, { body: FormData, _id: string }>({
             query: ({_id, body}) => ({
-                url: `/course/?course_id=${_id}`,
+                url: `/course/${_id}`,
                 method: 'PATCH',
                 body
             }),
-            invalidatesTags: ['Course'],
+            invalidatesTags: ['Course', 'Flow'],
         }),
         getAllCourses: build.query<ICourse[], void>({
             query: () => '/course',

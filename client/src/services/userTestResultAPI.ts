@@ -12,13 +12,25 @@ export const userTestResultAPI = baseAPI.injectEndpoints({
                 method: 'POST',
                 body: other,
             }),
-            invalidatesTags: ['Course']
+            invalidatesTags: ['Lesson']
         }),
+        getStudentsResult: build.query<any, { testId: string, flowId: string }>({
+            query: ({testId, flowId}) => `/test/teacher/results/${testId}/${flowId}`
+        }),
+        setMark: build.mutation<any, { resultId: string, result: string }>({
+            query: ({resultId, ...body}) => ({
+                url: `/test/mark/${resultId}`,
+                method: 'PATCH',
+                body
+            })
+        })
     }),
     overrideExisting: true
 })
 
 export const {
     useGetMyTestResultQuery,
-    usePassTestMutation
+    usePassTestMutation,
+    useGetStudentsResultQuery,
+    useSetMarkMutation
 } = userTestResultAPI

@@ -82,7 +82,7 @@ const AppRouter: FC = () => {
                                 )
                             }
                             {
-                                (user && (user.role === 'teacher' || user.role === 'admin')) &&
+                                /*(user && (user.role === 'teacher' || user.role === 'admin')) &&*/
                                 adminRoutes.map(route =>
                                     <Route
                                         path = {route.path}

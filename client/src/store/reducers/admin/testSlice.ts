@@ -56,8 +56,6 @@ export const testSlice = createSlice({
                 if(isUpdate){
                     state.id = test!._id
                 }
-
-
             }
             state.open = true
         },

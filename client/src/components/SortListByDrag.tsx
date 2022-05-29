@@ -1,4 +1,4 @@
-import React, {FC, useState, useRef} from 'react'
+import React, {FC, useState, useRef, useEffect} from 'react'
 import {Autocomplete, Box, IconButton, TextField, Typography} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ListIcon from "@mui/icons-material/List";
@@ -11,13 +11,25 @@ interface SortListByDragProps {
 }
 
 const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initList, disabled}) => {
-    const [list, setList] = useState<any>(initList ? initList.map((item: any, i) => ({...item, order: i})) : [])
+    const [list, setList] = useState<any>(function () {
+        if (!initList) {
+            return []
+        }
+        return initList.map((item: any, i) => ({
+            ...item,
+            order: i
+        }))
+    })
     const [currentItem, setCurrentItem] = useState<any>(null)
     const [variants, setVariants] = useState<any>(options)
 
     const [valueSearchElement, setValueSearchElement] = useState<any>(null)
     const [valueInput, setValueInput] = useState('');
     const refInput = useRef<HTMLInputElement | null>(null)
+
+    useEffect(() => {
+        setVariants(options.filter((option: any) => list.findIndex((item: any) => option._id === item._id) === -1))
+    }, [list])
 
     const onDragStart = (lesson: any) => () => {
         setCurrentItem(lesson)
@@ -36,15 +48,20 @@ const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initLi
 
     const onDrop = (card: any) => (e: React.DragEvent) => {
         e.preventDefault();
-        setList(list.map((item: any) => {
-            if (item._id === card._id) {
-                return {...item, order: currentItem.order}
+        setList((prev: any) => {
+                const copy = prev.map((item: any) => {
+                    if (item._id === card._id) {
+                        return {...item, order: currentItem.order}
+                    }
+                    if (item._id === currentItem._id) {
+                        return {...item, order: card.order}
+                    }
+                    return item
+                })
+                changeOptions(copy)
+                return copy
             }
-            if (item._id === currentItem._id) {
-                return {...item, order: card.order}
-            }
-            return item
-        }))
+        )
         setCurrentItem(null)
     }
 
@@ -66,7 +83,11 @@ const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initLi
     }
 
     const handleDelete = (card: any) => () => {
-        setList((prev: any) => prev.filter((item: any) => item._id !== card._id))
+        setList((prev: any) => {
+            const copy = prev.filter((item: any) => item._id !== card._id)
+            changeOptions(copy)
+            return copy
+        })
         setVariants((prev: any) => [...prev, card])
     }
 
@@ -77,7 +98,7 @@ const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initLi
             mx = {1}
         >
             {
-                (list && list.length) ? list.sort(sortList).map((card: any) =>
+                (list && list.length) ? list.sort(sortList).map((card: any, i: number) =>
                         <Box
                             sx = {{
                                 m: 1,
@@ -105,7 +126,7 @@ const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initLi
                                     flex: '1 1 70%'
                                 }}
                             >
-                                {`${card.order}. ${card.title}`}
+                                {`${i + 1}. ${card.title}`}
                             </Typography>
                             <Box>
                                 <ListIcon/>

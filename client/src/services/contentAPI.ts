@@ -1,8 +1,6 @@
 import {ICourse} from "../models/ICourse";
 import {baseAPI} from "./baseAPI";
 import {ILesson} from "../models/ILesson";
-import {IUserSubscription} from "../models/IUserSubscription";
-
 
 export const contentAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({

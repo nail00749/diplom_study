@@ -65,8 +65,8 @@ const App = () => {
             }}
         >
             {
-                statusServer === 'success' ?
-                    <AppRouter/> :
+                /*statusServer === 'success' ?*/
+                    <AppRouter/> /*:
                     statusServer === 'connecting' ?
                         <Box
                             sx = {{
@@ -93,7 +93,7 @@ const App = () => {
                             }}
                         >
                             Error connection server
-                        </Box>
+                        </Box>*/
             }
         </Box>
     );

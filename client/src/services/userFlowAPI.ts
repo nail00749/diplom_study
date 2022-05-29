@@ -22,6 +22,10 @@ export const userFlowAPI = baseAPI.injectEndpoints({
         }),
         getOneTeacherFlow: build.query<IUserFlow, string>({
             query: (userFlowId) => `/user-flow/${userFlowId}`,
+            providesTags: ['Flow']
+        }),
+        getMyResultFlow: build.query<any, string>({
+            query: (flowId) => `/result-flow/${flowId}`
         })
 
     }),
@@ -33,6 +37,7 @@ export const {
     useGetAllTeacherFlowQuery,
     useCreateUserFlowMutation,
     useGetOneTeacherFlowQuery,
+    useGetMyResultFlowQuery,
 } = userFlowAPI
 
 export const {reducer, middleware} = userFlowAPI

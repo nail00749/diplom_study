@@ -1,6 +1,6 @@
 import {baseAPI} from "./baseAPI";
-import {ILesson} from "../models/ILesson";
 import {IModule} from "../models/IModule";
+import {IUserSubscription} from "../models/IUserSubscription";
 
 export const moduleAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({
@@ -10,15 +10,15 @@ export const moduleAPI = baseAPI.injectEndpoints({
                 method: 'POST',
                 body
             }),
-            invalidatesTags: ['Lessons']
+            invalidatesTags: ['Modules', 'Module', 'Courses']
         }),
         updateModule: build.mutation<IModule, { _id: string, body: FormData }>({
-            query: ({_id, ...body}) => ({
+            query: ({_id, body}) => ({
                 url: `/module/${_id}`,
                 method: 'PATCH',
                 body,
             }),
-            invalidatesTags: ['Courses', 'Lessons', 'Lesson']
+            invalidatesTags: ['Modules', 'Module', 'Courses']
         }),
         getAllModules: build.query<IModule[], void>({
             query: () => '/module'
@@ -26,8 +26,10 @@ export const moduleAPI = baseAPI.injectEndpoints({
         getModule: build.query<IModule, string>({
             query: (id) => `/module/${id}`
         }),
-
-
+        getModuleForTeacher: build.query<{ module: IModule, subscriptions: IUserSubscription[] }, { moduleId: string, flowId: string }>({
+            query: ({flowId, moduleId}) => `/module/teacher/${moduleId}/${flowId}`,
+            providesTags: ['Module']
+        })
     }),
     overrideExisting: true
 })
@@ -37,6 +39,7 @@ export const {
     useUpdateModuleMutation,
     useGetAllModulesQuery,
     useGetModuleQuery,
+    useGetModuleForTeacherQuery,
 } = moduleAPI
 
 export const {reducer, middleware} = moduleAPI

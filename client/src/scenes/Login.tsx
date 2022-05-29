@@ -5,12 +5,12 @@ import RegisterForm from "../components/RegisterForm";
 import {useGetAllCoursesQuery} from "../services/courseAPI";
 import {ICourse} from "../models/ICourse";
 import {useParams} from "react-router-dom";
+import SchoolIcon from '@mui/icons-material/School';
 
 
 const Login: FC = () => {
     const {registerId} = useParams()
     const [isLogin, setIsLogin] = useState<boolean>(!Boolean(registerId));
-    const {data: courses} = useGetAllCoursesQuery()
 
     const handlerForm = () => {
         setIsLogin(prev => !prev)
@@ -20,66 +20,38 @@ const Login: FC = () => {
         <Grid
             container
             spacing = {1}
-            /*direction = "column"
+            direction = "column"
             alignItems = "center"
-            justifyContent = "center"*/
+            justifyContent = "center"
             sx = {{
                 minHeight: '100vh',
                 p: 3
             }}
         >
-            <Grid
-                item
-                xs = {0}
-                sm = {6}
-                md = {9}
+            <SchoolIcon
+                color = 'primary'
+                fontSize = 'large'
+            />
+            <Box
+                mb = {1}
+                p = {2}
             >
-                {
-                    courses && courses.map((course: ICourse) =>
-                        <Box>{course.title}</Box>
-                    )
-                }
-            </Grid>
-            <Grid
-                item
-                xs = {12}
-                sm = {6}
-                md = {3}
-                container
-                justifyContent = 'center'
-            >
-                <Box
-                    mb = {1}
-                    p = {2}
+                <Typography
+                    variant = "h4"
+                    align = 'center'
                 >
-                    <Typography
-                        variant = "h4"
-                        align = 'center'
-                    >
-                        {isLogin ? 'Войти' : 'Регистрация'}
-                    </Typography>
-                    {
-                        isLogin ?
-                            <AuthForm
-                                setIsLogin = {handlerForm}
-                            /> :
-                            <RegisterForm
-                                setIsLogin = {handlerForm}
-                            />
-                    }
-                    <Box
-                        display = 'flex'
-                        justifyContent = 'center'
-                    >
-                        {/*<Button
-                            onClick = {handlerForm}
-                            variant = 'outlined'
-                        >
-                            {isLogin ? 'Sign up' : 'Sign In'}
-                        </Button>*/}
-                    </Box>
-                </Box>
-            </Grid>
+                    {isLogin ? 'Войти' : 'Регистрация'}
+                </Typography>
+                {
+                    isLogin ?
+                        <AuthForm
+                            setIsLogin = {handlerForm}
+                        /> :
+                        <RegisterForm
+                            setIsLogin = {handlerForm}
+                        />
+                }
+            </Box>
         </Grid>
     );
 };

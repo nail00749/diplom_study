@@ -3,13 +3,14 @@ import {Box, Button, Typography} from "@mui/material";
 import PassTest from "../modals/PassTest";
 import {ITest} from "../../models/ITest";
 import {useGetMyTestResultQuery} from "../../services/userTestResultAPI";
-import CheckTest from "../modals/CheckTest";
+import TestResult from "../modals/TestResult";
 
 interface UserTestProps {
-    test: ITest
+    test: ITest,
+    flowId: string
 }
 
-const UserTest: FC<UserTestProps> = ({test}) => {
+const UserTest: FC<UserTestProps> = ({test, flowId}) => {
     const [openTest, setOpenTest] = useState(false)
     const [openCheckTest, setOpenCheckTest] = useState(false)
     const {data: testResult} = useGetMyTestResultQuery(String(test._id))
@@ -26,7 +27,7 @@ const UserTest: FC<UserTestProps> = ({test}) => {
                             testResult.mark === -1 ? 'Тест еще не проверен' :
                                 <Box>
                                     <Typography>
-                                        {`Ваша оценка ${testResult.mark}`}
+                                        {`Ваш балл: ${testResult.mark}`}
                                     </Typography>
                                     <Button
                                         variant = 'contained'
@@ -34,7 +35,7 @@ const UserTest: FC<UserTestProps> = ({test}) => {
                                     >
                                         Подробнее
                                     </Button>
-                                    <CheckTest
+                                    <TestResult
                                         open = {openCheckTest}
                                         onClose = {handlerTestCheckModal}
                                         test = {test}
@@ -48,12 +49,13 @@ const UserTest: FC<UserTestProps> = ({test}) => {
                             variant = 'outlined'
                             onClick = {handlerTestModal}
                         >
-                            Pass test
+                            Сдать тест
                         </Button>
                         <PassTest
                             open = {openTest}
                             onClose = {handlerTestModal}
                             test = {test}
+                            flowId = {flowId}
                         />
                     </>
             }

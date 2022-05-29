@@ -1,23 +1,29 @@
 import React, {useEffect} from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetOneTeacherFlowQuery} from "../services/userFlowAPI";
-import {Box, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
+import {Box, Button, ButtonGroup, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import {ILesson} from "../models/ILesson";
 import StyleLink from "../components/UI/StyleLink";
+import {IModule} from "../models/IModule";
+import {useAppDispatch} from "../hooks/redux";
+import {openModal} from "../store/reducers/admin/courseSlice";
+import {BaseURL} from "../config";
 
 const Flow = () => {
     const {flowId} = useParams()
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const {data: flow, refetch} = useGetOneTeacherFlowQuery(String(flowId))
 
     useEffect(() => {
         if (!flowId) {
             navigate('/')
-        }
-        else {
+        } else {
             refetch()
         }
     }, [])
+
+    const handleEditCourse = () => dispatch(openModal({isUpdate: true, course: flow!.course}))
 
     return (
         <Box
@@ -25,6 +31,7 @@ const Flow = () => {
         >
             <Grid
                 container
+                spacing = {1}
             >
                 {
                     (flow && flow.course) &&
@@ -33,76 +40,100 @@ const Flow = () => {
 							item
 							xs = {12}
 							sm = {6}
-							md = {2}
+							md = {3}
 						>
 							<Typography
 								color = 'text.primary'
 								variant = 'h5'
+								mb = {2}
 							>
                                 {flow.course.title}
 							</Typography>
+							<Button
+								onClick = {handleEditCourse}
+								variant = 'contained'
+							>
+								Редактировать курс
+							</Button>
+                            {
+                                flow.subscriptions &&
+								<>
+									<Typography
+										color = 'text.primary'
+										variant = 'body1'
+										my = {2}
+									>
+                                        {'Ваши студенты'}
+									</Typography>
+                                    {flow.subscriptions.map((sub: any, i) =>
+                                        <Box
+                                            key = {sub._id}
+                                            mt = {1}
+                                        >
+                                            {`${i + 1}. ${sub.student.email}`}
+                                        </Box>
+                                    )}
+								</>
+                            }
 						</Grid>
+
+                        {
+                            flow.course.image_path &&
+							<Grid
+								item
+								xs = {12}
+								sm = {12}
+								md = {5}
+							>
+								<img
+									src = {BaseURL + flow.course.image_path}
+									alt = ""
+									style = {{
+                                        maxHeight: 240,
+                                        maxWidth: '100%'
+                                    }}
+								/>
+							</Grid>
+                        }
 						<Grid
 							item
-                            xs={12}
-                            sm={3}
-                            md={4}
+							xs = {12}
+							sm = {3}
+							md = {4}
+							justifyContent = {'center'}
 						>
 							<Typography
 								color = 'text.primary'
 								variant = 'body1'
 							>
-                                {'Ваши студенты'}
+								Модули
 							</Typography>
                             {
-                                flow.subscriptions && flow.subscriptions.map(sub =>
-                                    <Box
-                                        key={sub._id}
-                                    >
-                                        {sub.student.email}
-                                    </Box>
-                                )
-                            }
-						</Grid>
-						<Grid
-                            item
-                            xs={12}
-                            sm={3}
-                            md={6}
-                            justifyContent={'center'}
-                        >
-                            <Typography
-                                color='text.primary'
-                                variant='body1'
-                            >
-                                Уроки
-                            </Typography>
-                            {/*{
-                                flow.course.lessons &&
+                                flow.course.modules &&
 								<Stepper
 									orientation = 'vertical'
-                                    activeStep={-1}
+									activeStep = {-1}
 								>
                                     {
-                                        flow!.course!.lessons.map((lesson: ILesson) =>
+                                        flow!.course!.modules.map((module: IModule) =>
                                             <Step
-                                                key = {lesson._id}
+                                                key = {module._id}
                                             >
                                                 <StepLabel>
                                                     {
-                                                        <StyleLink to = {`/lesson-teacher/${lesson._id}/${flow._id}`}>
-                                                            {lesson.title}
+                                                        <StyleLink to = {`/module-teacher/${module._id}/${flow._id}`}>
+                                                            {module.title}
                                                         </StyleLink>
                                                     }
                                                 </StepLabel>
                                                 <StepContent>
-                                                    {lesson.description}
+                                                    {module.description}
                                                 </StepContent>
                                             </Step>
                                         )
                                     }
 								</Stepper>
-                            }*/}
+                            }
 						</Grid>
 					</>
                 }

@@ -4,8 +4,6 @@ import {
     Middleware,
 } from '@reduxjs/toolkit'
 import {showErrorAlert} from '../reducers/service/ServiceSlice'
-import {logOut} from "../reducers/user/UserSlice";
-
 
 export const rtqQueryError: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
     const {dispatch} = api

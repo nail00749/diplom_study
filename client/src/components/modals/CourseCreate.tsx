@@ -30,7 +30,6 @@ const CourseCreate: FC = () => {
         titleError,
         descriptionError,
         isUpdate,
-        id,
         course
     } = useAppSelector(state => state.courseReducer)
     const dispatch = useAppDispatch()
@@ -64,15 +63,16 @@ const CourseCreate: FC = () => {
         if (fileRef && fileRef.current) {
             data.append('file', fileRef.current)
         }
-        if(modulesRef && modulesRef.current){
+        if (modulesRef && modulesRef.current) {
             data.append('modules', JSON.stringify(modulesRef.current.map((module: IModule) => module._id)))
         }
 
-        if (isUpdate && id) {
-            await update({body: data, _id: id})
+        if (isUpdate) {
+            await update({body: data, _id: course._id!})
         } else {
             await create(data)
         }
+        modulesRef.current = null
     };
 
     const handleCourse = (key: keyof ICourse) => (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeCourse({
@@ -139,12 +139,12 @@ const CourseCreate: FC = () => {
                 >
                     {
                         modules &&
-                        <SortListByDrag
-                            initList={course.modules}
-                            options = {modules}
-                            changeOptions={handleChangeOptions}
-                            disabled = {isLoadingCreate || isLoadingUpdate}
-                        />
+						<SortListByDrag
+							initList = {course.modules}
+							options = {modules}
+							changeOptions = {handleChangeOptions}
+							disabled = {isLoadingCreate || isLoadingUpdate}
+						/>
                     }
                 </Box>
                 {

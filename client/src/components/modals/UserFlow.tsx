@@ -49,7 +49,13 @@ const UserFlow = () => {
 
     const handleCourse = (e: any, newValue: ICourse | null) => setCourse({value: newValue, error: false})
 
-    const handleClose = () => dispatch(closeUserFlow())
+    const handleClose = () => {
+        setCourse({value: null, error: false})
+        name.setValue('')
+        setTeacher({value: null, error: false})
+        setDate({value: new Date(), error: false})
+        dispatch(closeUserFlow())
+    }
 
     const handleChangeDate = (newValue: Date | null) => setDate({...date, value: newValue})
 

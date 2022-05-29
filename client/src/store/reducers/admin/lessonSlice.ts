@@ -1,22 +1,15 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICourse} from "../../../models/ICourse";
 import {ILesson} from "../../../models/ILesson";
 
-interface lessonAdmin {
+interface lessonState {
     open: boolean
     lesson: Partial<ILesson>
     titleError: boolean
     descriptionError: boolean
     isUpdate: boolean | undefined
-    id?: string
 }
 
-interface actionOpen {
-    lesson: ILesson
-    isUpdate?: boolean | undefined
-}
-
-const initialState: lessonAdmin = {
+const initialState: lessonState = {
     open: false,
     lesson: {
         title: '',
@@ -32,15 +25,9 @@ export const lessonSlice = createSlice({
     name: 'lessonAdminAPI',
     initialState,
     reducers: {
-        openModal: (state, action: PayloadAction<actionOpen | undefined>) => {
-            if (action.payload) {
-                const {lesson, isUpdate} = action.payload
-                state.isUpdate = isUpdate
-                if (isUpdate) {
-                    state.id = lesson._id
-                }
-            }
+        openModal: (state, action: PayloadAction<Partial<lessonState> | undefined>) => {
             state.open = true
+            Object.assign(state, action.payload)
         },
         closeModal: () => initialState,
         changeLesson: (state, action: PayloadAction<Partial<ILesson>>) => {

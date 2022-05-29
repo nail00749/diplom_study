@@ -25,7 +25,6 @@ const UserSubscription = () => {
     const [create, {isLoading, isSuccess}] = useCreateUserSubscriptionMutation()
     const [students, setStudents] = useState<IUser[]>([])
 
-
     const [courseInputValue, setCourseInputValue] = useState('');
     const [studentInputValue, setStudentInputValue] = useState('');
 
@@ -52,10 +51,8 @@ const UserSubscription = () => {
     }, [isSuccess])
 
     const handleCourse = (e: any, newValue: IUserFlow | null) => setFlow({value: newValue, error: false})
+
     const handleStudent = (e: any, newValue: IUser | null) => setStudent({value: newValue, error: false})
-
-
-    const handleClose = () => dispatch(closeUserSubscription())
 
     const handleChangeStartDate = (newValue: Date | null) => setStartDate({...startDate, value: newValue})
 
@@ -97,6 +94,14 @@ const UserSubscription = () => {
             end_date: endDate!.value
         }
         create(data)
+    }
+
+    const handleClose = () => {
+        setFlow({value: null, error: false})
+        setStudent({value: null, error: false})
+        setStartDate({value: new Date(), error: false})
+        setEndDate({value: new Date(), error: false})
+        dispatch(closeUserSubscription())
     }
 
     return (

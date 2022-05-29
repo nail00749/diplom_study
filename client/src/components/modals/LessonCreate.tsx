@@ -23,7 +23,6 @@ const CourseCreate: FC = () => {
         lesson,
         titleError,
         descriptionError,
-        id
     } = useAppSelector(state => state.lessonReducer)
     const dispatch = useAppDispatch()
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateLessonMutation()
@@ -62,7 +61,7 @@ const CourseCreate: FC = () => {
 
 
         if (isUpdate) {
-            await update(data)
+            await update({body: data, _id: lesson._id!})
         } else {
             await create(data)
         }

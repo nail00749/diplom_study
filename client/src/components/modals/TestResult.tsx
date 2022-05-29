@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import {LoadingButton} from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import {noop} from "../../utils";
+import BaseModal from "./BaseModal";
 
 interface CheckTestProps {
     open: boolean
@@ -27,26 +28,53 @@ interface CheckTestProps {
     testResult: any
 }
 
-const CheckTest: FC<CheckTestProps> = ({open, onClose, test, testResult}) => {
+const TestResult: FC<CheckTestProps> = ({open, onClose, test, testResult}) => {
     const [result] = useState<any>(JSON.parse(testResult.result))
 
     const renderAnswers = (question: IQuestion): ReactElement | null => {
         if (question.is_extended) {
             return (
-                <TextField
-                    multiline
-                    maxRows = {5}
-                    onChange = {noop}
-                    value = {result[question!.id] ? result[question!.id] : ''}
-                    disabled
-                />
+                <Box>
+                    <TextField
+                        multiline
+                        maxRows = {5}
+                        onChange = {noop}
+                        value = {result[question!.id] && result[question!.id].text ? result[question!.id].text : ''}
+                        disabled
+                    />
+                    <Box>
+                        <FormControl>
+                            <RadioGroup
+                                row
+                                onChange = {noop}
+                                value = {result[question!.id].isCorrect}
+                            >
+                                <FormControlLabel
+                                    value = {'true'}
+                                    control = {
+                                        <Radio
+                                            color = {'success'}
+                                        />
+                                    }
+                                    label = {'Верно'}
+                                />
+                                <FormControlLabel
+                                    value = {'false'}
+                                    control = {
+                                        <Radio color = {'error'}/>
+                                    }
+                                    label = {'Неверно'}
+                                />
+                            </RadioGroup>
+                        </FormControl>
+                    </Box>
+                </Box>
             )
         } else if (question.is_multiple) {
             return (
                 <Box>
                     {
                         question.answers.map((answer) => {
-
                                 const checked = !!(result && result[question!.id] && result[question!.id].findIndex((userResp: number) => userResp === answer.id) !== -1)
                                 return (<FormGroup
                                     key = {answer.id}
@@ -98,76 +126,43 @@ const CheckTest: FC<CheckTestProps> = ({open, onClose, test, testResult}) => {
     }
 
     return (
-        <Dialog
+        <BaseModal
             open = {open}
-            TransitionComponent = {Transition}
             onClose = {onClose}
-            sx = {{
-                borderRadius: 3
-            }}
+            title = 'Результаты теста'
+            disabled = {false}
         >
-            <Box
-                sx = {{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    pb: 3,
-                }}
-            >
-                <Box
-                    sx = {{
-                        display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: 'grey.800',
-                        mb: 3,
-                        py: 3
-                    }}
-                >
-                    <IconButton
-                        onClick = {onClose}
-                        color = {'error'}
-                        sx = {{
-                            ml: 2
-                        }}
-                    >
-                        <CloseIcon/>
-                    </IconButton>
+            <Box mx = {5}>
+                <Box mb = {4}>
                     <Typography
-                        variant = 'h5'
-                        component = 'span'
-                        color = 'grey.400'
-                        sx = {{
-                            ml: 2,
-                            mr: 3,
-                        }}
+                        color = 'text.primary'
                     >
-                        {`Результаты теста`}
+                        {test.description}
+                    </Typography>
+                    <Typography
+                        my={1}
+                    >
+                        {testResult.mark === -1 ? 'Тест не проверен учителем' : `Ваш балл ${testResult.mark}`}
                     </Typography>
                 </Box>
-                <Box mx = {5}>
-                    <Box mb = {4}>
-                        <Typography>
-                            {test.description}
-                        </Typography>
-                    </Box>
-                    <Box>
-                        {
-                            test.questions.map((q, index) =>
-                                <Box
-                                    key = {q.id}
-                                    mb = {2}
-                                    border = {'1px solid'}
-                                    p = {2}
-                                >
-                                    <Typography mb = {1}>{`Вопрос ${index + 1}. ${q.text}`}</Typography>
-                                    {renderAnswers(q)}
-                                </Box>
-                            )
-                        }
-                    </Box>
+                <Box>
+                    {
+                        test.questions.map((q, index) =>
+                            <Box
+                                key = {q.id}
+                                mb = {2}
+                                border = {'1px solid'}
+                                p = {2}
+                            >
+                                <Typography mb = {1}>{`Вопрос ${index + 1}. ${q.text}`}</Typography>
+                                {renderAnswers(q)}
+                            </Box>
+                        )
+                    }
                 </Box>
             </Box>
-        </Dialog>
+        </BaseModal>
     )
 }
 
-export default CheckTest
+export default TestResult

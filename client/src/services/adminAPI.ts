@@ -1,9 +1,7 @@
 import {baseAPI} from "./baseAPI";
-import {ICourse} from "../models/ICourse";
-import {ILesson} from "../models/ILesson";
 import {IUser} from '../models/IUser';
 import {ITest} from "../models/ITest";
-import {IUserFlow} from "../models/IUserFlow";
+
 
 export const adminAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({

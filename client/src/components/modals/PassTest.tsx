@@ -23,11 +23,12 @@ import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
 interface PassTestProps {
     open: boolean
     onClose: () => void
-    test: ITest
+    test: ITest,
+    flowId: string
 }
 
 
-const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
+const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
     const [state, setState] = useState<any>({})
     const [create, {isLoading, isSuccess}] = usePassTestMutation()
     const dispatch = useAppDispatch()
@@ -42,10 +43,11 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
         setState((prev: any) => {
             if (question.id) {
                 let key = question.id.toString()
-                if (question.is_extended || !question.is_multiple) {
-                    prev[key] = e.target.value
-
-                } else if (answer) {
+                if (question.is_extended) {
+                    prev[key] = {
+                        text: e.target.value
+                    }
+                } else if (question.is_multiple && answer) {
                     if (prev[key] && Array.isArray(prev[key])) {
                         if (prev[key].includes(answer.id)) {
                             let i = prev[key].indexOf(answer.id)
@@ -57,6 +59,9 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
                         prev[key] = []
                         prev[key].push(answer.id)
                     }
+                } else {
+                    prev[key] = e.target.value
+
                 }
             }
             return {...prev}
@@ -64,7 +69,6 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
     }
 
     const sendTest = () => {
-        //todo fix checkbox value checked
         let mark = 0
         let isError = false
         let errorStr = ''
@@ -81,17 +85,14 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
                 dispatch(showErrorAlert(errorStr))
                 return
             }
-
             //calc result
             if (!q.is_extended && id) {
                 const response = state[id]
                 if (q.is_multiple) {
-                    response.forEach((r: number) => {
-                        const a = q.answers.find(a => a.id === r)
-                        if (a && a.is_correct) {
-                            mark++
-                        }
-                    })
+                    const arr = q.answers.filter((a: IAnswer) => response.findIndex((r: number) => r === a.id) !== -1)
+                    if (arr.every((a: IAnswer) => a.is_correct)) {
+                        mark++
+                    }
                 } else {
                     const a = q.answers.find(a => a.id === response)
                     if (a && a.is_correct) {
@@ -99,15 +100,16 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
                     }
                 }
             }
+
         })
 
 
         const data = {
             test: test._id,
             result: JSON.stringify(state),
-            mark: isExtendedTest ? -1 : mark
+            mark: isExtendedTest ? -1 : mark,
+            flow: flowId
         }
-
         create(data)
     }
 
@@ -118,7 +120,7 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test}) => {
                     multiline
                     maxRows = {5}
                     onChange = {handleChangeSubmission(question)}
-                    value = {state[question!.id] ? state[question!.id] : ''}
+                    value = {state[question!.id] ? state[question!.id].text : ''}
                 />
             )
         } else if (question.is_multiple) {

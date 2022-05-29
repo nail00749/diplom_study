@@ -95,16 +95,18 @@ const Admin: FC = () => {
                 </Grid>
                 {
                     (user && user.role === 'admin') &&
-					<GenerateLink/>
+					<>
+						<GenerateLink/>
+						<Grid
+							item
+							xs = {12}
+							sm = {12}
+							md = {6}
+						>
+							<UsersData/>
+						</Grid>
+					</>
                 }
-                <Grid
-                    item
-                    xs = {12}
-                    sm = {12}
-                    md = {6}
-                >
-                    <UsersData/>
-                </Grid>
             </Grid>
 
         </>

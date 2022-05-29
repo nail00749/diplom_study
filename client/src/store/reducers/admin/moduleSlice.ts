@@ -8,7 +8,6 @@ interface moduleState {
     titleError: boolean
     descriptionError: boolean
     isUpdate: boolean | undefined
-    id?: string
 }
 
 const initialState: moduleState = {
@@ -27,11 +26,8 @@ export const moduleSlice = createSlice({
     initialState,
     reducers: {
         openModal: (state, action: PayloadAction<Partial<moduleState> | undefined>) => {
-            if (action && action.payload && action.payload.isUpdate) {
-                state.isUpdate = true
-            }
-
             state.open = true
+            Object.assign(state, action.payload)
         },
         closeModal: () => initialState,
         changeModule: (state, action: PayloadAction<Partial<IModule>>) => {

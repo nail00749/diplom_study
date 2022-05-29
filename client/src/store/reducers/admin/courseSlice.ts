@@ -7,14 +7,6 @@ interface courseState {
     titleError: boolean
     descriptionError: boolean
     isUpdate: boolean | undefined
-    id?: string
-}
-
-interface actionOpen {
-    title: string
-    description: string
-    isUpdate?: boolean | undefined
-    id?: string | undefined
 }
 
 const initialState: courseState = {
@@ -33,15 +25,9 @@ export const courseSlice = createSlice({
     name: 'courseAdminAPI',
     initialState,
     reducers: {
-        openModal: (state, action: PayloadAction<actionOpen | undefined>) => {
-            if (action.payload) {
-                const {isUpdate, id} = action.payload
-                state.isUpdate = isUpdate
-                if (isUpdate) {
-                    state.id = id
-                }
-            }
+        openModal: (state, action: PayloadAction<Partial<courseState> | undefined>) => {
             state.open = true
+            Object.assign(state, action.payload)
         },
         closeModal: () => initialState,
         changeCourse: (state, action: PayloadAction<Partial<ICourse>>) => {

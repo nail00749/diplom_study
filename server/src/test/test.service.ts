@@ -21,12 +21,23 @@ export class TestService {
         return this.testResultModel.create({...testResult, user: userId})
     }
 
+    setMark(id: string, testResultDto: TestResultDto) {
+        return this.testResultModel.findByIdAndUpdate(id, testResultDto)
+    }
+
     getMyTestResult(userId: string, testId: string) {
         return this.testResultModel.findOne({user: userId, test: testId})
     }
 
     findAll() {
         return `This action returns all test`;
+    }
+
+    findAllResultsByTest(testId: string, flowId: string) {
+        return this.testResultModel.find({test: testId, flow: flowId}).populate({
+            path: 'user',
+            select: ['-password']
+        })
     }
 
     findOne(id: number) {

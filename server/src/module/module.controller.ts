@@ -18,7 +18,7 @@ import {FastifyFileInterceptor} from "nest-fastify-multer";
 import {diskStorage} from "multer";
 import * as path from "path";
 import {editFileName} from "../utils/utils";
-import {FieldToArrayPipe} from "../Pipes/fieldToArrayPipe";
+import {JsonToObject} from "../Pipes/json-to-object.service";
 
 @Controller('module')
 export class ModuleController {
@@ -38,7 +38,7 @@ export class ModuleController {
     )
     create(@UploadedFile() file: Express.Multer.File,
            @Body() createModuleDto: CreateModuleDto,
-           @Body('lessons',  FieldToArrayPipe) lessons) {
+           @Body('lessons', JsonToObject) lessons) {
         if (file && file.filename) {
             createModuleDto.image_path = `/modules/${file.filename}`
         }
@@ -58,18 +58,31 @@ export class ModuleController {
     }
 
     @UseGuards(JwtAuthGuard)
+    @Get('teacher/:moduleId/:flowId')
+    findOneForTeacher(@Param('moduleId') moduleId: string, @Param('flowId') flowId: string) {
+        return this.moduleService.findOneForTeacher(moduleId, flowId);
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Patch(':id')
     @FastifyFileInterceptor(
         'file',
         {
             storage: diskStorage({
-                destination: path.join(__dirname, '../..', 'static', 'courses'),
+                destination: path.join(__dirname, '../..', 'static', 'modules'),
                 filename: editFileName
             })
         }
     )
-    update(@Param('id') id: string, @Body() updateModuleDto: UpdateModuleDto) {
-        return this.moduleService.update(id, updateModuleDto);
+    update(@Param('id') id: string,
+           @UploadedFile() file: Express.Multer.File,
+           @Body() updateModuleDto: UpdateModuleDto,
+           @Body('lessons', JsonToObject) lessons
+    ) {
+        if (file && file.filename) {
+            updateModuleDto.image_path = `/modules/${file.filename}`
+        }
+        return this.moduleService.update(id, {...updateModuleDto, lessons});
     }
 
     @UseGuards(JwtAuthGuard)

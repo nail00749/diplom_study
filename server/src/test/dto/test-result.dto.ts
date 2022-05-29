@@ -10,4 +10,10 @@ export class TestResultDto {
 
     @ApiProperty()
     readonly mark: number
+
+    @ApiProperty()
+    readonly flow: string
+
+    @ApiProperty()
+    readonly user: string
 }

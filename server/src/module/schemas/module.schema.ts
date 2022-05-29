@@ -13,8 +13,11 @@ export class Module {
     @Prop({required: true})
     description: string
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' }] })
+    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Lesson'}]})
     lessons: Lesson[]
+
+    @Prop()
+    image_path: string
 
 }
 

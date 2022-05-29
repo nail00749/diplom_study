@@ -4,13 +4,11 @@ import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
 import {ValidationPipe} from '@nestjs/common';
 import {join} from 'path';
 import {contentParser} from 'fastify-multer'
-import {DocumentBuilder, OpenAPIObject, SwaggerDocumentOptions, SwaggerModule} from "@nestjs/swagger";
-import {UsersModule} from "./users/users.module";
+import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 
 async function start() {
     const fAdapter = new FastifyAdapter()
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, fAdapter);
-
 
     app.useGlobalPipes(new ValidationPipe())
     app.setGlobalPrefix('api')

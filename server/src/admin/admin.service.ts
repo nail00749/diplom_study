@@ -1,8 +1,8 @@
 import {Injectable} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
-import {User, UserDocument} from '../users/schemas/user.schema';
+import {User, UserDocument} from '../user/schemas/user.schema';
 import {Model} from 'mongoose';
-import {UpdateUserDto} from '../users/dto/update-user.dto';
+import {UpdateUserDto} from '../user/dto/update-user.dto';
 import {RegisterLink, RegisterLinkDocument} from "./schemas/register-link.schema";
 import * as uuid from 'uuid'
 

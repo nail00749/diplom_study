@@ -30,7 +30,7 @@ export class UserFlowService {
         return this.userFlowModel.findById(flowId).populate([{
             path: 'course',
             populate: {
-                path: 'lessons'
+                path: 'modules'
             }
         },
             {

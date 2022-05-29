@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common';
 import {AdminService} from './admin.service';
 import {AdminController} from './admin.controller';
-import {UsersService} from '../users/users.service';
+import {UsersService} from '../user/users.service';
 import {MongooseModule} from '@nestjs/mongoose';
-import {User, UserSchema} from '../users/schemas/user.schema';
+import {User, UserSchema} from '../user/schemas/user.schema';
 import {FileService} from "../file/file.service";
 import {RegisterLink, RegisterLinkSchema} from "./schemas/register-link.schema";
 

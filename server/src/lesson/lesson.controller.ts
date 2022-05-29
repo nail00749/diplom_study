@@ -7,6 +7,7 @@ import {diskStorage} from "multer";
 import * as path from "path";
 import {editFileName} from "../utils/utils";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
+import {updateFileWithText} from "ts-loader/dist/servicesHost";
 
 @Controller('lesson')
 export class LessonController {
@@ -41,9 +42,9 @@ export class LessonController {
         return this.lessonService.findOne(id);
     }
 
-    @Get('/flow')
-    findFlow(@Query('lessonId') lessonId, @Query('flowId') flowId) {
-        return this.lessonService.lessonFlow(lessonId, flowId)
+    @Get('teacher/:lessonId/:flowId')
+    findOneForTeacher(@Param('lessonId') lessonId: string, @Param('flowId') flowId: string) {
+        return this.lessonService.findOneForTeacher(lessonId, flowId)
     }
 
 
@@ -58,7 +59,7 @@ export class LessonController {
             })
         }
     )
-    update(@Query('lesson_id') id: string,
+    update(@Param('lesson_id') id: string,
            @Body() updateLessonDto: UpdateLessonDto,
            @UploadedFile() file: Express.Multer.File,) {
         if (file && file.filename) {

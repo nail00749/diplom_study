@@ -34,6 +34,12 @@ export class TestController {
         return this.testService.findAll();
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Get('teacher/results/:testId/:flowId')
+    findAllResultsByTest(@Param('testId') testId: string, @Param('flowId') flowId: string) {
+        return this.testService.findAllResultsByTest(testId, flowId)
+    }
+
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.testService.findOne(+id);
@@ -42,6 +48,13 @@ export class TestController {
     @Patch(':test_id')
     update(@Query('test_id') id: string, @Body() updateTestDto: UpdateTestDto) {
         return this.testService.update(id, updateTestDto);
+    }
+
+
+    @UseGuards(JwtAuthGuard)
+    @Patch('/mark/:resultId')
+    setMark(@Param('resultId') resultId: string, @Body() testResult: TestResultDto) {
+        return this.testService.setMark(resultId, testResult)
     }
 
     @Delete(':id')

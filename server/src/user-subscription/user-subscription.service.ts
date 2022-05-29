@@ -4,23 +4,34 @@ import {UpdateUserSubscriptionDto} from './dto/update-user-subscription.dto';
 import {InjectModel} from "@nestjs/mongoose";
 import {UserSubscription, UserSubscriptionDocument} from "./schemas/user-subscription.schemas";
 import {Model} from "mongoose";
+import {ResultFlowService} from "../result-flow/result-flow.service";
 
 @Injectable()
 export class UserSubscriptionService {
-    constructor(@InjectModel(UserSubscription.name) private readonly userSubscriptionModel: Model<UserSubscriptionDocument>) {
+    constructor(@InjectModel(UserSubscription.name) private readonly userSubscriptionModel: Model<UserSubscriptionDocument>,
+                private readonly resultFlowService: ResultFlowService
+    ) {
     }
 
-    create(createUserSubscriptionDto: CreateUserSubscriptionDto) {
-        return this.userSubscriptionModel.create(createUserSubscriptionDto)
+    async create(createUserSubscriptionDto: CreateUserSubscriptionDto) {
+        const sub = await this.userSubscriptionModel.create(createUserSubscriptionDto)
+        await this.resultFlowService.create({user: sub.student, flow: sub.flow})
+        return sub
     }
 
     findAll() {
         return this.userSubscriptionModel.find()
     }
 
-    findStudentCourse(id: string) {
+    findAllByFlow(flowId: string) {
+        return this.userSubscriptionModel.find({flow: flowId}).populate({
+            path: 'student'
+        })
+    }
+
+    findStudentCourse(userId: string) {
         return this.userSubscriptionModel.find({
-            student: id
+            student: userId
         }).populate({
             path: 'flow',
             populate: 'course'

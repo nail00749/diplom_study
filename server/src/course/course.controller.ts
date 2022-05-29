@@ -10,7 +10,7 @@ import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import RoleGuard from "../auth/roles.guard";
 import {Role} from "../auth/Roles";
 import {ApiBearerAuth} from "@nestjs/swagger";
-import {FieldToArrayPipe} from "../Pipes/fieldToArrayPipe";
+import {JsonToObject} from "../Pipes/json-to-object.service";
 
 @ApiBearerAuth()
 @Controller('course')
@@ -31,7 +31,7 @@ export class CourseController {
     )
     create(@UploadedFile() file: Express.Multer.File,
            @Body() createCourseDto: CreateCourseDto,
-           @Body('modules', FieldToArrayPipe) modules
+           @Body('modules', JsonToObject) modules
     ) {
         if (file && file.filename) {
             createCourseDto.image_path = `/courses/${file.filename}`
@@ -62,13 +62,18 @@ export class CourseController {
             })
         }
     )
-
-    @UseGuards(JwtAuthGuard)
-    update(@Query('course_id') id: string, @UploadedFile() file: Express.Multer.File, @Body() updateCourseDto: UpdateCourseDto) {
+    update(@Param('course_id') id: string,
+           @UploadedFile() file: Express.Multer.File,
+           @Body() updateCourseDto: UpdateCourseDto,
+           @Body('modules', JsonToObject) modules
+    ) {
         if (file && file.filename) {
             updateCourseDto.image_path = `/courses/${file.filename}`
         }
-        return this.courseService.update(id, updateCourseDto);
+        if (modules) {
+            updateCourseDto.modules = modules
+        }
+        return this.courseService.update(id, updateCourseDto,);
     }
 
     @Delete(':id')

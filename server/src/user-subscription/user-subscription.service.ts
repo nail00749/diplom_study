@@ -15,7 +15,7 @@ export class UserSubscriptionService {
 
     async create(createUserSubscriptionDto: CreateUserSubscriptionDto) {
         const sub = await this.userSubscriptionModel.create(createUserSubscriptionDto)
-        await this.resultFlowService.create({user: sub.student, flow: sub.flow})
+        await this.resultFlowService.create({user: sub.student, flow: sub.flow, subscription: sub._id})
         return sub
     }
 
@@ -24,9 +24,16 @@ export class UserSubscriptionService {
     }
 
     findAllByFlow(flowId: string) {
-        return this.userSubscriptionModel.find({flow: flowId}).populate({
-            path: 'student'
-        })
+        return this.userSubscriptionModel.find({flow: flowId}).populate([
+            {
+                path: 'student',
+                select: ['-password'],
+                populate: {
+                    path: 'resultFlow',
+                    match: {flow: flowId}
+                }
+            }
+        ])
     }
 
     findStudentCourse(userId: string) {

@@ -21,7 +21,8 @@ export const moduleAPI = baseAPI.injectEndpoints({
             invalidatesTags: ['Modules', 'Module', 'Courses']
         }),
         getAllModules: build.query<IModule[], void>({
-            query: () => '/module'
+            query: () => '/module',
+            providesTags: ['Modules']
         }),
         getModule: build.query<IModule, string>({
             query: (id) => `/module/${id}`

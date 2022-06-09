@@ -16,7 +16,10 @@ const baseQuery = retry(fetchBaseQuery({
         }
         return headers
     }
-}))
+}), {
+    maxRetries: 1,
+    backoff: () => new Promise((resolve) => setTimeout(() => resolve(), 3000))
+})
 
 export const userAPI = createApi({
     reducerPath: 'userAPI',

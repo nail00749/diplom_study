@@ -2,7 +2,7 @@ export interface ITest {
     lesson: string
     description: string
     questions: IQuestion[]
-    _id?: string,
+    _id: string,
     result?: any
 }
 

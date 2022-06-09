@@ -25,6 +25,7 @@ export class SocketRedisCache implements OnGatewayInit, OnGatewayConnection, OnG
                 private readonly resultFlowService: ResultFlowService
     ) {
     }
+
     @WebSocketServer()
     server: Server
 
@@ -33,7 +34,8 @@ export class SocketRedisCache implements OnGatewayInit, OnGatewayConnection, OnG
     async handleMessage(client: Socket, payload: any): Promise<void> {
         const {type} = payload
         if (type !== 'play') {
-            await this.resultFlowService.updateByFlow(payload)
+            await this.resultFlowService.updateLessonTiming(payload)
+            await this.cacheManager.del(client.id)
         } else {
             await this.cacheManager.set(client.id, JSON.stringify(payload), {ttl: 100})
         }
@@ -52,7 +54,8 @@ export class SocketRedisCache implements OnGatewayInit, OnGatewayConnection, OnG
         if (str) {
             try {
                 const data = JSON.parse(str)
-                await this.resultFlowService.updateByFlow(data)
+                await this.resultFlowService.updateLessonTiming(data)
+                await this.cacheManager.del(client.id)
             } catch (e) {
                 console.log(e)
             }

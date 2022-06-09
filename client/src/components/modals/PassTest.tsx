@@ -15,9 +15,9 @@ import {LoadingButton} from "@mui/lab";
 import SendIcon from '@mui/icons-material/Send';
 import {IAnswer, IQuestion, ITest} from "../../models/ITest";
 import {usePassTestMutation} from "../../services/userTestResultAPI";
-import {IUserSubmission} from "../../models/IUserSubmission";
 import {useAppDispatch} from "../../hooks/redux";
 import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
+import {useGetMyResultFlowQuery} from "../../services/userFlowAPI";
 
 
 interface PassTestProps {
@@ -30,6 +30,7 @@ interface PassTestProps {
 
 const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
     const [state, setState] = useState<any>({})
+    const {data: myResultFlow} = useGetMyResultFlowQuery(String(flowId))
     const [create, {isLoading, isSuccess}] = usePassTestMutation()
     const dispatch = useAppDispatch()
 
@@ -69,10 +70,8 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
     }
 
     const sendTest = () => {
-        let mark = 0
         let isError = false
         let errorStr = ''
-        let isExtendedTest = test.questions.some(q => q.is_extended)
 
         test.questions.forEach((q, i) => {
             const id = q!.id
@@ -85,30 +84,15 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
                 dispatch(showErrorAlert(errorStr))
                 return
             }
-            //calc result
-            if (!q.is_extended && id) {
-                const response = state[id]
-                if (q.is_multiple) {
-                    const arr = q.answers.filter((a: IAnswer) => response.findIndex((r: number) => r === a.id) !== -1)
-                    if (arr.every((a: IAnswer) => a.is_correct)) {
-                        mark++
-                    }
-                } else {
-                    const a = q.answers.find(a => a.id === response)
-                    if (a && a.is_correct) {
-                        mark++
-                    }
-                }
-            }
-
         })
-
+        if (isError) {
+            return
+        }
 
         const data = {
-            test: test._id,
-            result: JSON.stringify(state),
-            mark: isExtendedTest ? -1 : mark,
-            flow: flowId
+            id: myResultFlow!._id,
+            response: state,
+            testId: test._id
         }
         create(data)
     }

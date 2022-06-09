@@ -14,10 +14,10 @@ const CourseContainer: FC = () => {
                     return <UserCourse/>
                 case 'teacher':
                     return <TeacherCourse/>
-                case 'admin':
-                    return 'Запилить все курсы для редактирования'
+                /*case 'admin':
+                    return 'Запилить все курсы для редактирования'*/
                 default:
-                    return <LinearProgress/>
+                    return null/*<LinearProgress/>*/
             }
         }
         return (

@@ -1,16 +1,26 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useMemo} from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import {useGetModuleQuery} from "../services/moduleAPI";
 import {BaseURL} from "../config";
 import StyleLink from "../components/UI/StyleLink";
 import {ILesson} from "../models/ILesson";
+import PassModuleTask from "../components/modals/PassModuleTask";
+import {useGetMyResultFlowQuery} from "../services/userFlowAPI";
+import {IModuleTaskResult} from "../models/IModuleTaskResult";
 
 const Module = () => {
     const {moduleId, flowId} = useParams()
     const navigate = useNavigate()
     const {data: module} = useGetModuleQuery(String(moduleId))
+    const {data: myResultFlow} = useGetMyResultFlowQuery(String(flowId))
     const [activeStep, setActiveStep] = useState(0)
+    const [openModal, setOpenModal] = useState(false)
+
+    const isPassedModuleTask = useMemo(() => {
+        const taskId = module && module.task && module.task._id || ''
+        return myResultFlow && myResultFlow.moduleTasks && myResultFlow.moduleTasks[taskId] || false
+    }, [myResultFlow, module])
 
     useEffect(() => {
         if (!moduleId) {
@@ -18,6 +28,41 @@ const Module = () => {
         }
     }, [])
 
+    useEffect(() => {
+        calcAccessModule()
+    }, [module, myResultFlow])
+
+    const calcAccessModule = () => {
+        let step = 0
+        if (module && module.lessons) {
+            let prevLessonIsPassed = false
+            module.lessons.forEach((lesson: ILesson, i) => {
+                if (lesson.test) {
+                    if (myResultFlow && myResultFlow.testsResult && myResultFlow.testsResult[lesson.test._id]) {
+                        if (myResultFlow.testsResult[lesson.test._id].mark !== -1) {
+                            step++
+                            prevLessonIsPassed = true
+                        } else {
+                            step = i
+                            return
+                        }
+                    }
+                } else if (!lesson.test) {
+                    if (prevLessonIsPassed || i === 0) {
+                        step++
+                    } else {
+                        prevLessonIsPassed = false
+                        return
+                    }
+
+                }
+
+            })
+            setActiveStep(step)
+        }
+    }
+
+    const handleModal = () => setOpenModal(prev => !prev)
 
     return (
         <Box
@@ -73,10 +118,9 @@ const Module = () => {
                                                             {lesson.title}
                                                         </Typography>
                                                 }
-
                                             </StepLabel>
                                             <StepContent>
-                                                {lesson.description}
+                                                {`${lesson.description?.substring(0, 20)} ${lesson.description.length > 20 ? '...' : ''} `}
                                             </StepContent>
                                         </Step>
                                     )
@@ -109,18 +153,44 @@ const Module = () => {
                             {module.description}
 						</Typography>
 					</Grid>
-					<Grid
-						item
-						xs = {12}
-						sm = {6}
-						md = {3}
-					>
-						<Button
-							variant = 'outlined'
-						>
-							Задание по модулю
-						</Button>
-					</Grid>
+                    {
+                        <Grid
+                            item
+                            xs = {12}
+                            sm = {6}
+                            md = {3}
+                        >
+                            {
+                                (module.task && module.lessons && module.lessons.length === activeStep) ?
+                                    <>
+                                        <Button
+                                            variant = 'outlined'
+                                            onClick = {handleModal}
+                                        >
+                                            {isPassedModuleTask ? 'Посмотреть результаты' : 'Открыть задание по модулю'}
+                                        </Button>
+                                        <PassModuleTask
+                                            open = {openModal}
+                                            task = {module.task}
+                                            onClose = {handleModal}
+                                            flowId = {String(flowId)}
+                                            result = {isPassedModuleTask && myResultFlow!.moduleTasks[String(module.task._id)] as IModuleTaskResult || undefined}
+                                        />
+                                    </> :
+                                    <>
+                                    {
+                                        module.task &&
+											< Typography
+												my = {2}
+												color = 'text.primary'
+											>
+												Пройдите все уроки чтобы открыть задание по модулю
+											</Typography>
+                                    }
+                                    </>
+                            }
+                        </Grid>
+                    }
 				</Grid>
             }
         </Box>

@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/client/node_modules" />
         <option value="$PROJECT_DIR$/server/node_modules" />
         <option value="$PROJECT_DIR$/server/dist" />
+        <option value="$PROJECT_DIR$/server/static" />
       </list>
     </option>
   </component>

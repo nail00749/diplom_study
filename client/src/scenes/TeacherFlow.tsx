@@ -9,7 +9,7 @@ import {useAppDispatch} from "../hooks/redux";
 import {openModal} from "../store/reducers/admin/courseSlice";
 import {BaseURL} from "../config";
 
-const Flow = () => {
+const TeacherFlow = () => {
     const {flowId} = useParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -66,17 +66,17 @@ const Flow = () => {
                                         {'Ваши студенты'}
 									</Typography>
                                     {flow.subscriptions.map((sub: any, i) =>
-                                        <Box
+                                        <Typography
+                                            color = 'text.primary'
                                             key = {sub._id}
-                                            mt = {1}
+                                            my = {1}
                                         >
                                             {`${i + 1}. ${sub.student.email}`}
-                                        </Box>
+                                        </Typography>
                                     )}
 								</>
                             }
 						</Grid>
-
                         {
                             flow.course.image_path &&
 							<Grid
@@ -142,4 +142,4 @@ const Flow = () => {
     )
 }
 
-export default Flow
+export default TeacherFlow

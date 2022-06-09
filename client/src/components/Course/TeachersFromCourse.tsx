@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
-import {useGetTeachersFromCourseQuery} from "../services/userAPI";
+import {useGetTeachersFromCourseQuery} from "../../services/userAPI";
 import {Avatar, Box, Typography} from "@mui/material";
-import {BaseURL} from "../config";
+import {BaseURL} from "../../config";
 
 interface TeachersFromCourseProps {
     courseId: string
@@ -21,17 +21,19 @@ const TeachersFromCourse: FC<TeachersFromCourseProps> = ({courseId}) => {
             {
                 teachers && teachers.map(teacher =>
                     <Box
+                        key = {teacher._id}
                         sx = {{
                             display: 'flex',
                             alignItems: 'center',
                             my: 3
                         }}
                     >
-                            <Avatar
-                                src = {BaseURL + teacher.avatar_path}
-                            />
+                        <Avatar
+                            src = {BaseURL + teacher.avatar_path}
+                        />
                         <Typography
-                            ml={2}
+                            ml = {2}
+                            color = 'text.primary'
                         >
                             {teacher.email}
                         </Typography>

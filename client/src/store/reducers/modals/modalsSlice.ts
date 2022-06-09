@@ -3,11 +3,13 @@ import {createSlice} from "@reduxjs/toolkit";
 interface modalState {
     userFlowOpen: boolean
     userSubscriptionOpen: boolean
+    moduleTaskOpen: boolean
 }
 
 const initialState: modalState = {
     userFlowOpen: false,
-    userSubscriptionOpen: false
+    userSubscriptionOpen: false,
+    moduleTaskOpen: false
 }
 
 
@@ -27,6 +29,12 @@ export const modalsSlice = createSlice({
         closeUserSubscription: state => {
             state.userSubscriptionOpen = false
         },
+        openModuleTask: state => {
+            state.moduleTaskOpen = true
+        },
+        closeModuleTask: state => {
+            state.moduleTaskOpen = false
+        }
     }
 })
 
@@ -34,8 +42,9 @@ export const {
     openUserFlow,
     closeUserFlow,
     openUserSubscription,
-    closeUserSubscription
-
+    closeUserSubscription,
+    openModuleTask,
+    closeModuleTask
 } = modalsSlice.actions
 
 export default modalsSlice.reducer

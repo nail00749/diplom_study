@@ -7,7 +7,8 @@ import {Course, CourseDocument} from './schemas/course.schema';
 
 @Injectable()
 export class CourseService {
-    constructor(@InjectModel(Course.name) private readonly courseModel: Model<CourseDocument>) {
+    constructor(@InjectModel(Course.name) private readonly courseModel: Model<CourseDocument>,
+    ) {
     }
 
     create(createCourseDto: CreateCourseDto) {
@@ -18,20 +19,12 @@ export class CourseService {
         return this.courseModel.find()
     }
 
-    findOne(id: string, userId: string) {
+    findOne(id: string) {
         return this.courseModel.findById(id)
             .populate({
-            path: 'modules',
-            /*populate: {
-                path: 'test',
-                populate: {
-                    path: 'result',
-                    match: {
-                        user: userId
-                    }
-                }
-            }*/
-        })
+                path: 'modules',
+                populate: 'task'
+            })
     }
 
     update(id: string, updateCourseDto: UpdateCourseDto) {

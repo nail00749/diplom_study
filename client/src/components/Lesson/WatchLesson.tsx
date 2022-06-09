@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef, useState, useMemo} from 'react'
 import {io, Socket} from "socket.io-client";
-import {BaseURL} from "../config";
-import {useGetMeDataQuery} from '../services/userAPI';
+import {BaseURL} from "../../config";
+import {useGetMeDataQuery} from '../../services/userAPI';
 import {Button, Grid} from "@mui/material";
 
 interface WatchLessonProps {
@@ -12,7 +12,7 @@ interface WatchLessonProps {
     refetchResult: () => void
 }
 
-const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refetchResult}, ref) => {
+const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refetchResult}) => {
     let socketRef = useRef<Socket | null>(null)
     let timer: ReturnType<typeof setTimeout>
     const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -53,7 +53,8 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
             socketRef!.current = io("http://localhost:5000/api/v1/ws", {
                 path: "/api/v1/ws/socket.io",
             });
-            videoRef!.current!.addEventListener('ended', () => {
+
+            const ended = () => {
                 clearTimeout(timer)
                 socketRef!.current!.emit('msgToServer', {
                     flowId,
@@ -63,17 +64,23 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
                     type: 'end'
                 })
                 refetchResult()
-            })
-            videoRef!.current!.addEventListener('seeking', () => {
+            }
+            videoRef!.current!.addEventListener('ended', ended)
+
+            const seeking = () => {
                 if (videoRef!.current!.currentTime > time) {
                     videoRef!.current!.currentTime = time
                 }
                 clearTimeout(timer)
-            })
-            videoRef!.current!.addEventListener('playing', () => {
+            }
+            videoRef!.current!.addEventListener('seeking', seeking)
+
+            const playing = () => {
                 handleTimer()
-            })
-            videoRef!.current!.addEventListener('pause', () => {
+            }
+            videoRef!.current!.addEventListener('playing', playing)
+
+            const pause = () => {
                 clearTimeout(timer)
                 setTimeout(() => {
                     const t = Math.floor(videoRef!.current!.currentTime)
@@ -85,7 +92,15 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
                         type: 'pause'
                     })
                 }, 3000)
-            })
+            }
+            videoRef!.current!.addEventListener('pause', pause)
+
+            return () => {
+                videoRef!.current!.removeEventListener('ended', ended)
+                videoRef!.current!.removeEventListener('seeking', seeking)
+                videoRef!.current!.removeEventListener('playing', playing)
+                videoRef!.current!.removeEventListener('pause', pause)
+            }
         }
     }, [result])
 
@@ -117,8 +132,6 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
 
     return (
         <Grid
-            container
-            direction = 'column'
             alignItems = 'center'
         >
             <div>

@@ -30,7 +30,7 @@ export class TestService {
     }
 
     findAll() {
-        return `This action returns all test`;
+        return
     }
 
     findAllResultsByTest(testId: string, flowId: string) {
@@ -40,8 +40,9 @@ export class TestService {
         })
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} test`;
+    async getOne(id: string): Promise<TestDocument> {
+        const test = await this.testModel.findById(id)
+        return test
     }
 
     update(id: string, updateTestDto: UpdateTestDto) {

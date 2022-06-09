@@ -23,7 +23,8 @@ export const lessonAPI = baseAPI.injectEndpoints({
         getFlowLesson: build.query<{ lesson: ILesson, subscriptions: IUserSubscription[] }, { lessonId: string, flowId: string }>({
             query: ({lessonId, flowId}) => ({
                 url: `/lesson/teacher/${lessonId}/${flowId}`,
-            })
+            }),
+            providesTags: ['Lesson']
         }),
     }),
     overrideExisting: true

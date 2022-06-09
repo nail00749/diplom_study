@@ -11,14 +11,18 @@ const baseQuery = retry(fetchBaseQuery({
         return headers
     }
 }), {
-    maxRetries: 2,
-    backoff: () => new Promise((resolve) => setTimeout(() => resolve(), 50000))
+    maxRetries: 1,
+    backoff: () => new Promise((resolve) => setTimeout(() => resolve(), 3000))
 })
 
 
 export const baseAPI = createApi({
     reducerPath: 'contentAPI',
     baseQuery: baseQuery,
-    tagTypes: ['Courses', 'Course', 'Lessons','Lesson', 'Test', 'Users', 'User', 'Flows', 'Subscriptions', 'Modules', 'Module', 'Flow'],
+    tagTypes: [
+        'Courses', 'Course', 'Lessons', 'Lesson', 'Test',
+        'Users', 'User', 'Flows', 'Subscriptions', 'Modules', 'Module', 'Flow',
+        'MyResult'
+    ],
     endpoints: () => ({}),
 })

@@ -13,9 +13,11 @@ export class Test {
 
     @Prop([{}])
     questions: [{
+        id: number,
         is_extended?: boolean,
         is_multiple?: boolean,
         answers: [{
+            id: number,
             text: string,
             is_correct?: boolean,
         }],

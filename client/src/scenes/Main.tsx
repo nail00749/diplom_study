@@ -24,7 +24,7 @@ const Main: FC = () => {
             <Grid
                 item
                 xs = {12}
-                md = {4}
+                md = {8}
             >
                 <Suspense fallback = {<CircularProgress/>}>
                     <CourseContainer/>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Box, Button, ButtonGroup, Grid, Typography} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
-import {useGetFlowLessonQuery} from "../services/lessonAPI";
+import {lessonAPI, useGetFlowLessonQuery} from "../services/lessonAPI";
 import {openModal as openLessonModal} from "../store/reducers/admin/lessonSlice";
 import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useAppDispatch} from "../hooks/redux";
@@ -9,6 +9,7 @@ import {useGetAllLessonsQuery} from "../services/contentAPI";
 import {BaseURL} from "../config";
 import {userTestResultAPI} from "../services/userTestResultAPI";
 import CheckingTest from "../components/modals/CheckingTest";
+import {IUserSubscription} from "../models/IUserSubscription";
 
 const TeacherLesson = () => {
     const {lessonId, flowId} = useParams()
@@ -19,7 +20,6 @@ const TeacherLesson = () => {
     })
     const dispatch = useAppDispatch()
     const {data: lessons} = useGetAllLessonsQuery()
-    const [trigger, {data: results}] = userTestResultAPI.endpoints.getStudentsResult.useLazyQuery()
     const [modalCheckTest, setModalCheckTest] = useState(false)
     const [resultUser, setResultUser] = useState<any>(null)
 
@@ -29,14 +29,6 @@ const TeacherLesson = () => {
         }
     }, [lessonId, navigate, flowId])
 
-    useEffect(() => {
-        if (lesson && lesson.test) {
-            trigger({
-                testId: String(lesson!.test!._id),
-                flowId: String(flowId)
-            })
-        }
-    }, [lesson])
 
     const handlerLessonEdit = () => {
         if (lesson) {
@@ -58,11 +50,29 @@ const TeacherLesson = () => {
     }
 
     const handleCheckTestUser = (res: any) => () => {
-        setModalCheckTest(true)
         setResultUser(res)
+        setModalCheckTest(true)
     }
 
-    const handleCloseModal = () => setModalCheckTest(false)
+    const handleCloseModal = (data?: any) => {
+        setModalCheckTest(false)
+
+        if (data) {
+            dispatch(lessonAPI.util.updateQueryData('getFlowLesson', {
+                lessonId: String(lessonId),
+                flowId: String(flowId)
+            }, (draft) => {
+                const copy = {...draft}
+                let sub = copy.subscriptions.find(subscription => subscription.student!.resultFlow!._id === resultUser.resultFlowId)
+                if (sub && sub.student) {
+                    sub.student.resultFlow = data
+                }
+            }))
+        }
+        setTimeout(() => {
+            setResultUser(null)
+        }, 300)
+    }
 
     return (
         <Box
@@ -132,7 +142,7 @@ const TeacherLesson = () => {
 						</Grid>
                     }
                     {
-                        results &&
+                        (lesson && lesson.test && subscriptions) &&
 						<Grid
 							item
 							xs = {12}
@@ -143,28 +153,57 @@ const TeacherLesson = () => {
 								color = 'text.primary'
 								mb = {2}
 							>
-								Результаты учеников
+								Результаты урока
 							</Typography>
                             {
-                                results.map((res: any) =>
-                                    <Box
-                                        key = {res._id}
-                                        mb = {2}
-                                    >
-                                        <Button
-                                            variant = 'outlined'
-                                            onClick = {handleCheckTestUser(res)}
-                                        >
-                                            {res.user.email}
-                                        </Button>
-                                    </Box>
+                                subscriptions.map((subscription: IUserSubscription) => {
+                                        const {resultFlow} = subscription.student
+                                        const isSub = subscription && resultFlow
+                                        const timingVideo = isSub && resultFlow! && resultFlow.lessonVideosTimings && resultFlow.lessonVideosTimings[lesson._id]
+                                        const isPassTest = isSub && resultFlow.testsResult && resultFlow.testsResult[lesson!.test!._id]
+                                        const isCheckTeacher = isPassTest && resultFlow!.testsResult[lesson!.test!._id].mark !== -1
+
+                                        return (
+                                            <Box
+                                                key = {subscription._id}
+                                                my = {2}
+                                            >
+                                                <Typography
+                                                    color = 'text.primary'
+                                                >
+                                                    {subscription.student.email}
+                                                </Typography>
+                                                {
+                                                    lesson.video_path &&
+                                                    <Typography
+                                                        color = 'text.primary'
+                                                    >
+                                                        {timingVideo === -1 ? 'посмотрел видеоурок' : !timingVideo ? 'Не начал смотреть урок' : `Остановился на ${timingVideo}`}
+                                                    </Typography>
+                                                }
+                                                {
+                                                    isPassTest &&
+													<Button
+														variant = 'outlined'
+														onClick = {handleCheckTestUser({
+                                                            ...isPassTest,
+                                                            resultFlowId: resultFlow!._id
+                                                        })}
+														color = {isCheckTeacher ? 'success' : 'error'}
+														disabled = {!Boolean(isPassTest)}
+													>
+														Посмотреть тест
+													</Button>
+                                                }
+                                            </Box>
+                                        )
+                                    }
                                 )
                             }
 						</Grid>
                     }
 				</Grid>
             }
-
             {
                 resultUser &&
 				<CheckingTest

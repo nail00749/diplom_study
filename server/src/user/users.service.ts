@@ -15,6 +15,19 @@ export class UsersService {
                 private readonly userFlowService: UserFlowService,
                 private readonly adminService: AdminService
     ) {
+        (async () => {
+                const someAdmin = await this.userModel.findOne({role: 'admin'})
+                if (!someAdmin) {
+                    const password = await bcrypt.hash('string', 10)
+                    const admin = {
+                        email: 'admin@ya.ru',
+                        password,
+                        role: 'admin',
+                    }
+                    await this.userModel.create(admin)
+                }
+            }
+        )()
     }
 
     async create(dto: CreateUserDto): Promise<Partial<User>> {
@@ -71,7 +84,6 @@ export class UsersService {
         const flows = await this.userFlowService.findFlowsByCourse(course_id).distinct('teacher')
         return this.userModel.find().where('_id').in(flows).select('-password')
     }
-
 
     remove(id: number) {
         return `This action removes a #${id} user`;

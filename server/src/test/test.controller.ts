@@ -42,7 +42,7 @@ export class TestController {
 
     @Get(':id')
     findOne(@Param('id') id: string) {
-        return this.testService.findOne(+id);
+        return this.testService.getOne(id);
     }
 
     @Patch(':test_id')

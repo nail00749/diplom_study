@@ -1,3 +1,4 @@
+import {IFlowResult} from "./IFlowResult";
 
 export interface IUser {
     email: string
@@ -8,4 +9,5 @@ export interface IUser {
     surname?: string
     telegram?: string
     avatar_path: string | null
+    resultFlow?: IFlowResult
 }

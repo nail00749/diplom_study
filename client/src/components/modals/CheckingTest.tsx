@@ -17,24 +17,29 @@ import {useAppDispatch} from "../../hooks/redux";
 import {LoadingButton} from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import {useSetMarkMutation} from "../../services/userTestResultAPI";
+import {lessonAPI} from "../../services/lessonAPI";
 
 interface CheckingTestProps {
     open: boolean,
     resultUser: any,
-    onClose: () => void
+    onClose: (data?: any) => void
     test: ITest
 }
 
 const CheckingTest: FC<CheckingTestProps> = ({open, resultUser, onClose, test}) => {
-    const [result, setResult] = useState(JSON.parse(resultUser.result))
+    const [result, setResult] = useState<any>('')
     const dispatch = useAppDispatch()
-    const [update, {isLoading, isSuccess}] = useSetMarkMutation()
+    const [update, {isLoading, isSuccess, data}] = useSetMarkMutation()
 
     useEffect(() => {
         if (isSuccess) {
-            onClose()
+            onClose(data)
         }
     }, [isSuccess])
+
+    useEffect(() => {
+        setResult(JSON.parse(JSON.stringify(resultUser.response)))
+    }, [resultUser])
 
     const handleCheckAnswer = (question: IQuestion) => (e: React.ChangeEvent<HTMLInputElement>) => {
         setResult((prev: any) => {
@@ -45,18 +50,18 @@ const CheckingTest: FC<CheckingTestProps> = ({open, resultUser, onClose, test}) 
     }
 
     const setMark = () => {
-        let mark = 0
+        let isError = false
         test.questions.forEach((question, i) => {
             let key = question.id
             if (question.is_extended) {
                 if (result[key].isCorrect === undefined) {
                     dispatch(showErrorAlert(`Проверьте вопрос ${i + 1}`))
+                    isError = true
                     return
                 }
-                if (result[key].isCorrect) {
-                    mark++
-                }
-            } else {
+            }
+        })
+        /* else {
                 if (question.is_multiple) {
                     const arr = question.answers.filter((a: IAnswer) => result[key].findIndex((r: number) => a.id === r) !== -1)
                     if (arr.every((a: IAnswer) => a.is_correct)) {
@@ -70,11 +75,15 @@ const CheckingTest: FC<CheckingTestProps> = ({open, resultUser, onClose, test}) 
                 }
             }
 
-        })
+        })*/
+        if (isError) {
+            return
+        }
+
         const data = {
-            resultId: resultUser._id,
-            result: JSON.stringify(result),
-            mark
+            resultId: resultUser.resultFlowId,
+            response: result,
+            testId: test._id
         }
         update(data)
 
@@ -165,8 +174,10 @@ const CheckingTest: FC<CheckingTestProps> = ({open, resultUser, onClose, test}) 
         <BaseModal
             open = {open}
             disabled = {false}
-            onClose = {onClose}
-            title = {`Тест ${resultUser.user.email}`}
+            onClose = {() => {
+                onClose()
+            }}
+            title = {`Проверка теста`}
         >
             <Box
                 mx = {5}
@@ -183,7 +194,9 @@ const CheckingTest: FC<CheckingTestProps> = ({open, resultUser, onClose, test}) 
                             >
                                 {question.text}
                             </Typography>
-                            {renderQuestion(question)}
+                            {
+                                result && renderQuestion(question)
+                            }
                         </Box>
                     )
                 }

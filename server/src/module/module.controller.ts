@@ -8,7 +8,7 @@ import {
     Delete,
     UseGuards,
     UploadedFile,
-    ParseArrayPipe, UsePipes
+    ParseArrayPipe, UsePipes, Req
 } from '@nestjs/common';
 import {ModuleService} from './module.service';
 import {CreateModuleDto} from './dto/create-module.dto';
@@ -53,8 +53,8 @@ export class ModuleController {
 
     @UseGuards(JwtAuthGuard)
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.moduleService.findOne(id);
+    findOne(@Param('id') id: string, @Req() req) {
+        return this.moduleService.findOne(id, req.user.id);
     }
 
     @UseGuards(JwtAuthGuard)
@@ -81,6 +81,9 @@ export class ModuleController {
     ) {
         if (file && file.filename) {
             updateModuleDto.image_path = `/modules/${file.filename}`
+        }
+        if(lessons){
+            updateModuleDto.lessons = lessons
         }
         return this.moduleService.update(id, {...updateModuleDto, lessons});
     }

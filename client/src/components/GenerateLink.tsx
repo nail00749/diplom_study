@@ -11,13 +11,7 @@ const GenerateLink = () => {
     const handleCopyToClipboard = () => navigator.clipboard.writeText(`${window.location.origin}/register-teacher/${data.link}`)
 
     return (
-        <Grid
-            item
-            xs = {12}
-            sm = {6}
-            md = {3}
-            p={3}
-        >
+        <>
             <Button
                 onClick = {handleGenerate}
                 variant = 'contained'
@@ -51,11 +45,11 @@ const GenerateLink = () => {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        notched
+						notched
 					/>
 				</FormControl>
             }
-        </Grid>
+        </>
     )
 }
 

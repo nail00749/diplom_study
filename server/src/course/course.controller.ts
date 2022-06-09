@@ -45,9 +45,9 @@ export class CourseController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get(':id')
-    findOne(@Req() req, @Param('id') id: string) {
-        return this.courseService.findOne(id, req.user.id);
+    @Get(':courseId')
+    findOne(@Req() req, @Param('courseId') courseId: string) {
+        return this.courseService.findOne(courseId)
     }
 
 

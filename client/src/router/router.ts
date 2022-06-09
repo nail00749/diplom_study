@@ -6,7 +6,7 @@ import Lesson from '../scenes/Lesson';
 import Admin from '../scenes/Admin';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import Flow from '../scenes/Flow';
+import TeacherFlow from '../scenes/TeacherFlow';
 import TeacherLesson from "../scenes/TeacherLesson";
 import Module from "../scenes/Module";
 import TeacherModule from "../scenes/TeacherModule";
@@ -62,7 +62,7 @@ export const authRoute: IRoute[] = [
 
 export const adminRoutes: IRoute[] = [
     {path: RouteNames.ADMIN, component: Admin, exact: false},
-    {path: RouteNames.FLOW, component: Flow, exact: false},
+    {path: RouteNames.FLOW, component: TeacherFlow, exact: false},
     {path: RouteNames.LESSON_TEACHER, component: TeacherLesson, exact: false},
     {path: RouteNames.MODULE_TEACHER, component: TeacherModule, exact: false}
 ]

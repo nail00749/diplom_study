@@ -29,7 +29,7 @@ interface CheckTestProps {
 }
 
 const TestResult: FC<CheckTestProps> = ({open, onClose, test, testResult}) => {
-    const [result] = useState<any>(JSON.parse(testResult.result))
+    const [result] = useState<any>(testResult.response)
 
     const renderAnswers = (question: IQuestion): ReactElement | null => {
         if (question.is_extended) {

@@ -6,8 +6,7 @@ import Topbar from './UI/Topbar';
 import ServiceAlert from './UI/serviceAlert';
 import {useGetMeDataQuery} from '../services/userAPI';
 import {Box} from '@mui/material';
-
-const AdminModalsContainer = React.lazy(() => import('./modals/AdminModalsContainer'));
+const ModalsContentContainer = React.lazy(() => import('./modals/ModalsContentContainer'));
 
 const AppRouter: FC = () => {
     const {isAuthenticated} = useAppSelector(state => state.userReducer);
@@ -43,7 +42,7 @@ const AppRouter: FC = () => {
                 (isAuthenticated && (user && (user.role === 'admin' || user.role === 'teacher')))
                 &&
 				<Suspense fallback = {null}>
-					<AdminModalsContainer/>
+					<ModalsContentContainer/>
 				</Suspense>
             }
             <ServiceAlert/>

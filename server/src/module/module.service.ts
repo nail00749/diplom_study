@@ -23,16 +23,33 @@ export class ModuleService {
         })
     }
 
-    findOne(id: string) {
-        return this.moduleModel.findById(id).populate({
-            path: 'lessons',
-        })
+    findOne(id: string, userId: string) {
+        return this.moduleModel.findById(id).populate([
+            {
+                path: 'lessons',
+                populate: {
+                    path: 'test',
+                    populate: {
+                        path: 'result',
+                        match: {user: userId}
+                    }
+                }
+            },
+            {
+                path: 'task'
+            }
+        ])
     }
 
     async findOneForTeacher(moduleId: string, flowId: string) {
-        const module = await this.moduleModel.findById(moduleId).populate({
-            path: 'lessons'
-        })
+        const module = await this.moduleModel.findById(moduleId).populate([
+            {
+                path: 'lessons'
+            },
+            {
+                path: 'task'
+            }
+        ])
         const subscriptions = await this.userSubscriptionService.findAllByFlow(flowId)
 
         return {module, subscriptions}

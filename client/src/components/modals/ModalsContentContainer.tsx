@@ -5,8 +5,9 @@ import TestCreate from "./TestCreate";
 import UserFlow from "./UserFlow";
 import UserSubscription from "./UserSubscription";
 import ModuleCreate from "./ModuleCreate";
+import ModuleTask from "./ModuleTask";
 
-const AdminModalsContainer: FC = () => {
+const ModalsContentContainer: FC = () => {
     return (
         <>
             <CourseCreate/>
@@ -15,8 +16,9 @@ const AdminModalsContainer: FC = () => {
             <UserFlow/>
             <UserSubscription/>
             <ModuleCreate/>
+            <ModuleTask/>
         </>
     )
 }
 
-export default AdminModalsContainer
+export default ModalsContentContainer

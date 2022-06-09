@@ -27,7 +27,6 @@ const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [login, {isLoading}] = useLoginMutation()
     const dispatch = useAppDispatch()
-    const {saveSession} = useAppSelector(state => state.userReducer)
 
     const handlerLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
@@ -46,7 +45,6 @@ const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
             setUsernameError(true)
             error += 'not valid email'
         }
-        //todo password check
         if (!password) {
             setPasswordError(true)
             error += ' length password error'
@@ -73,22 +71,18 @@ const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
 
     const handlerSaveSession = () => dispatch(setSaveSession())
 
-    //todo add password recover
-
     return (
         <>
             <form
                 onSubmit = {sendData}
             >
                 <Box
-
                     sx = {{
                         my: 3,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center'
                     }}
-
                 >
                     <FormControl
                         sx = {{
@@ -144,7 +138,7 @@ const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
                         />
                     </FormControl>
                 </Box>
-                <Box
+                {/*<Box
                     my = {2}
                     display = 'flex'
                     justifyContent = 'center'
@@ -163,7 +157,7 @@ const AuthForm: FC<AuthFormProps> = ({setIsLogin}) => {
                         />
                     </FormGroup>
                     <Button>Забыли пароль?</Button>
-                </Box>
+                </Box>*/}
                 <Box>
                     <LoadingButton
                         loading = {isLoading}

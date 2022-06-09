@@ -2,8 +2,6 @@ import {Grid, Typography, Box, Button} from '@mui/material';
 import React, {FC, useState} from 'react';
 import AuthForm from "../components/AuthForm";
 import RegisterForm from "../components/RegisterForm";
-import {useGetAllCoursesQuery} from "../services/courseAPI";
-import {ICourse} from "../models/ICourse";
 import {useParams} from "react-router-dom";
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -39,6 +37,7 @@ const Login: FC = () => {
                 <Typography
                     variant = "h4"
                     align = 'center'
+                    color = 'text.primary'
                 >
                     {isLogin ? 'Войти' : 'Регистрация'}
                 </Typography>

@@ -1,48 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="client logic courses&gt;module&gt;lesson&gt;test&#10;socket-io watch lesson video&#10;some refactoring">
-      <change afterPath="$PROJECT_DIR$/client/src/components/WatchLesson.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/modals/CheckingTest.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/scenes/Module.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/scenes/TeacherModule.tsx" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="ended logic">
+      <change afterPath="$PROJECT_DIR$/client/src/components/ButtonsContentModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/modals/CheckModuleTask.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/modals/ModuleTask.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/modals/PassModuleTask.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/models/IFlowResult.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/models/IModuleTask.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/models/IModuleTaskResult.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/moduleTaskAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/dto/create-module-task.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/dto/update-module-task.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/module-task.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/module-task.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/module-task.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/module-task/schemas/module-task.schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/result-flow/dto/result-test.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/statistic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/statistic.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AppRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AppRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AuthForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AuthForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/TeacherCourse.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Course/UserCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/UserCourse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CourseContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CourseContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/GenerateLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GenerateLink.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Lesson/UserTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Lesson/UserTest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SortListByDrag.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SortListByDrag.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CheckTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/TestResult.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CourseCreate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/LessonCreate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/TeachersFromCourse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Course/TeachersFromCourse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/WatchLesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Lesson/WatchLesson.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/AdminModalsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/ModalsContentContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/CheckingTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/CheckingTest.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/modals/PassTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/PassTest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/UserFlow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/UserSubscription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/UserSubscription.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useInput.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/modals/TestResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/TestResult.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/config/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/models/ILesson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/ILesson.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/IModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/IModule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/ITest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/ITest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/IUserSubmission.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Admin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Course.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Course.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Flow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Flow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Flow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/TeacherFlow.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Lesson.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Module.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/Module.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/TeacherLesson.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/TeacherLesson.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/adminAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/adminAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/TeacherModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scenes/TeacherModule.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/baseAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/baseAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/contentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/contentAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/courseAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/courseAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/lessonAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/moduleAPI.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/moduleAPI.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/userAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/userFlowAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userFlowAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/userTestResultAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userTestResultAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/middleware/ErrorMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/middleware/ErrorMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/reducers/admin/courseSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/courseSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/reducers/admin/lessonSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/lessonSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/reducers/admin/moduleSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/moduleSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/reducers/admin/testSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/admin/testSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/store/reducers/modals/modalsSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reducers/modals/modalsSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Gateways/socket-redis-cache.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/Gateways/video-timing.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/module.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/module.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/module.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/dto/update-result-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/dto/update-result-flow.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/schemas/result-flow.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/schemas/result-flow.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/schemas/user-subscription.schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/schemas/user-subscription.schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/schemas/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/schemas/user.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +102,8 @@
       <list>
         <option value="HTTP Private Environment File" />
         <option value="tsconfig.json" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -114,49 +158,89 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="HTML-JavaScript.html.js" />
     <property name="database.data.extractors.current.id" value="JSON-Groovy.json.groovy" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
-    <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\client\node_modules\typescript\lib" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\server\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nail-\Desktop\diplom_study" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\server\dist" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\server\static" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\client\src\models" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\client\src\services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nail-\Desktop\diplom_study\client\src\components\Course" />
+      <recent name="C:\Users\nail-\Desktop\diplom_study\client\src\components\Lesson" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\server\src\Gateways" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\client\src\components" />
       <recent name="C:\Users\nail-\Desktop\diplom_study\client" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.http">
-    <configuration name="rest-api | //login user" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="3" requestIdentifier="//login user" runType="Run single request">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="client/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="client/Dockerfile" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="rest-api | //login" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="3" requestIdentifier="//login" runType="Run single request">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="rest-api | //me profile" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="4" requestIdentifier="//me profile" runType="Run single request">
+    <configuration name="docker-compose.yml.api: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="api" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="rest-api | //register" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" requestIdentifier="//register" runType="Run single request">
+    <configuration name="docker-compose.yml.mongo: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mongo" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="rest-api | //updata user data" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" index="6" requestIdentifier="//updata user data" runType="Run single request">
+    <configuration name="docker-compose.yml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="http" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="http" />
-      </scripts>
+      <command value="start" />
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
@@ -172,21 +256,21 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.rest-api | //login user" />
-      <item itemvalue="HTTP Request.rest-api | //me profile" />
-      <item itemvalue="HTTP Request.rest-api | //updata user data" />
-      <item itemvalue="HTTP Request.rest-api | //login" />
-      <item itemvalue="HTTP Request.rest-api | //register" />
-      <item itemvalue="npm.http" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.client/Dockerfile" />
+      <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.api: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
       <item itemvalue="npm.start:dev" />
+      <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.rest-api | //register" />
-        <item itemvalue="HTTP Request.rest-api | //updata user data" />
-        <item itemvalue="HTTP Request.rest-api | //login user" />
-        <item itemvalue="HTTP Request.rest-api | //me profile" />
-        <item itemvalue="HTTP Request.rest-api | //login" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.api: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
+        <item itemvalue="Docker.client/Dockerfile" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +306,19 @@
       <workItem from="1653561034503" duration="23779000" />
       <workItem from="1653653221745" duration="26000000" />
       <workItem from="1653743198882" duration="7083000" />
-      <workItem from="1653819354904" duration="6071000" />
+      <workItem from="1653819354904" duration="31116000" />
+      <workItem from="1653903312415" duration="25430000" />
+      <workItem from="1653990583120" duration="11568000" />
+      <workItem from="1654053301219" duration="2478000" />
+      <workItem from="1654178700727" duration="1208000" />
+      <workItem from="1654254043023" duration="4334000" />
+      <workItem from="1654344145202" duration="1257000" />
+      <workItem from="1654431622451" duration="6630000" />
+      <workItem from="1654625385201" duration="6064000" />
+      <workItem from="1654631688499" duration="5174000" />
+      <workItem from="1654683844945" duration="16826000" />
+      <workItem from="1654787336844" duration="2700000" />
+      <workItem from="1654796151766" duration="679000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -420,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653826104369</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="client logic courses&gt;module&gt;lesson&gt;test&#10;socket-io watch lesson video&#10;some refactoring">
+      <created>1653826273589</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1653826273589</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,8 +558,6 @@
       <path value="$PROJECT_DIR$/server" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix edit role" />
-    <MESSAGE value="userFlow and UserSubscription" />
     <MESSAGE value="design fix in modal" />
     <MESSAGE value="provides tags" />
     <MESSAGE value="course page and refactoring course methods" />
@@ -480,7 +581,9 @@
     <MESSAGE value="lesson logic update" />
     <MESSAGE value="server logic courses&gt;module&gt;lesson&gt;test&#10;redis cache with socket-io" />
     <MESSAGE value="client logic courses&gt;module&gt;lesson&gt;test&#10;socket-io watch lesson video&#10;some refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="client logic courses&gt;module&gt;lesson&gt;test&#10;socket-io watch lesson video&#10;some refactoring" />
+    <MESSAGE value="maybe end" />
+    <MESSAGE value="ended logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="ended logic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

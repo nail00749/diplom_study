@@ -1,5 +1,6 @@
 import {baseAPI} from "./baseAPI";
 import {IUserFlow} from "../models/IUserFlow";
+import {IFlowResult} from "../models/IFlowResult";
 
 
 export const userFlowAPI = baseAPI.injectEndpoints({
@@ -24,8 +25,9 @@ export const userFlowAPI = baseAPI.injectEndpoints({
             query: (userFlowId) => `/user-flow/${userFlowId}`,
             providesTags: ['Flow']
         }),
-        getMyResultFlow: build.query<any, string>({
-            query: (flowId) => `/result-flow/${flowId}`
+        getMyResultFlow: build.query<IFlowResult, string>({
+            query: (flowId) => `/result-flow/${flowId}`,
+            providesTags: ['MyResult']
         })
 
     }),

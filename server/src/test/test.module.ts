@@ -11,7 +11,8 @@ import {TestResult, TestResultSchema} from "./schema/test-result.schema";
         MongooseModule.forFeature([{name: TestResult.name, schema: TestResultSchema}])
     ],
     controllers: [TestController],
-    providers: [TestService]
+    providers: [TestService],
+    exports: [TestService]
 })
 export class TestModule {
 }

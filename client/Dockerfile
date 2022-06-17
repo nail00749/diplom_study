@@ -1,9 +1,8 @@
 FROM node as build
 WORKDIR /app
-COPY package.json .
+COPY package.json /app/package.json
 RUN npm install --only=prod
-COPY . .
-
+COPY . /app
 ARG REACT_APP_API
 ENV REACT_APP_API $REACT_APP_API
 

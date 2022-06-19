@@ -29,7 +29,7 @@ const Answer: FC<AnswerProps> = ({indexQuestion, value, indexAnswer}) => {
             mb = {1}
         >
             <TextField
-                label = 'text answer'
+                label = 'Текст ответа'
                 value = {value.text}
                 onChange = {handlerText}
             />
@@ -45,7 +45,7 @@ const Answer: FC<AnswerProps> = ({indexQuestion, value, indexAnswer}) => {
                             onChange = {handlerCorrect}
                         />
                     }
-                    label = 'is Correct'
+                    label = 'Верный'
                 />
             </Box>
             <IconButton

@@ -18,6 +18,9 @@ export const rtqQueryError: Middleware = (api: MiddlewareAPI) => (next) => (acti
             }
             dispatch(showErrorAlert(msg))
         }
+        else {
+            dispatch(showErrorAlert('Неизвестная ошибка'))
+        }
     }
 
     return next(action)

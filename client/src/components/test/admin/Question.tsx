@@ -48,7 +48,7 @@ const Question: FC<QuestionProps> = ({index, value}) => {
                 mb = {1}
             >
                 <TextField
-                    label = {'Text question'}
+                    label = {'Текст вопроса'}
                     onChange = {handlerText}
                     value = {value.text}
                 />
@@ -66,7 +66,7 @@ const Question: FC<QuestionProps> = ({index, value}) => {
                                     onChange = {handlerExtension}
                                 />
                             }
-                            label = 'is Extensions'
+                            label = 'Расширенный'
                         />
                         <FormControlLabel
                             disabled = {value.is_extended}
@@ -77,7 +77,7 @@ const Question: FC<QuestionProps> = ({index, value}) => {
                                     onChange = {handlerMultiple}
                                 />
                             }
-                            label = 'is Multiple'
+                            label = 'С неск. ответами'
                         />
                     </FormGroup>
                 </Box>
@@ -104,7 +104,7 @@ const Question: FC<QuestionProps> = ({index, value}) => {
                     variant = 'outlined'
                     onClick = {handlerAddAnswer}
                 >
-                    Add answer
+                    Добавить ответ
                 </Button>
             </Box>
         </Box>

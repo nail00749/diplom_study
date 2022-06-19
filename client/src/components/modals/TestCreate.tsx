@@ -118,7 +118,7 @@ const CourseCreate: FC = () => {
                         <CloseIcon/>
                     </IconButton>
                     <Typography variant = 'h5' component = 'span'>
-                        {`${isUpdate ? 'Edit' : 'Create'} test`}
+                        {`${isUpdate ? 'Редактировать' : 'Создать'} тест`}
                     </Typography>
                 </Box>
                 <Grid
@@ -128,7 +128,7 @@ const CourseCreate: FC = () => {
                     <Grid item xs = {12} md = {6} lg = {4}>
                         <Box mb = {3}>
                             <TextField
-                                label = 'About'
+                                label = 'описание'
                                 variant = 'filled'
                                 required
                                 onChange = {handlerDescription}
@@ -145,7 +145,7 @@ const CourseCreate: FC = () => {
                                 renderInput = {params =>
                                     <TextField
                                         {...params}
-                                        label = 'Lesson'
+                                        label = 'Урок'
                                         variant = 'filled'
                                         required
                                         fullWidth
@@ -161,7 +161,6 @@ const CourseCreate: FC = () => {
                                     setLessonInputValue(newValue)
                                 }}
                                 getOptionLabel = {(option: ILesson) => (option && option.title) || ''}
-                                //renderOption = {(option) => <span>{option.title}</span>}
                             />
                         </Box>
                     </Grid>
@@ -184,7 +183,7 @@ const CourseCreate: FC = () => {
                         onClick = {handlerAdd}
                         disabled = {isLoadingCreate || isLoadingUpdate}
                     >
-                        Add question
+                        Добавить вопрос
                     </Button>
                 </Box>
                 <Box>
@@ -195,7 +194,7 @@ const CourseCreate: FC = () => {
                         endIcon = {<SaveIcon/>}
                         onClick = {saveTest}
                     >
-                        Save
+                        Сохранить
                     </LoadingButton>
                 </Box>
             </Box>

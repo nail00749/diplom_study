@@ -10,8 +10,6 @@ services:
     restart: unless-stopped
     ports:
       - '27017:27017'
-    environment:
-      MONGO_INITDB_DATABASE: study_platform
     volumes:
       - mongoDB:/data/db
   api:
@@ -23,20 +21,21 @@ services:
     ports:
       - '5000:5000'
     environment:
-      secret_key: very_secret_key
-      db_url: mongodb://mongo:27017/study_platform
-      redis_url: redis
-      redis_port: 6379
+      secret_key: $secret_key
+      db_url: $db_url
+      redis_url: $redis_url
+      redis_port: $redis_port
   web:
     depends_on:
       - api
     build:
       context: ./client
       args:
-        - REACT_APP_API=http://127.0.0.1:5000
+        - REACT_APP_API=$url_domen
     restart: unless-stopped
     ports:
       - '80:80'
+      - '443:443'
 volumes:
   mongoDB:
   redis:

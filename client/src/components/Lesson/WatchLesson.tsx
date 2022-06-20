@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState, useMemo} from 'react'
+import React, {FC, useEffect, useRef, useState} from 'react'
 import {io, Socket} from "socket.io-client";
 import {BaseURL} from "../../config";
 import {useGetMeDataQuery} from '../../services/userAPI';
@@ -50,7 +50,7 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
         }
 
         if (condition) {
-            socketRef!.current = io("http://localhost:5000/api/v1/ws", {
+            socketRef!.current = io(`${BaseURL}/api/v1/ws`, {
                 path: "/api/v1/ws/socket.io",
             });
 

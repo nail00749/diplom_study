@@ -1,25 +1,23 @@
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateTestDto {
-    @ApiProperty()
-    lesson: number
+  @ApiProperty()
+  lesson: number;
 
-    @ApiProperty()
-    description: string
+  @ApiProperty()
+  description: string;
 
-    @ApiProperty()
-    questions: IQuestion[]
+  @ApiProperty()
+  questions: IQuestion[];
 }
 
 interface IQuestion {
-    answers: IAnswer[],
-    is_extended?: boolean,
-    is_multiple?: boolean,
+  answers: IAnswer[];
+  is_extended?: boolean;
+  is_multiple?: boolean;
 }
 
 interface IAnswer {
-    text: string,
-    is_correct?: boolean,
+  text: string;
+  is_correct?: boolean;
 }
-
-

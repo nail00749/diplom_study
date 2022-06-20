@@ -1,18 +1,13 @@
-import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
-import {Lesson} from "../../lesson/schemas/lesson.schema";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateModuleDto {
-    @ApiProperty()
-    readonly title: string
+  @ApiProperty()
+  readonly title: string;
 
-    @ApiProperty()
-    readonly description: string
+  @ApiProperty()
+  readonly description: string;
 
-    @ApiProperty()
-    lessons: string[]
-
-    /*@ApiPropertyOptional()
-    readonly file?: File*/
-
-    image_path: string
+  @ApiProperty()
+  lessons: string[];
+  image_path: string;
 }

@@ -1,12 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="ended logic">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
+    <list default="true" id="65f902ec-793c-488b-bf35-bf38d2d4a3f6" name="Changes" comment="prettier fix">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/config/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Gateways/video-timing.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/Gateways/video-timing.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/Pipes/json-to-object.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/Pipes/json-to-object.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/admin.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/admin.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/admin/schemas/register-link.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/admin/schemas/register-link.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/Roles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/Roles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/WsGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/WsGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/jwt-auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/jwt-auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/jwt.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/jwt.strategy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/local-auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/local-auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/local.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/local.strategy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/roles.decorator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/roles.decorator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/roles.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/roles.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/course.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/dto/create-course.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/course/schemas/course.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/file/file.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/file/file.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/file/file.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/file/file.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/interceptor/fastify-file-interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/interceptor/fastify-file-interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/dto/create-lesson.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/lesson.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/lesson.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/lesson/schemas/lesson.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module-task/dto/create-module-task.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module-task/dto/create-module-task.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module-task/module-task.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module-task/module-task.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module-task/module-task.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module-task/module-task.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module-task/module-task.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module-task/module-task.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module-task/schemas/module-task.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module-task/schemas/module-task.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/dto/create-module.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/module.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/module.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/module.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/module.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/module.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/module/schemas/module.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/dto/create-result-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/dto/create-result-flow.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/dto/result-test.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/dto/result-test.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/dto/update-result-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/dto/update-result-flow.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/result-flow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/result-flow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/result-flow/schemas/result-flow.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/result-flow/schemas/result-flow.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/create-test.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/dto/test-result.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/schema/test-result.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/schema/test-result.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/schema/test.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/test.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/test.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/dto/create-user-flow.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/schemas/user-flow.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/user-flow.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/user-flow.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-flow/user-flow.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-flow/user-flow.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/create-user-subscription.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/dto/update-user-subscription.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/dto/update-user-subscription.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/schemas/user-subscription.schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/schemas/user-subscription.schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user-subscription/user-subscription.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/dto/create-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/dto/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/dto/update-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/schemas/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/schemas/user.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/users.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,9 +156,12 @@
     <property name="database.data.extractors.current.id" value="JSON-Groovy.json.groovy" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="C:\Users\nail-\Desktop\diplom_study\server\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -102,7 +181,19 @@
       <recent name="C:\Users\nail-\Desktop\diplom_study\client" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="client/Dockerfile build" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="node_build" />
+          <option name="buildCliOptions" value="--target build" />
+          <option name="buildKitEnabled" value="true" />
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="client/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="client/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
@@ -114,7 +205,10 @@
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="envFilePath" value="" />
           <option name="sourceFilePath" value="docker-compose.yml" />
+          <option name="upDetach" value="false" />
+          <option name="upForceRecreate" value="true" />
         </settings>
       </deployment>
       <method v="2" />
@@ -132,28 +226,10 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.mongo: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
+    <configuration name="server/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
         <settings>
-          <option name="services">
-            <list>
-              <option value="mongo" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="redis" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
+          <option name="sourceFilePath" value="server/Dockerfile" />
         </settings>
       </deployment>
       <method v="2" />
@@ -177,20 +253,20 @@
     </configuration>
     <list>
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.client/Dockerfile" />
-      <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.api: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
+      <item itemvalue="Docker.client/Dockerfile build" />
+      <item itemvalue="Docker.server/Dockerfile" />
+      <item itemvalue="Docker.client/Dockerfile" />
       <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.api: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
+        <item itemvalue="Docker.server/Dockerfile" />
         <item itemvalue="Docker.client/Dockerfile" />
+        <item itemvalue="Docker.client/Dockerfile build" />
+        <item itemvalue="Docker.docker-compose.yml.api: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +314,16 @@
       <workItem from="1654631688499" duration="5174000" />
       <workItem from="1654683844945" duration="16826000" />
       <workItem from="1654787336844" duration="2700000" />
-      <workItem from="1654796151766" duration="983000" />
+      <workItem from="1654796151766" duration="2442000" />
+      <workItem from="1655036236585" duration="1525000" />
+      <workItem from="1655145503800" duration="2378000" />
+      <workItem from="1655481187381" duration="6097000" />
+      <workItem from="1655566399402" duration="5703000" />
+      <workItem from="1655575502908" duration="797000" />
+      <workItem from="1655576790750" duration="5669000" />
+      <workItem from="1655585232237" duration="1860000" />
+      <workItem from="1655633078813" duration="14970000" />
+      <workItem from="1655728973954" duration="8317000" />
     </task>
     <task id="LOCAL-00001" summary="base user and roles features">
       <created>1652904641013</created>
@@ -450,7 +535,84 @@
       <option name="project" value="LOCAL" />
       <updated>1654798500690</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add docker">
+      <created>1654798676151</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1654798676151</updated>
+    </task>
+    <task id="LOCAL-00032" summary="docker">
+      <created>1655483625637</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1655483625637</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update docker">
+      <created>1655492537429</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1655492537429</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix docker">
+      <created>1655569776093</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1655569776093</updated>
+    </task>
+    <task id="LOCAL-00035" summary="try docker">
+      <created>1655570309101</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1655570309101</updated>
+    </task>
+    <task id="LOCAL-00036" summary="try docker">
+      <created>1655572507419</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1655572507420</updated>
+    </task>
+    <task id="LOCAL-00037" summary="change docker">
+      <created>1655669781890</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1655669781890</updated>
+    </task>
+    <task id="LOCAL-00038" summary="some fix">
+      <created>1655678223053</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1655678223053</updated>
+    </task>
+    <task id="LOCAL-00039" summary="some fixes in lesson modal">
+      <created>1655731895922</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1655731895923</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fixes warnings and some texts">
+      <created>1655735295620</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1655735295620</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix open modules">
+      <created>1655743369643</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1655743369644</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,17 +647,6 @@
       <path value="$PROJECT_DIR$/server" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="design fix in modal" />
-    <MESSAGE value="provides tags" />
-    <MESSAGE value="course page and refactoring course methods" />
-    <MESSAGE value="redesign schemas" />
-    <MESSAGE value="update interface" />
-    <MESSAGE value="Teachers From Course" />
-    <MESSAGE value="pass test" />
-    <MESSAGE value="check test dev version" />
-    <MESSAGE value="swagger" />
-    <MESSAGE value="refactoring" />
-    <MESSAGE value="register link for teacher" />
     <MESSAGE value="refactor" />
     <MESSAGE value="logOut between several tabs" />
     <MESSAGE value="dragable list component" />
@@ -510,7 +661,18 @@
     <MESSAGE value="client logic courses&gt;module&gt;lesson&gt;test&#10;socket-io watch lesson video&#10;some refactoring" />
     <MESSAGE value="maybe end" />
     <MESSAGE value="ended logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="ended logic" />
+    <MESSAGE value="add docker" />
+    <MESSAGE value="docker" />
+    <MESSAGE value="update docker" />
+    <MESSAGE value="fix docker" />
+    <MESSAGE value="try docker" />
+    <MESSAGE value="change docker" />
+    <MESSAGE value="some fix" />
+    <MESSAGE value="some fixes in lesson modal" />
+    <MESSAGE value="fixes warnings and some texts" />
+    <MESSAGE value="fix open modules" />
+    <MESSAGE value="prettier fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="prettier fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

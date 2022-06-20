@@ -1,3 +1,1 @@
-export const BaseURL = process.env.REACT_APP_API || 'http//:192.168.0.13:5000'
-console.log(process.env)
-
+export const BaseURL = /*process.env.REACT_APP_API ||*/ 'http://192.168.0.13:5000'

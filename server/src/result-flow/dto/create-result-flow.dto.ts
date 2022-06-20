@@ -1,3 +1,1 @@
-export class CreateResultFlowDto {
-
-}
+export class CreateResultFlowDto {}

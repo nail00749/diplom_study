@@ -4,9 +4,9 @@ import { Role } from './Roles';
 const RoleGuard = (role: Role): Type<CanActivate> => {
   class RoleGuardMixin implements CanActivate {
     canActivate(context: ExecutionContext) {
-      const request = context.switchToHttp().getRequest()
-      const { user } = request
-      return user.role === role
+      const request = context.switchToHttp().getRequest();
+      const { user } = request;
+      return user.role === role;
     }
   }
 

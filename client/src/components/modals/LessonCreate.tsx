@@ -16,7 +16,7 @@ import {Transition} from "./Transition";
 import {noop} from "../../utils";
 import BaseModal from "./BaseModal";
 
-const CourseCreate: FC = () => {
+const LessonCreate: FC = () => {
     const {
         open,
         isUpdate,
@@ -27,14 +27,13 @@ const CourseCreate: FC = () => {
     const dispatch = useAppDispatch()
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateLessonMutation()
     const [update, {isLoading: isLoadingUpdate, isSuccess: isSuccessUpdate}] = useUpdateLessonMutation()
-    const fileRef = useRef<File | null>(null)
+    const [file, setFile] = useState<File | null>(null)
 
     useEffect(() => {
         if (isSuccessCreate || isSuccessUpdate) {
             handleClose()
         }
     }, [isSuccessCreate, isSuccessUpdate]);
-
 
     const saveLesson = async () => {
         let isError = false
@@ -47,7 +46,6 @@ const CourseCreate: FC = () => {
             dispatch(errorDescriptionChange())
         }
 
-
         if (isError) {
             return
         }
@@ -55,17 +53,15 @@ const CourseCreate: FC = () => {
         const data = new FormData()
         data.append('title', lesson.title!)
         data.append('description', lesson.description!)
-        if(fileRef && fileRef.current){
-            data.append('file', fileRef.current)
+        if (file) {
+            data.append('file', file)
         }
-
 
         if (isUpdate) {
             await update({body: data, _id: lesson._id!})
         } else {
             await create(data)
         }
-
     };
 
     const handleLesson = (key: keyof ILesson) => (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeLesson({
@@ -75,18 +71,21 @@ const CourseCreate: FC = () => {
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            fileRef.current = e.target.files[0]
+            setFile(e.target.files[0])
         }
     }
 
-    const handleClose = () => dispatch(closeModal())
+    const handleClose = () => {
+        setFile(null)
+        dispatch(closeModal())
+    }
 
     return (
         <BaseModal
             open = {open}
             onClose = {handleClose}
             disabled = {isLoadingCreate || isLoadingUpdate}
-            title = 'Создание урока'
+            title = {isUpdate ? 'Изменение урока' : 'Создание урока'}
         >
             <Box mx = {5}>
                 <Box mb = {3}>
@@ -98,6 +97,7 @@ const CourseCreate: FC = () => {
                         value = {lesson.title}
                         error = {titleError}
                         disabled = {isLoadingCreate || isLoadingUpdate}
+                        fullWidth
                     />
                 </Box>
                 <Box mb = {3}>
@@ -109,11 +109,18 @@ const CourseCreate: FC = () => {
                         value = {lesson.description}
                         error = {descriptionError}
                         disabled = {isLoadingCreate || isLoadingUpdate}
+                        fullWidth
                     />
                 </Box>
                 <Box
                     mb = {3}
                 >
+                    <Typography
+                        mb = {2}
+                        color = 'text.primary'
+                    >
+                        {file && file.name.substring(0, 20)}
+                    </Typography>
                     <Button
                         variant = 'contained'
                         component = "label"
@@ -150,4 +157,4 @@ const CourseCreate: FC = () => {
 
 }
 
-export default CourseCreate;
+export default LessonCreate;

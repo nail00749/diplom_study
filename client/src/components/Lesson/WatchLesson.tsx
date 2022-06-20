@@ -67,12 +67,7 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
             }
             videoRef!.current!.addEventListener('ended', ended)
 
-            const seeking = () => {
-                if (videoRef!.current!.currentTime > time) {
-                    videoRef!.current!.currentTime = time
-                }
-                clearTimeout(timer)
-            }
+
             videoRef!.current!.addEventListener('seeking', seeking)
 
             const playing = () => {
@@ -91,7 +86,7 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
                         userId: user!._id,
                         type: 'pause'
                     })
-                }, 3000)
+                }, 2000)
             }
             videoRef!.current!.addEventListener('pause', pause)
 
@@ -104,6 +99,15 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
         }
     }, [result])
 
+    const seeking = () => {
+        console.log(videoRef!.current!.currentTime, time)
+        if (videoRef!.current!.currentTime > time) {
+            console.log(2)
+            videoRef!.current!.currentTime = time
+        }
+        clearTimeout(timer)
+    }
+
     const handleTimer = () => {
         timer = setTimeout(() => {
             clearTimeout(timer)
@@ -115,12 +119,13 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
                 userId: user!._id,
                 type: 'play'
             })
-            const condition = result && result.lessonVideosTimings && result.lessonVideosTimings[lessonId] && result.lessonVideosTimings[lessonId]
+            setTime(t)
+            /*const condition = result && result.lessonVideosTimings && result.lessonVideosTimings[lessonId] && result.lessonVideosTimings[lessonId]
             if (!condition || t > condition) {
                 setTime(t)
-            }
+            }*/
             handleTimer()
-        }, 1000 * 3)
+        }, 1000)
     }
 
     const handleContinue = () => {

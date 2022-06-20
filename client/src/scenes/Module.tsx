@@ -37,26 +37,24 @@ const Module = () => {
         let step = 0
         if (module && module.lessons) {
             let prevLessonIsPassed = false
-            module.lessons.forEach((lesson: ILesson, i) => {
+            for (const [i,lesson] of Array.from(module.lessons.entries())) {
                 if (lesson.test) {
-                    if (myResultFlow && myResultFlow.testsResult && myResultFlow.testsResult[lesson.test._id]) {
-                        if (myResultFlow.testsResult[lesson.test._id].mark !== -1) {
-                            step++
-                            prevLessonIsPassed = true
-                        } else {
-                            step = i
-                            return
-                        }
+                    if (myResultFlow && myResultFlow.testsResult && myResultFlow.testsResult[lesson.test._id] && myResultFlow.testsResult[lesson.test._id].mark !== -1) {
+                        step++
+                        prevLessonIsPassed = true
+                    } else {
+                        step = i
+                        break
                     }
                 } else if (!lesson.test) {
                     if (prevLessonIsPassed || i === 0) {
                         step++
                     } else {
                         prevLessonIsPassed = false
-                        return
+                        break
                     }
                 }
-            })
+            }
             setActiveStep(step)
         }
     }
@@ -177,15 +175,15 @@ const Module = () => {
                                         />
                                     </> :
                                     <>
-                                    {
-                                        module.task &&
+                                        {
+                                            module.task &&
 											< Typography
 												my = {2}
 												color = 'text.primary'
 											>
 												Пройдите все уроки чтобы открыть задание по модулю
 											</Typography>
-                                    }
+                                        }
                                     </>
                             }
                         </Grid>

@@ -25,7 +25,7 @@ const Course: FC = () => {
         if (course && course.modules) {
             let step = 0
             let isPrevPass = false
-            course.modules.forEach((module: IModule, i) => {
+            for (const [i, module] of Array.from(course.modules.entries())) {
                 if (module.task) {
                     if (resultFlow && resultFlow.moduleTasks && resultFlow.moduleTasks[module.task._id]) {
                         step++
@@ -36,10 +36,10 @@ const Course: FC = () => {
                         step++
                     } else {
                         isPrevPass = false
-                        return
+                        break
                     }
                 }
-            })
+            }
             setActiveStep(step)
 
         }

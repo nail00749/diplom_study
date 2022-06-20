@@ -19,14 +19,12 @@ import {useAppDispatch} from "../../hooks/redux";
 import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
 import {useGetMyResultFlowQuery} from "../../services/userFlowAPI";
 
-
 interface PassTestProps {
     open: boolean
     onClose: () => void
     test: ITest,
     flowId: string
 }
-
 
 const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
     const [state, setState] = useState<any>({})
@@ -62,7 +60,6 @@ const PassTest: FC<PassTestProps> = ({open, onClose, test, flowId}) => {
                     }
                 } else {
                     prev[key] = e.target.value
-
                 }
             }
             return {...prev}

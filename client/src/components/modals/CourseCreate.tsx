@@ -1,6 +1,5 @@
-import React, {FC, useEffect, useRef} from 'react';
-import {Dialog, Typography, IconButton, Box, TextField, Button} from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import React, {FC, useEffect, useRef, useState} from 'react';
+import {Box, TextField, Button, Typography} from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import {useCreateCourseMutation, useUpdateCourseMutation} from "../../services/courseAPI";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
@@ -11,13 +10,10 @@ import {
     changeCourse
 } from "../../store/reducers/admin/courseSlice";
 import {LoadingButton} from "@mui/lab";
-import {Transition} from "./Transition";
-import {noop} from "../../utils";
 import {ICourse} from "../../models/ICourse";
 import BaseModal from "./BaseModal";
 import {useGetAllModulesQuery} from "../../services/moduleAPI";
 import SortListByDrag from "../SortListByDrag";
-import {moduleSlice} from "../../store/reducers/admin/moduleSlice";
 import {IModule} from "../../models/IModule";
 
 const CourseCreate: FC = () => {
@@ -33,7 +29,7 @@ const CourseCreate: FC = () => {
         course
     } = useAppSelector(state => state.courseReducer)
     const dispatch = useAppDispatch()
-    const fileRef = useRef<File | null>(null)
+    const [file, setFile] = useState<File | null>(null)
     const modulesRef = useRef<any>(null)
 
     useEffect(() => {
@@ -60,8 +56,8 @@ const CourseCreate: FC = () => {
         const data = new FormData()
         data.append('title', course.title!)
         data.append('description', course.description!)
-        if (fileRef && fileRef.current) {
-            data.append('file', fileRef.current)
+        if (file) {
+            data.append('file', file)
         }
         if (modulesRef && modulesRef.current) {
             data.append('modules', JSON.stringify(modulesRef.current.map((module: IModule) => module._id)))
@@ -82,7 +78,7 @@ const CourseCreate: FC = () => {
 
     const handlerFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            fileRef.current = e.target.files[0]
+            setFile(e.target.files[0])
         }
     }
 
@@ -90,17 +86,18 @@ const CourseCreate: FC = () => {
         modulesRef.current = list
     }
 
-    const handleClose = () => dispatch(closeModal())
+    const handleClose = () => {
+        setFile(null)
+        dispatch(closeModal())
+    }
 
     return (
         <BaseModal
             open = {open}
             onClose = {handleClose}
             disabled = {isLoadingCreate || isLoadingUpdate}
-            title = {'Создание курса'}
+            title = {isUpdate ? 'Изменение курса' : 'Создание курса'}
         >
-
-
             <Box
                 mx = {5}
             >
@@ -115,6 +112,7 @@ const CourseCreate: FC = () => {
                         value = {course.title}
                         error = {titleError}
                         disabled = {isLoadingCreate || isLoadingUpdate}
+                        fullWidth
                     />
                 </Box>
                 <Box
@@ -128,6 +126,7 @@ const CourseCreate: FC = () => {
                         value = {course.description}
                         error = {descriptionError}
                         disabled = {isLoadingCreate || isLoadingUpdate}
+                        fullWidth
                     />
                 </Box>
                 <Box
@@ -147,21 +146,24 @@ const CourseCreate: FC = () => {
 						/>
                     }
                 </Box>
-                {
-                    (fileRef && fileRef.current) &&
-					<Box>
-                        {`File: ${fileRef.current.name.length > 18 ? fileRef.current.name.substring(0, 15) + '...' : fileRef.current.name}`}
-					</Box>
-                }
                 <Box
                     mb = {3}
                 >
+                    {
+                        file &&
+		                <Typography
+			                mb={2}
+			                color = 'text.primary'
+		                >
+                            {file.name.substring(0,20)}
+		                </Typography>
+                    }
                     <Button
                         variant = 'contained'
                         component = "label"
                         fullWidth
                     >
-                        Upload file
+                        Загрузить изображение
                         <input
                             type = 'file'
                             hidden

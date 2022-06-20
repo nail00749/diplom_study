@@ -1,10 +1,9 @@
-import {Grid, Typography, Box, Button} from '@mui/material';
+import {Grid, Typography, Box} from '@mui/material';
 import React, {FC, useState} from 'react';
 import AuthForm from "../components/AuthForm";
 import RegisterForm from "../components/RegisterForm";
 import {useParams} from "react-router-dom";
 import SchoolIcon from '@mui/icons-material/School';
-
 
 const Login: FC = () => {
     const {registerId} = useParams()

@@ -58,4 +58,4 @@ const Answer: FC<AnswerProps> = ({indexQuestion, value, indexAnswer}) => {
     )
 }
 
-export default Answer
+export default React.memo(Answer)

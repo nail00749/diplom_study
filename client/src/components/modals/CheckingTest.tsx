@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect} from 'react'
-import {IAnswer, IQuestion, ITest} from '../../models/ITest';
+import {IQuestion, ITest} from '../../models/ITest';
 import BaseModal from "./BaseModal";
 import {
     Box,
@@ -17,7 +17,6 @@ import {useAppDispatch} from "../../hooks/redux";
 import {LoadingButton} from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import {useSetMarkMutation} from "../../services/userTestResultAPI";
-import {lessonAPI} from "../../services/lessonAPI";
 
 interface CheckingTestProps {
     open: boolean,

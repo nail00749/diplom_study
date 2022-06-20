@@ -15,7 +15,6 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import SaveIcon from "@mui/icons-material/Save";
 import {LoadingButton} from "@mui/lab";
 import {useInput} from "../../hooks/useInput";
-import {IUserFlow} from "../../models/IUserFlow";
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
 
@@ -33,7 +32,6 @@ const UserFlow = () => {
     const matches = useMediaQuery('(max-width:600px)');
     const [teacher, setTeacher] = useState<{ value: IUser | null, error: boolean }>({value: null, error: false})
     const [teacherInputValue, setTeacherInputValue] = useState('');
-
 
     useEffect(() => {
         if (users && users.length) {

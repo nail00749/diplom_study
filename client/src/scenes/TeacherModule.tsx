@@ -3,7 +3,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useGetModuleForTeacherQuery} from "../services/moduleAPI";
 import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import {BaseURL} from "../config";
-import {IModule} from "../models/IModule";
 import StyleLink from "../components/UI/StyleLink";
 import {ILesson} from "../models/ILesson";
 import {openModal} from "../store/reducers/admin/moduleSlice";
@@ -155,7 +154,7 @@ const TeacherModule = () => {
                                                     onClick = {handleCheckModuleTask(resultTask)}
                                                     disabled = {!Boolean(resultTask)}
                                                 >
-                                                    {subscription.student.email}
+                                                    {subscription.student.name && subscription.student.surname ? subscription.student.name + ' ' + subscription.student.surname : subscription.student.email}
                                                 </Button>
                                             </Box>
                                         )

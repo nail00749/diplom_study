@@ -1,6 +1,5 @@
-import React, {FC, useEffect, useState, useRef} from 'react';
-import {Dialog, Typography, IconButton, Box, TextField, Autocomplete, Button} from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import React, {FC, useEffect, useState} from 'react';
+import {Typography, Box, TextField, Button} from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import {useCreateLessonMutation, useUpdateLessonMutation} from "../../services/lessonAPI";
 import {
@@ -9,11 +8,8 @@ import {
     errorDescriptionChange, changeLesson,
 } from "../../store/reducers/admin/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {ICourse} from "../../models/ICourse";
 import {ILesson} from "../../models/ILesson";
 import {LoadingButton} from "@mui/lab";
-import {Transition} from "./Transition";
-import {noop} from "../../utils";
 import BaseModal from "./BaseModal";
 
 const LessonCreate: FC = () => {

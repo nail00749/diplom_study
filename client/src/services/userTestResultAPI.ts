@@ -1,8 +1,5 @@
 import {baseAPI} from "./baseAPI";
-import {lessonAPI} from "./lessonAPI";
-import {IFlowResult, ITestResult} from "../models/IFlowResult";
-import {IUserSubscription} from "../models/IUserSubscription";
-
+import {IFlowResult} from "../models/IFlowResult";
 
 export const userTestResultAPI = baseAPI.injectEndpoints({
     endpoints: (build) => ({

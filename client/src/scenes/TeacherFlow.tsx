@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetOneTeacherFlowQuery} from "../services/userFlowAPI";
-import {Box, Button, ButtonGroup, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
-import {ILesson} from "../models/ILesson";
+import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import StyleLink from "../components/UI/StyleLink";
 import {IModule} from "../models/IModule";
 import {useAppDispatch} from "../hooks/redux";
@@ -21,7 +20,7 @@ const TeacherFlow = () => {
         } else {
             refetch()
         }
-    }, [])
+    }, [flowId, navigate, refetch])
 
     const handleEditCourse = () => dispatch(openModal({isUpdate: true, course: flow!.course}))
 
@@ -71,7 +70,7 @@ const TeacherFlow = () => {
                                             key = {sub._id}
                                             my = {1}
                                         >
-                                            {`${i + 1}. ${sub.student.email}`}
+                                            {`${i + 1}. ${sub.student.name && sub.student.surname ? sub.student.name + ' ' + sub.student.surname : sub.student.email}`}
                                         </Typography>
                                     )}
 								</>

@@ -7,7 +7,6 @@ import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useAppDispatch} from "../hooks/redux";
 import {useGetAllLessonsQuery} from "../services/contentAPI";
 import {BaseURL} from "../config";
-import {userTestResultAPI} from "../services/userTestResultAPI";
 import CheckingTest from "../components/modals/CheckingTest";
 import {IUserSubscription} from "../models/IUserSubscription";
 
@@ -28,7 +27,6 @@ const TeacherLesson = () => {
             navigate('/')
         }
     }, [lessonId, navigate, flowId])
-
 
     const handlerLessonEdit = () => {
         if (lesson) {
@@ -171,7 +169,7 @@ const TeacherLesson = () => {
                                                 <Typography
                                                     color = 'text.primary'
                                                 >
-                                                    {subscription.student.email}
+                                                    {subscription.student.name && subscription.student.surname ? subscription.student.name + ' ' + subscription.student.surname : subscription.student.email}
                                                 </Typography>
                                                 {
                                                     lesson.video_path &&

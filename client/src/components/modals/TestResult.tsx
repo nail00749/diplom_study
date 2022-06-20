@@ -1,23 +1,15 @@
-import React, {FC, ReactElement, useEffect, useState} from 'react'
-import {IAnswer, IQuestion, ITest} from "../../models/ITest";
-import {usePassTestMutation} from "../../services/userTestResultAPI";
-import {useAppDispatch} from "../../hooks/redux";
-import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
+import React, {FC, ReactElement, useState} from 'react'
+import {IQuestion, ITest} from "../../models/ITest";
 import {
     Box,
     Checkbox,
-    Dialog,
     FormControl,
     FormControlLabel,
-    FormGroup, IconButton,
+    FormGroup,
     Radio,
     RadioGroup,
     TextField, Typography
 } from "@mui/material";
-import {Transition} from "./Transition";
-import CloseIcon from "@mui/icons-material/Close";
-import {LoadingButton} from "@mui/lab";
-import SendIcon from "@mui/icons-material/Send";
 import {noop} from "../../utils";
 import BaseModal from "./BaseModal";
 
@@ -140,7 +132,7 @@ const TestResult: FC<CheckTestProps> = ({open, onClose, test, testResult}) => {
                         {test.description}
                     </Typography>
                     <Typography
-                        my={1}
+                        my = {1}
                     >
                         {testResult.mark === -1 ? 'Тест не проверен учителем' : `Ваш балл ${testResult.mark}`}
                     </Typography>

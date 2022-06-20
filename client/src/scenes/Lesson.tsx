@@ -1,11 +1,7 @@
-import React, {FC, useEffect, useState, useRef, useMemo} from 'react';
-import {Box, Button, Grid, Typography} from "@mui/material";
+import React, {FC, useEffect, useMemo} from 'react';
+import {Box, Grid, Typography} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
-import {openModal as openLessonModal} from "../store/reducers/admin/lessonSlice";
-import {useGetAllLessonsQuery, useGetLessonQuery} from "../services/contentAPI";
-import {useAppDispatch} from "../hooks/redux";
-import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
-import {useGetAllCoursesQuery} from "../services/courseAPI";
+import {useGetLessonQuery} from "../services/contentAPI";
 import UserTest from "../components/Lesson/UserTest";
 import {BaseURL} from "../config";
 import WatchLesson from "../components/Lesson/WatchLesson";
@@ -23,14 +19,14 @@ const Lesson: FC = () => {
         }
     }, [lessonId, navigate])
 
-    const strLessonId = useMemo(() => String(lessonId), [])
+    const strLessonId = useMemo(() => String(lessonId), [lessonId])
     const isShowTest = useMemo(() => {
         if (lesson && lesson.video_path) {
             return lessonId && resultFlow && resultFlow.lessonVideosTimings && resultFlow.lessonVideosTimings[strLessonId] && resultFlow.lessonVideosTimings[strLessonId] === -1
         } else {
             return true
         }
-    }, [resultFlow, lesson])
+    }, [resultFlow, lesson, lessonId, strLessonId])
 
     return (
         <Box

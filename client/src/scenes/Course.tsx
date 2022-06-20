@@ -1,11 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from '@mui/material';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {Box, Grid, Step, StepContent, StepLabel, Stepper, Typography} from '@mui/material';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useGetCourseQuery} from "../services/courseAPI";
-import {openModal} from "../store/reducers/admin/courseSlice";
 import {BaseURL} from "../config";
-import {ICourse} from '../models/ICourse'
-import {ILesson} from "../models/ILesson";
 import StyleLink from "../components/UI/StyleLink";
 import TeachersFromCourse from "../components/Course/TeachersFromCourse";
 import {IModule} from "../models/IModule";
@@ -17,7 +14,6 @@ const Course: FC = () => {
     const {data: course} = useGetCourseQuery(String(courseId))
     const {data: resultFlow} = useGetMyResultFlowQuery(String(flowId))
     const [activeStep, setActiveStep] = useState(0)
-
 
     useEffect(() => {
         if (!courseId) {
@@ -51,7 +47,6 @@ const Course: FC = () => {
 
         }
     }, [resultFlow, course])
-
 
     return (
         <Box

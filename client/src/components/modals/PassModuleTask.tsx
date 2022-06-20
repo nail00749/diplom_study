@@ -1,10 +1,9 @@
 import React, {FC, useState, useEffect} from 'react'
 import BaseModal from "./BaseModal";
-import {Box, FormControl, Grid, MenuItem, Select, TextField, Typography} from "@mui/material";
+import {Box, FormControl, Grid, MenuItem, Select, Typography} from "@mui/material";
 import {IModuleTask} from "../../models/IModuleTask";
 import SaveIcon from "@mui/icons-material/Save";
 import {LoadingButton} from "@mui/lab";
-import {ICourse} from "../../models/ICourse";
 import {SelectChangeEvent} from "@mui/material/Select";
 import {useAppDispatch} from "../../hooks/redux";
 import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";

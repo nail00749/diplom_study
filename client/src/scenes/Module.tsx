@@ -18,6 +18,7 @@ const Module = () => {
     const [openModal, setOpenModal] = useState(false)
 
     const isPassedModuleTask = useMemo(() => {
+        // eslint-disable-next-line no-mixed-operators
         const taskId = module && module.task && module.task._id || ''
         return myResultFlow && myResultFlow.moduleTasks && myResultFlow.moduleTasks[taskId] || false
     }, [myResultFlow, module])
@@ -26,7 +27,7 @@ const Module = () => {
         if (!moduleId) {
             navigate('/')
         }
-    }, [])
+    }, [moduleId, navigate])
 
     useEffect(() => {
         calcAccessModule()
@@ -54,9 +55,7 @@ const Module = () => {
                         prevLessonIsPassed = false
                         return
                     }
-
                 }
-
             })
             setActiveStep(step)
         }

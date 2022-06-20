@@ -12,7 +12,6 @@ import {useAppDispatch} from "../../../hooks/redux";
 import {IQuestion} from "../../../models/ITest";
 import Answer from "./Answer";
 
-
 interface QuestionProps {
     index: number,
     value: IQuestion
@@ -111,4 +110,4 @@ const Question: FC<QuestionProps> = ({index, value}) => {
     )
 }
 
-export default Question
+export default React.memo(Question)

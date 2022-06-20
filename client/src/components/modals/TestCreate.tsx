@@ -28,8 +28,9 @@ import {Transition} from "./Transition";
 import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
 import {LoadingButton} from "@mui/lab";
 import {ITest} from "../../models/ITest";
+import {noop} from '../../utils';
 
-const CourseCreate: FC = () => {
+const TestCreate: FC = () => {
     const {
         open,
         questions,
@@ -90,14 +91,11 @@ const CourseCreate: FC = () => {
 
     const handlerClose = () => dispatch(closeModal())
 
-    const mock = () => {
-    }
-
     return (
         <Dialog
             open = {open}
             TransitionComponent = {Transition}
-            onClose = {(isLoadingUpdate || isLoadingCreate) ? mock : handlerClose}
+            onClose = {(isLoadingUpdate || isLoadingCreate) ? noop : handlerClose}
             fullScreen
         >
             <Box
@@ -203,4 +201,4 @@ const CourseCreate: FC = () => {
 
 }
 
-export default CourseCreate;
+export default TestCreate;

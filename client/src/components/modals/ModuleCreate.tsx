@@ -1,16 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react'
-import {Transition} from "./Transition";
-import {noop} from "../../utils";
-import {Autocomplete, Box, Button, Dialog, IconButton, TextField, Typography} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {addLesson, changeModule, closeModal, setLessons} from "../../store/reducers/admin/moduleSlice";
+import {changeModule, closeModal} from "../../store/reducers/admin/moduleSlice";
 import {useCreateModuleMutation, useUpdateModuleMutation} from "../../services/moduleAPI";
 import {IModule} from "../../models/IModule";
 import BaseModal from "./BaseModal";
 import {useGetAllLessonsQuery} from "../../services/contentAPI";
 import {ILesson} from "../../models/ILesson";
-import ListIcon from '@mui/icons-material/List';
 import SortListByDrag from "../SortListByDrag";
 import {LoadingButton} from "@mui/lab";
 import SaveIcon from "@mui/icons-material/Save";
@@ -21,15 +17,19 @@ const ModuleCreate = () => {
     const dispatch = useAppDispatch()
     const [create, {isLoading: isLoadingCreate, isSuccess: isSuccessCreate}] = useCreateModuleMutation()
     const [update, {isLoading: isLoadingUpdate, isSuccess: isSuccessUpdate}] = useUpdateModuleMutation()
-    const handleClose = () => dispatch(closeModal())
-    const fileRef = useRef<File | null>(null)
+    const [file, setFile] = useState<File | null>(null)
     const lessonsRef = useRef<any>(null)
 
     useEffect(() => {
         if (isSuccessCreate || isSuccessUpdate) {
             handleClose()
         }
-    }, [isLoadingCreate, isSuccessUpdate])
+    }, [isSuccessCreate, isSuccessUpdate])
+
+    const handleClose = () => {
+        setFile(null)
+        dispatch(closeModal())
+    }
 
     const handleModule = (key: keyof IModule) => (e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeModule({
         ...module,
@@ -42,7 +42,7 @@ const ModuleCreate = () => {
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            fileRef.current = e.target.files[0]
+            setFile(e.target.files[0])
         }
     }
 
@@ -61,8 +61,8 @@ const ModuleCreate = () => {
         const data = new FormData()
         data.append('title', module.title!)
         data.append('description', module.description!)
-        if (fileRef && fileRef.current) {
-            data.append('file', fileRef.current)
+        if (file) {
+            data.append('file', file)
         }
         if (lessonsRef && lessonsRef.current) {
             data.append('lessons', JSON.stringify(lessonsRef.current.map((lesson: ILesson) => lesson._id)))
@@ -79,7 +79,7 @@ const ModuleCreate = () => {
             open = {open}
             onClose = {handleClose}
             disabled = {isLoadingCreate || isLoadingUpdate}
-            title = {'Создание модуля'}
+            title = {isUpdate ? 'Изменение модуля' : 'Создание модуля'}
         >
             <Box mx = {5}>
                 <Box
@@ -130,12 +130,18 @@ const ModuleCreate = () => {
                 <Box
                     mb = {3}
                 >
+                    <Typography
+                        mb = {2}
+                        color = 'text.primary'
+                    >
+                        {file && file.name.substring(0, 20)}
+                    </Typography>
                     <Button
                         variant = 'contained'
                         component = "label"
                         fullWidth
                     >
-                        Upload file
+                        Загрузить картинку
                         <input
                             type = 'file'
                             hidden

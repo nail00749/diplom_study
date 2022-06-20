@@ -28,6 +28,7 @@ const ModuleCreate = () => {
 
     const handleClose = () => {
         setFile(null)
+        lessonsRef.current = null
         dispatch(closeModal())
     }
 

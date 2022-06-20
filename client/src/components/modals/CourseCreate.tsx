@@ -34,6 +34,7 @@ const CourseCreate: FC = () => {
 
     useEffect(() => {
         if (isSuccessCreate || isSuccessUpdate) {
+            modulesRef.current = null
             dispatch(closeModal())
         }
     }, [isSuccessUpdate, isSuccessCreate]);

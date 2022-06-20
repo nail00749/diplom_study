@@ -84,7 +84,7 @@ export class ModuleController {
     if (lessons) {
       updateModuleDto.lessons = lessons;
     }
-    return this.moduleService.update(id, { ...updateModuleDto, lessons });
+    return this.moduleService.update(id, updateModuleDto);
   }
 
   @UseGuards(JwtAuthGuard)

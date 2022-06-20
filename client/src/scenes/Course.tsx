@@ -30,9 +30,6 @@ const Course: FC = () => {
                     if (resultFlow && resultFlow.moduleTasks && resultFlow.moduleTasks[module.task._id]) {
                         step++
                         isPrevPass = true
-                    } else {
-                        step = i
-                        return
                     }
                 } else if (!module.task) {
                     if (isPrevPass || i === 0) {

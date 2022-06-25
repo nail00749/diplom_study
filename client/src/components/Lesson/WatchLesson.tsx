@@ -25,7 +25,6 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
         return 0
     })
 
-
     useEffect(() => {
         return () => {
             clearTimeout(timer)
@@ -67,7 +66,6 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
             }
             videoRef!.current!.addEventListener('ended', ended)
 
-
             videoRef!.current!.addEventListener('seeking', seeking)
 
             const playing = () => {
@@ -99,13 +97,12 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
         }
     }, [result])
 
-    const seeking = () => {
-        console.log(videoRef!.current!.currentTime, time)
-        if (videoRef!.current!.currentTime > time) {
-            console.log(2)
+    const seeking = (event?: Event | boolean) => {
+        if (event && videoRef!.current!.currentTime > time) {
+            videoRef!.current!.currentTime = time
+        } else if (event === false) {
             videoRef!.current!.currentTime = time
         }
-        clearTimeout(timer)
     }
 
     const handleTimer = () => {
@@ -119,11 +116,11 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
                 userId: user!._id,
                 type: 'play'
             })
-            setTime(t)
-            /*const condition = result && result.lessonVideosTimings && result.lessonVideosTimings[lessonId] && result.lessonVideosTimings[lessonId]
+
+            const condition = result && result.lessonVideosTimings && result.lessonVideosTimings[lessonId] && result.lessonVideosTimings[lessonId]
             if (!condition || t > condition) {
                 setTime(t)
-            }*/
+            }
             handleTimer()
         }, 1000)
     }
@@ -131,7 +128,7 @@ const WatchLesson: FC<WatchLessonProps> = (({url, lessonId, flowId, result, refe
     const handleContinue = () => {
         const condition = result.lessonVideosTimings && result.lessonVideosTimings[lessonId] && result.lessonVideosTimings[lessonId] !== -1
         if (condition) {
-            videoRef!.current!.currentTime = time
+            seeking(false)
         }
     }
 

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Transition} from "./Transition";
-import {Autocomplete, Box, Dialog, IconButton, TextField, Typography, useMediaQuery,} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import {Autocomplete, Box, TextField, useMediaQuery,} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {closeUserSubscription} from "../../store/reducers/modals/modalsSlice";
 import {noop} from '../../utils'
@@ -16,6 +14,7 @@ import {useCreateUserSubscriptionMutation} from "../../services/userSubscription
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
 import {useGetAllUserFlowQuery} from "../../services/userFlowAPI";
+import BaseModal from "./BaseModal";
 
 const UserSubscription = () => {
     const {userSubscriptionOpen} = useAppSelector(state => state.modalsReducer)
@@ -105,52 +104,12 @@ const UserSubscription = () => {
     }
 
     return (
-        <Dialog
+        <BaseModal
             open = {userSubscriptionOpen}
-            TransitionComponent = {Transition}
             onClose = {isLoading ? noop : handleClose}
-            sx = {{
-                borderRadius: 3
-            }}
+            disabled = {isLoading}
+            title='Создание подписки'
         >
-            <Box
-                sx = {{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    pb: 2,
-                }}
-            >
-                <Box
-                    sx = {{
-                        display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: 'grey.800',
-                        mb: 3,
-                        py: 2
-                    }}
-                >
-                    <IconButton
-                        onClick = {handleClose}
-                        disabled = {isLoading}
-                        color = {'error'}
-                        sx = {{
-                            ml: 2
-                        }}
-                    >
-                        <CloseIcon/>
-                    </IconButton>
-                    <Typography
-                        variant = 'h5'
-                        component = 'span'
-                        color = 'grey.400'
-                        sx = {{
-                            ml: 3,
-                            mr: 5
-                        }}
-                    >
-                        {`Create Subscription`}
-                    </Typography>
-                </Box>
                 <Box
                     mx = {5}
                 >
@@ -159,7 +118,7 @@ const UserSubscription = () => {
                             renderInput = {params =>
                                 <TextField
                                     {...params}
-                                    label = 'Flow'
+                                    label = 'Поток'
                                     variant = 'filled'
                                     required
                                     fullWidth
@@ -182,7 +141,7 @@ const UserSubscription = () => {
                             renderInput = {params =>
                                 <TextField
                                     {...params}
-                                    label = 'Student'
+                                    label = 'Студент'
                                     variant = 'filled'
                                     required
                                     fullWidth
@@ -210,7 +169,7 @@ const UserSubscription = () => {
                                         renderInput = {
                                             (params) =>
                                                 <TextField
-                                                    label = 'Start date'
+                                                    label = 'Дата начала'
                                                     {...params}
                                                     error = {startDate.error}
                                                     disabled = {isLoading}
@@ -226,7 +185,7 @@ const UserSubscription = () => {
                                             (params) =>
                                                 <TextField
                                                     {...params}
-                                                    label = 'Start date'
+                                                    label = 'Дата начала'
                                                     error = {startDate.error}
                                                     disabled = {isLoading}
                                                     variant = 'filled'
@@ -248,7 +207,7 @@ const UserSubscription = () => {
                                             (params) =>
                                                 <TextField
                                                     {...params}
-                                                    label = 'End date'
+                                                    label = 'Дата окончания'
                                                     error = {endDate.error}
                                                     disabled = {isLoading}
                                                     variant = 'filled'
@@ -263,7 +222,7 @@ const UserSubscription = () => {
                                             (params) =>
                                                 <TextField
                                                     {...params}
-                                                    label = 'End date'
+                                                    label = 'Дата окончания'
                                                     error = {endDate.error}
                                                     disabled = {isLoading}
                                                     variant = 'filled'
@@ -274,21 +233,27 @@ const UserSubscription = () => {
                             }
                         </LocalizationProvider>
                     </Box>
-                </Box>
-                <Box mx = {'auto'}>
-                    <LoadingButton
-                        loading = {isLoading}
-                        variant = 'outlined'
-                        color = 'success'
-                        endIcon = {<SaveIcon/>}
-                        onClick = {handleSave}
+                    <Box
+                        sx = {{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
                     >
-                        Save
-                    </LoadingButton>
+                        <LoadingButton
+                            loading = {isLoading}
+                            variant = 'outlined'
+                            color = 'success'
+                            endIcon = {<SaveIcon/>}
+                            onClick = {handleSave}
+                        >
+                            Сохранить
+                        </LoadingButton>
+                    </Box>
                 </Box>
 
-            </Box>
-        </Dialog>
+
+
+        </BaseModal>
     )
 }
 

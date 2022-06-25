@@ -9,6 +9,7 @@ import {useGetAllLessonsQuery} from "../services/contentAPI";
 import {BaseURL} from "../config";
 import CheckingTest from "../components/modals/CheckingTest";
 import {IUserSubscription} from "../models/IUserSubscription";
+import {formatTime} from "../utils";
 
 const TeacherLesson = () => {
     const {lessonId, flowId} = useParams()
@@ -176,7 +177,7 @@ const TeacherLesson = () => {
                                                     <Typography
                                                         color = 'text.primary'
                                                     >
-                                                        {timingVideo === -1 ? 'посмотрел видеоурок' : !timingVideo ? 'Не начал смотреть урок' : `Остановился на ${timingVideo}`}
+                                                        {timingVideo === -1 ? 'посмотрел видеоурок' : !timingVideo ? 'Не начал смотреть урок' : `Остановился на ${formatTime(timingVideo)}`}
                                                     </Typography>
                                                 }
                                                 {

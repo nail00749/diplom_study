@@ -38,12 +38,12 @@ export enum RouteNames {
 }
 
 export const linksNavigationUser: ILink[] = [
-    {link: RouteNames.HOME, text: 'HOME', icon: HomeIcon},
+    {link: RouteNames.HOME, text: 'Главная', icon: HomeIcon},
     /*{link: RouteNames.STREAM, text: 'STREAM', icon: SettingsInputAntennaIcon}*/
 ]
 
 export const linksNavigationAdmin: ILink[] = [
-    {link: RouteNames.ADMIN, text: 'ADMIN', icon: AdminPanelSettingsIcon},
+    {link: RouteNames.ADMIN, text: 'Админ', icon: AdminPanelSettingsIcon},
 ]
 
 export const publicRoute: IRoute[] = [

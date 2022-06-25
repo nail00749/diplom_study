@@ -127,7 +127,7 @@ const Profile: FC = () => {
                                     variant = 'outlined'
                                     onClick = {handlerIsEdit}
                                   >
-                                      Edit profile
+                                      Редактировать
                                   </Button>
                               </Box>
                           </> :
@@ -136,7 +136,7 @@ const Profile: FC = () => {
                                 my = {3}
                               >
                                   <TextField
-                                    label = 'Name'
+                                    label = 'Имя'
                                     name = 'name'
                                     onChange = {handlerData}
                                     value = {userData.name}
@@ -144,7 +144,7 @@ const Profile: FC = () => {
                               </Box>
                               <Box>
                                   <TextField
-                                    label = 'Surname'
+                                    label = 'Фамилия'
                                     name = 'surname'
                                     onChange = {handlerData}
                                     value = {userData.surname}
@@ -170,13 +170,14 @@ const Profile: FC = () => {
                                     }}
                                     onClick = {handlerUpdate}
                                   >
-                                      Save
+                                      Сохранить
                                   </LoadingButton>
                                   <Button
                                     variant = 'contained'
+                                    color='error'
                                     onClick = {handlerCancel}
                                   >
-                                      Cancel
+                                      Отмена
                                   </Button>
                               </Box>
                           </>

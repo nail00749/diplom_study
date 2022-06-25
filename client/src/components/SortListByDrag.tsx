@@ -126,9 +126,11 @@ const SortListByDrag: FC<SortListByDragProps> = ({options, changeOptions, initLi
                                     flex: '1 1 70%'
                                 }}
                             >
-                                {`${i + 1}. ${card.title}`}
+                                {`${i + 1}. ${card.title.substring(0, 20)}`}
                             </Typography>
-                            <Box>
+                            <Box
+                                ml={1}
+                            >
                                 <ListIcon/>
                             </Box>
                         </Box>

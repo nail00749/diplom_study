@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Transition} from "./Transition";
-import {Autocomplete, Box, Dialog, IconButton, TextField, Typography, useMediaQuery,} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import {Autocomplete, Box, TextField, useMediaQuery,} from "@mui/material";
 import {ICourse} from "../../models/ICourse";
 import {useGetAllCoursesQuery} from "../../services/courseAPI";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
@@ -17,6 +15,7 @@ import {LoadingButton} from "@mui/lab";
 import {useInput} from "../../hooks/useInput";
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
+import BaseModal from "./BaseModal";
 
 const UserFlow = () => {
     const {data: courses} = useGetAllCoursesQuery()
@@ -91,147 +90,110 @@ const UserFlow = () => {
     }
 
     return (
-        <Dialog
+        <BaseModal
             open = {userFlowOpen}
-            TransitionComponent = {Transition}
             onClose = {isLoading ? noop : handleClose}
-            sx = {{
-                borderRadius: 3
-            }}
+            disabled = {isLoading}
+            title = 'Создание потока'
         >
             <Box
-                sx = {{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    pb: 3,
-                }}
+                mx = {5}
             >
+                <Box mb = {3}>
+                    <TextField
+                        label = 'Имя'
+                        variant = 'filled'
+                        required
+                        disabled = {isLoading}
+                        {...name}
+                        fullWidth
+                    />
+                </Box>
+                <Box mb = {3}>
+                    <Autocomplete
+                        renderInput = {params =>
+                            <TextField
+                                {...params}
+                                label = 'Курс'
+                                variant = 'filled'
+                                required
+                                fullWidth
+                                error = {course.error}
+                            />
+                        }
+                        value = {course.value}
+                        options = {courses as readonly ICourse[]}
+                        onChange = {handleCourse}
+                        inputValue = {courseInputValue}
+                        onInputChange = {(e, newValue) => {
+                            setCourseInputValue(newValue)
+                        }}
+                        getOptionLabel = {(option: ICourse) => (option && option.title) || ''}
+                        disabled = {isLoading}
+                    />
+                </Box>
+                <Box mb = {3}>
+                    <Autocomplete
+                        renderInput = {params =>
+                            <TextField
+                                {...params}
+                                label = 'Преподаватель'
+                                variant = 'filled'
+                                required
+                                fullWidth
+                                error = {teacher.error}
+                            />
+                        }
+                        value = {teacher.value}
+                        options = {teachers as readonly IUser[]}
+                        onChange = {handleTeacher}
+                        inputValue = {teacherInputValue}
+                        onInputChange = {(e, newValue) => {
+                            setTeacherInputValue(newValue)
+                        }}
+                        getOptionLabel = {(option: IUser) => (option && option.email) || ''}
+                        disabled = {isLoading}
+                    />
+                </Box>
+                <Box mb = {3}>
+                    <LocalizationProvider dateAdapter = {AdapterDateFns}>
+                        {
+                            matches ?
+                                <MobileDatePicker
+                                    value = {date.value}
+                                    onChange = {handleChangeDate}
+                                    renderInput = {
+                                        (params) =>
+                                            <TextField
+                                                {...params}
+                                                error = {date.error}
+                                                disabled = {isLoading}
+                                            />
+                                    }
+                                    inputFormat = {'d.MM.yy'}
+                                /> :
+                                <DesktopDatePicker
+                                    value = {date.value}
+                                    onChange = {handleChangeDate}
+                                    renderInput = {
+                                        (params) =>
+                                            <TextField
+                                                {...params}
+                                                error = {date.error}
+                                                disabled = {isLoading}
+                                            />
+                                    }
+                                    inputFormat = {'d.MM.yy'}
+                                />
+                        }
+                    </LocalizationProvider>
+                </Box>
                 <Box
                     sx = {{
                         display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: 'grey.800',
-                        mb: 3,
-                        py: 3
+                        justifyContent: 'center'
                     }}
                 >
-                    <IconButton
-                        onClick = {handleClose}
-                        disabled = {isLoading}
-                        color = {'error'}
-                        sx = {{
-                            ml: 2
-                        }}
-                    >
-                        <CloseIcon/>
-                    </IconButton>
-                    <Typography
-                        variant = 'h5'
-                        component = 'span'
-                        color = 'grey.400'
-                        sx = {{
-                            ml: 3
-                        }}
-                    >
-                        {`Create user flow`}
-                    </Typography>
-                </Box>
-                <Box
-                    mx = {5}
-                >
-                    <Box
-                        mb = {3}
-                    >
-                        <TextField
-                            label = 'Name'
-                            variant = 'filled'
-                            required
-                            disabled = {isLoading}
-                            {...name}
-                            fullWidth
-                        />
-                    </Box>
-                    <Box mb = {3}>
-                        <Autocomplete
-                            renderInput = {params =>
-                                <TextField
-                                    {...params}
-                                    label = 'Course'
-                                    variant = 'filled'
-                                    required
-                                    fullWidth
-                                    error = {course.error}
-                                />
-                            }
-                            value = {course.value}
-                            options = {courses as readonly ICourse[]}
-                            onChange = {handleCourse}
-                            inputValue = {courseInputValue}
-                            onInputChange = {(e, newValue) => {
-                                setCourseInputValue(newValue)
-                            }}
-                            getOptionLabel = {(option: ICourse) => (option && option.title) || ''}
-                            disabled = {isLoading}
-                        />
-                    </Box>
-                    <Box mb = {3}>
-                        <Autocomplete
-                            renderInput = {params =>
-                                <TextField
-                                    {...params}
-                                    label = 'Teacher'
-                                    variant = 'filled'
-                                    required
-                                    fullWidth
-                                    error = {teacher.error}
-                                />
-                            }
-                            value = {teacher.value}
-                            options = {teachers as readonly IUser[]}
-                            onChange = {handleTeacher}
-                            inputValue = {teacherInputValue}
-                            onInputChange = {(e, newValue) => {
-                                setTeacherInputValue(newValue)
-                            }}
-                            getOptionLabel = {(option: IUser) => (option && option.email) || ''}
-                            disabled = {isLoading}
-                        />
-                    </Box>
-                    <Box mb = {3}>
-                        <LocalizationProvider dateAdapter = {AdapterDateFns}>
-                            {
-                                matches ?
-                                    <MobileDatePicker
-                                        value = {date.value}
-                                        onChange = {handleChangeDate}
-                                        renderInput = {
-                                            (params) =>
-                                                <TextField
-                                                    {...params}
-                                                    error = {date.error}
-                                                    disabled = {isLoading}
-                                                />
-                                        }
-                                        inputFormat = {'d.MM.yy'}
-                                    /> :
-                                    <DesktopDatePicker
-                                        value = {date.value}
-                                        onChange = {handleChangeDate}
-                                        renderInput = {
-                                            (params) =>
-                                                <TextField
-                                                    {...params}
-                                                    error = {date.error}
-                                                    disabled = {isLoading}
-                                                />
-                                        }
-                                        inputFormat = {'d.MM.yy'}
-                                    />
-                            }
-                        </LocalizationProvider>
-                    </Box>
-                </Box>
-                <Box mx = {'auto'}>
                     <LoadingButton
                         loading = {isLoading}
                         variant = 'outlined'
@@ -239,12 +201,11 @@ const UserFlow = () => {
                         endIcon = {<SaveIcon/>}
                         onClick = {handleSave}
                     >
-                        Save
+                        Сохранить
                     </LoadingButton>
                 </Box>
-
             </Box>
-        </Dialog>
+        </BaseModal>
     )
 }
 

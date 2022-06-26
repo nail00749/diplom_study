@@ -41,13 +41,13 @@ import * as redisStore from 'cache-manager-redis-store';
     ModuleModule,
     ResultFlowModule,
     ModuleTaskModule,
-    /*CacheModule.register({
+    CacheModule.register({
       store: redisStore,
       host: process.env.redis_url,
       port: process.env.redis_port,
-    }),*/
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService, FileService /*SocketRedisCache*/],
+  providers: [AppService, FileService, SocketRedisCache],
 })
 export class AppModule {}

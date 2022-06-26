@@ -22,13 +22,10 @@ import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(
-      `mongodb://${process.env.db_user}:${process.env.db_pass}@${process.env.db_url}`,
-      {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-      }
-    ),
+    MongooseModule.forRoot(`mongodb://${process.env.db_url}`, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }),
     UsersModule,
     AuthModule,
     AdminModule,

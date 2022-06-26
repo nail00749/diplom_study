@@ -8,12 +8,17 @@ import { ValidationPipe } from '@nestjs/common';
 import { join } from 'path';
 import { contentParser } from 'fastify-multer';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as fs from 'fs';
+import * as path from 'path';
 
 async function start() {
-  const fAdapter = new FastifyAdapter();
+  /*const httpsOptions = {
+    key: fs.readFileSync(path.resolve('../server/certs/key.pem')),
+    cert: fs.readFileSync(path.resolve('../server/certs/certificate.pem')),
+  };*/
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    fAdapter
+    new FastifyAdapter(/*{ https: httpsOptions }*/)
   );
 
   app.useGlobalPipes(new ValidationPipe());

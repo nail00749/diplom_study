@@ -22,10 +22,13 @@ import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.db_url, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    }),
+    MongooseModule.forRoot(
+      `mongodb://${process.env.db_user}:${process.env.db_pass}@${process.env.db_url}`,
+      {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      }
+    ),
     UsersModule,
     AuthModule,
     AdminModule,
@@ -38,13 +41,13 @@ import * as redisStore from 'cache-manager-redis-store';
     ModuleModule,
     ResultFlowModule,
     ModuleTaskModule,
-    CacheModule.register({
+    /*CacheModule.register({
       store: redisStore,
       host: process.env.redis_url,
       port: process.env.redis_port,
-    }),
+    }),*/
   ],
   controllers: [AppController],
-  providers: [AppService, FileService, SocketRedisCache],
+  providers: [AppService, FileService /*SocketRedisCache*/],
 })
 export class AppModule {}

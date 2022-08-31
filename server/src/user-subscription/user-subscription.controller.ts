@@ -14,7 +14,7 @@ import { CreateUserSubscriptionDto } from './dto/create-user-subscription.dto';
 import { UpdateUserSubscriptionDto } from './dto/update-user-subscription.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('user-subscription')
+@Controller('User-subscription')
 export class UserSubscriptionController {
   constructor(
     private readonly userSubscriptionService: UserSubscriptionService

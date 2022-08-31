@@ -3,18 +3,15 @@ import {Autocomplete, Box, TextField, useMediaQuery,} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {closeUserSubscription} from "../../store/reducers/modals/modalsSlice";
 import {noop} from '../../utils'
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
-import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
-import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import SaveIcon from "@mui/icons-material/Save";
-import {LoadingButton} from "@mui/lab";
+import {DesktopDatePicker, LoadingButton, LocalizationProvider, MobileDatePicker} from "@mui/lab";
 import {IUserFlow} from "../../models/IUserFlow";
 import {useCreateUserSubscriptionMutation} from "../../services/userSubscriptionAPI";
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
 import {useGetAllUserFlowQuery} from "../../services/userFlowAPI";
 import BaseModal from "./BaseModal";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 const UserSubscription = () => {
     const {userSubscriptionOpen} = useAppSelector(state => state.modalsReducer)
@@ -167,7 +164,7 @@ const UserSubscription = () => {
                                         value = {startDate.value}
                                         onChange = {handleChangeStartDate}
                                         renderInput = {
-                                            (params) =>
+                                            (params:any) =>
                                                 <TextField
                                                     label = 'Дата начала'
                                                     {...params}
@@ -182,7 +179,7 @@ const UserSubscription = () => {
                                         value = {startDate.value}
                                         onChange = {handleChangeStartDate}
                                         renderInput = {
-                                            (params) =>
+                                            (params: any) =>
                                                 <TextField
                                                     {...params}
                                                     label = 'Дата начала'
@@ -204,7 +201,7 @@ const UserSubscription = () => {
                                         value = {endDate.value}
                                         onChange = {handleChangeEndDate}
                                         renderInput = {
-                                            (params) =>
+                                            (params: any) =>
                                                 <TextField
                                                     {...params}
                                                     label = 'Дата окончания'
@@ -219,7 +216,7 @@ const UserSubscription = () => {
                                         value = {endDate.value}
                                         onChange = {handleChangeEndDate}
                                         renderInput = {
-                                            (params) =>
+                                            (params: any) =>
                                                 <TextField
                                                     {...params}
                                                     label = 'Дата окончания'

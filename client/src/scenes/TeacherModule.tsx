@@ -3,12 +3,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useGetModuleForTeacherQuery} from "../services/moduleAPI";
 import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import {BaseURL} from "../config";
-import StyleLink from "../components/UI/StyleLink";
+import StyleLink from "../components/Common/StyleLink";
 import {ILesson} from "../models/ILesson";
 import {openModal} from "../store/reducers/admin/moduleSlice";
 import {useAppDispatch} from "../hooks/redux";
 import {IUserSubscription} from "../models/IUserSubscription";
-import CheckModuleTask from "../components/modals/CheckModuleTask";
+import CheckModuleTask from "../components/Modals/CheckModuleTask";
 import {IModuleTaskResult} from "../models/IModuleTaskResult";
 
 const TeacherModule = () => {

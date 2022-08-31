@@ -13,8 +13,8 @@ export class WsGuard implements CanActivate {
     try {
       const decoded: any = jwt.verify(token, process.env.secret_key);
       const user = await this.userService.findOne(decoded.email);
-      //console.log(user)
-      //context.switchToWs().getData().authorizedUser  = user
+      //console.log(User)
+      //context.switchToWs().getData().authorizedUser  = User
       return Boolean(user);
     } catch (e) {
       console.log(e);

@@ -7,7 +7,7 @@ import {IModule} from "../../models/IModule";
 import BaseModal from "./BaseModal";
 import {useGetAllLessonsQuery} from "../../services/contentAPI";
 import {ILesson} from "../../models/ILesson";
-import SortListByDrag from "../SortListByDrag";
+import SortListByDrag from "../Common/SortListByDrag";
 import {LoadingButton} from "@mui/lab";
 import SaveIcon from "@mui/icons-material/Save";
 

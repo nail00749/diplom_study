@@ -6,16 +6,13 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {closeUserFlow} from "../../store/reducers/modals/modalsSlice";
 import {useCreateUserFlowMutation} from "../../services/userFlowAPI";
 import {noop} from '../../utils'
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
-import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
-import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import SaveIcon from "@mui/icons-material/Save";
-import {LoadingButton} from "@mui/lab";
+import {DesktopDatePicker, LoadingButton, LocalizationProvider, MobileDatePicker} from "@mui/lab";
 import {useInput} from "../../hooks/useInput";
 import {IUser} from "../../models/IUser";
 import {useGetAllUsersQuery} from "../../services/adminAPI";
 import BaseModal from "./BaseModal";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 const UserFlow = () => {
     const {data: courses} = useGetAllCoursesQuery()
@@ -31,6 +28,7 @@ const UserFlow = () => {
     const matches = useMediaQuery('(max-width:600px)');
     const [teacher, setTeacher] = useState<{ value: IUser | null, error: boolean }>({value: null, error: false})
     const [teacherInputValue, setTeacherInputValue] = useState('');
+
 
     useEffect(() => {
         if (users && users.length) {
@@ -163,7 +161,7 @@ const UserFlow = () => {
                                     value = {date.value}
                                     onChange = {handleChangeDate}
                                     renderInput = {
-                                        (params) =>
+                                        (params: any) =>
                                             <TextField
                                                 {...params}
                                                 error = {date.error}
@@ -176,7 +174,7 @@ const UserFlow = () => {
                                     value = {date.value}
                                     onChange = {handleChangeDate}
                                     renderInput = {
-                                        (params) =>
+                                        (params: any) =>
                                             <TextField
                                                 {...params}
                                                 error = {date.error}

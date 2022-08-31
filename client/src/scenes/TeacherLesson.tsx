@@ -7,7 +7,7 @@ import {openModal as openTestModal} from "../store/reducers/admin/testSlice";
 import {useAppDispatch} from "../hooks/redux";
 import {useGetAllLessonsQuery} from "../services/contentAPI";
 import {BaseURL} from "../config";
-import CheckingTest from "../components/modals/CheckingTest";
+import CheckingTest from "../components/Modals/CheckingTest";
 import {IUserSubscription} from "../models/IUserSubscription";
 import {formatTime} from "../utils";
 

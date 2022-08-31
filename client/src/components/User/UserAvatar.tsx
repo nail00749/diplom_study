@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, memo, useState} from 'react'
 import {Avatar, Box, IconButton} from "@mui/material";
 import {PhotoCamera} from "@mui/icons-material";
 import {styled} from '@mui/material/styles';
@@ -22,23 +22,25 @@ const UserAvatar: FC = () => {
         }
     }
 
-    const boxFocus = () => setFocus(prev => !prev)
+    const onFocus = () => setFocus(true)
+
+    const onLeave = () => setFocus(false)
 
     return (
         <Box
-            onMouseEnter = {boxFocus}
-            onMouseLeave = {boxFocus}
+            onMouseEnter = {onFocus}
+            onMouseLeave = {onLeave}
             position = 'relative'
         >
-            <Avatar
-                alt = 'Remy Sharp'
-                src = {BaseURL + user!.avatar_path}
-                sx = {{
+            {user && <Avatar
+				alt = 'Remy Sharp'
+				src = {BaseURL + user!.avatar_path}
+				sx = {{
                     width: 200,
                     height: 200,
                     filter: focus ? 'grayscale(0.9) blur(1px)' : null
                 }}
-            />
+			/>}
             {
                 focus &&
 				<label
@@ -70,4 +72,4 @@ const UserAvatar: FC = () => {
     )
 }
 
-export default UserAvatar
+export default memo(UserAvatar)

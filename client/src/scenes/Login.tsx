@@ -1,7 +1,7 @@
 import {Grid, Typography, Box} from '@mui/material';
 import React, {FC, useState} from 'react';
-import AuthForm from "../components/AuthForm";
-import RegisterForm from "../components/RegisterForm";
+import AuthForm from "../components/Forms/AuthForm";
+import RegisterForm from "../components/Forms/RegisterForm";
 import {useParams} from "react-router-dom";
 import SchoolIcon from '@mui/icons-material/School';
 

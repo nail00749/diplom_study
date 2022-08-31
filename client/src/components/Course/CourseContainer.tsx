@@ -1,8 +1,8 @@
 import {Box, LinearProgress} from '@mui/material';
 import React, {FC, useCallback} from 'react';
-import UserCourse from "./Course/UserCourse";
-import TeacherCourse from "./Course/TeacherCourse";
-import {useGetMeDataQuery} from "../services/userAPI";
+import UserCourse from "./UserCourse";
+import TeacherCourse from "./TeacherCourse";
+import {useGetMeDataQuery} from "../../services/userAPI";
 
 const CourseContainer: FC = () => {
     const {data: user} = useGetMeDataQuery()

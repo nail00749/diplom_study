@@ -13,7 +13,7 @@ import {LoadingButton} from "@mui/lab";
 import {ICourse} from "../../models/ICourse";
 import BaseModal from "./BaseModal";
 import {useGetAllModulesQuery} from "../../services/moduleAPI";
-import SortListByDrag from "../SortListByDrag";
+import SortListByDrag from "../Common/SortListByDrag";
 import {IModule} from "../../models/IModule";
 
 const CourseCreate: FC = () => {

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetOneTeacherFlowQuery} from "../services/userFlowAPI";
 import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
-import StyleLink from "../components/UI/StyleLink";
+import StyleLink from "../components/Common/StyleLink";
 import {IModule} from "../models/IModule";
 import {useAppDispatch} from "../hooks/redux";
 import {openModal} from "../store/reducers/admin/courseSlice";

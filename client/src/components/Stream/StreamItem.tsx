@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IStream} from "../models/IStream";
+import {IStream} from "../../models/IStream";
 
 interface StreamItemProps {
     stream?: IStream

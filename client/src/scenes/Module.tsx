@@ -3,9 +3,9 @@ import {useNavigate, useParams} from "react-router-dom";
 import {Box, Button, Grid, Step, StepContent, StepLabel, Stepper, Typography} from "@mui/material";
 import {useGetModuleQuery} from "../services/moduleAPI";
 import {BaseURL} from "../config";
-import StyleLink from "../components/UI/StyleLink";
+import StyleLink from "../components/Common/StyleLink";
 import {ILesson} from "../models/ILesson";
-import PassModuleTask from "../components/modals/PassModuleTask";
+import PassModuleTask from "../components/Modals/PassModuleTask";
 import {useGetMyResultFlowQuery} from "../services/userFlowAPI";
 import {IModuleTaskResult} from "../models/IModuleTaskResult";
 

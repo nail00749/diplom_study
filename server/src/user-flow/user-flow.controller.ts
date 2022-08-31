@@ -14,7 +14,7 @@ import { CreateUserFlowDto } from './dto/create-user-flow.dto';
 import { UpdateUserFlowDto } from './dto/update-user-flow.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('user-flow')
+@Controller('User-flow')
 export class UserFlowController {
   constructor(private readonly userFlowService: UserFlowService) {}
 

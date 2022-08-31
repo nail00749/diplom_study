@@ -1,7 +1,7 @@
 import React from 'react'
-import {Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
+import {Button, FormControl, IconButton, InputAdornment, OutlinedInput} from "@mui/material";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import {useGenerateLinkMutation} from "../services/adminAPI";
+import {useGenerateLinkMutation} from "../../services/adminAPI";
 
 const GenerateLink = () => {
     const [generate, {data}] = useGenerateLinkMutation()

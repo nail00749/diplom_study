@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import {
   Box,
-  SwipeableDrawer,
   List,
   ListItemIcon,
   ListItemText,

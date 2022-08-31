@@ -1,12 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput,} from "@mui/material";
 import {AccountCircle, Visibility, VisibilityOff} from '@mui/icons-material';
-import {useRegisterMutation} from "../services/userAPI";
+import {useRegisterMutation} from "../../services/userAPI";
 import LoadingButton from "@mui/lab/LoadingButton";
-import RegisterSuccess from "./modals/RegisterSuccess";
-import {validateEmail} from "../utils";
-import {showErrorAlert} from "../store/reducers/service/ServiceSlice";
-import {useAppDispatch} from "../hooks/redux";
+import RegisterSuccess from "../Modals/RegisterSuccess";
+import {validateEmail} from "../../utils";
+import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
+import {useAppDispatch} from "../../hooks/redux";
 import {useParams} from "react-router-dom";
 
 

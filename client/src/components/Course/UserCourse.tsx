@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import {Box, Grid, Typography} from "@mui/material";
 import {useGetAllSubscribesQuery} from "../../services/contentAPI";
 import {ICourse} from "../../models/ICourse";
-import StyleLink from "../UI/StyleLink";
+import StyleLink from "../Common/StyleLink";
 import {useGetAllCoursesQuery, useGetStudentCoursesQuery} from "../../services/courseAPI";
 import {IUserSubscription} from "../../models/IUserSubscription";
 import {Swiper, SwiperSlide} from 'swiper/react';

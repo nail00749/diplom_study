@@ -1,10 +1,10 @@
 import React from 'react'
-import {useAppDispatch} from "../hooks/redux";
-import {openModal as openCourse} from "../store/reducers/admin/courseSlice";
-import {openModal as openModule} from "../store/reducers/admin/moduleSlice";
-import {openModal as openLesson} from "../store/reducers/admin/lessonSlice";
-import {openModal as openTest} from "../store/reducers/admin/testSlice";
-import {openModuleTask, openUserFlow, openUserSubscription} from "../store/reducers/modals/modalsSlice";
+import {useAppDispatch} from "../../hooks/redux";
+import {openModal as openCourse} from "../../store/reducers/admin/courseSlice";
+import {openModal as openModule} from "../../store/reducers/admin/moduleSlice";
+import {openModal as openLesson} from "../../store/reducers/admin/lessonSlice";
+import {openModal as openTest} from "../../store/reducers/admin/testSlice";
+import {openModuleTask, openUserFlow, openUserSubscription} from "../../store/reducers/modals/modalsSlice";
 import {Box, Button, ButtonGroup} from "@mui/material";
 
 const ButtonsContentModal = () => {

@@ -1,7 +1,6 @@
 import React, {FC} from 'react'
 import {Box, Grid, Typography} from "@mui/material";
-import {ICourse} from "../../models/ICourse";
-import StyleLink from "../UI/StyleLink";
+import StyleLink from "../Common/StyleLink";
 import {useGetAllTeacherFlowQuery} from "../../services/userFlowAPI";
 import {IUserFlow} from "../../models/IUserFlow";
 

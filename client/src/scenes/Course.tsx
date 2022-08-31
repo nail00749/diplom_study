@@ -3,7 +3,7 @@ import {Box, Grid, Step, StepContent, StepLabel, Stepper, Typography} from '@mui
 import {useNavigate, useParams} from 'react-router-dom';
 import {useGetCourseQuery} from "../services/courseAPI";
 import {BaseURL} from "../config";
-import StyleLink from "../components/UI/StyleLink";
+import StyleLink from "../components/Common/StyleLink";
 import TeachersFromCourse from "../components/Course/TeachersFromCourse";
 import {IModule} from "../models/IModule";
 import {useGetMyResultFlowQuery} from "../services/userFlowAPI";

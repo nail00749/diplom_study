@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react'
 import {Box, Button, Typography} from "@mui/material";
-import PassTest from "../modals/PassTest";
+import PassTest from "../Modals/PassTest";
 import {ITest} from "../../models/ITest";
-import TestResult from "../modals/TestResult";
+import TestResult from "../Modals/TestResult";
 import {useGetMyResultFlowQuery} from "../../services/userFlowAPI";
 
 interface UserTestProps {

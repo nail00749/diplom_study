@@ -45,13 +45,13 @@ export class ResultFlowController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('lesson-test/:id')
+  @Patch('lesson-Test/:id')
   updateLessonTest(@Param('id') id: string, @Body() dto: ResultTestDto) {
     return this.resultFlowService.updateLessonTest(id, dto);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('test-mark/:id')
+  @Patch('Test-mark/:id')
   setMarkTest(@Param('id') id: string, @Body() dto: ResultTestDto) {
     return this.resultFlowService.setMarkTest(id, dto);
   }

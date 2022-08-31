@@ -27,17 +27,7 @@ services:
       db_url: $db_url
       redis_url: $redis_url
       redis_port: $redis_port
-  web:
-    depends_on:
-      - api
-    build:
-      context: ./client
-      args:
-        - REACT_APP_API=$url_domen
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '443:443'
+
 volumes:
   mongoDB:
   redis:

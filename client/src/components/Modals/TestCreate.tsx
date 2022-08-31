@@ -20,7 +20,7 @@ import {
     errorDescriptionChange,
     errorLessonChange
 } from "../../store/reducers/admin/testSlice";
-import Question from "../test/admin/Question";
+import Question from "../Test/admin/Question";
 import {useCreateTestMutation, useUpdateTestMutation} from "../../services/adminAPI";
 import {useGetAllLessonsQuery} from "../../services/contentAPI";
 import {ILesson} from "../../models/ILesson";

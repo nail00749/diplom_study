@@ -2,11 +2,11 @@ import React, {FC, Suspense, useEffect} from 'react';
 import {Route, Routes, BrowserRouter, Navigate, useLocation} from 'react-router-dom';
 import {adminRoutes, authRoute, publicRoute} from '../router/router';
 import {useAppDispatch, useAppSelector} from '../hooks/redux';
-import Topbar from './UI/Topbar';
-import ServiceAlert from './UI/serviceAlert';
+import Topbar from './Common/Topbar';
+import ServiceAlert from './Common/serviceAlert';
 import {useGetMeDataQuery} from '../services/userAPI';
 import {Box} from '@mui/material';
-const ModalsContentContainer = React.lazy(() => import('./modals/ModalsContentContainer'));
+const ModalsContentContainer = React.lazy(() => import('./Modals/ModalsContentContainer'));
 
 const AppRouter: FC = () => {
     const {isAuthenticated} = useAppSelector(state => state.userReducer);
@@ -81,7 +81,7 @@ const AppRouter: FC = () => {
                                 )
                             }
                             {
-                                /*(user && (user.role === 'teacher' || user.role === 'admin')) &&*/
+                                /*(User && (User.role === 'teacher' || User.role === 'admin')) &&*/
                                 adminRoutes.map(route =>
                                     <Route
                                         path = {route.path}

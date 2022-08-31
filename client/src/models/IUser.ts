@@ -11,3 +11,5 @@ export interface IUser {
     avatar_path: string | null
     resultFlow?: IFlowResult
 }
+
+export type IUserEdit =  Pick<IUser, "name" | "surname" | "telegram">

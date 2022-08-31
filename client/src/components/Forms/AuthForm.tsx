@@ -5,15 +5,16 @@ import {
     FormControl,
     OutlinedInput,
     IconButton,
-    InputLabel, Checkbox, FormControlLabel, FormGroup, Button,
+    InputLabel,
+    Button,
 } from "@mui/material";
 import {AccountCircle, VisibilityOff, Visibility} from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import {useLoginMutation} from "../services/userAPI";
-import {validateEmail} from "../utils";
-import {showErrorAlert} from "../store/reducers/service/ServiceSlice";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {setSaveSession} from "../store/reducers/user/UserSlice";
+import {useLoginMutation} from "../../services/userAPI";
+import {validateEmail} from "../../utils";
+import {showErrorAlert} from "../../store/reducers/service/ServiceSlice";
+import {useAppDispatch} from "../../hooks/redux";
+import {setSaveSession} from "../../store/reducers/user/UserSlice";
 
 interface AuthFormProps {
     setIsLogin: () => void

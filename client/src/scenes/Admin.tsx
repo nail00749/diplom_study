@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {Grid} from "@mui/material";
-import UsersData from "../components/UsersData";
+import UsersData from "../components/Admin/UsersData";
 import {useGetMeDataQuery} from "../services/userAPI";
-import GenerateLink from "../components/GenerateLink";
-import ButtonsContentModal from "../components/ButtonsContentModal";
+import GenerateLink from "../components/Admin/GenerateLink";
+import ButtonsContentModal from "../components/Admin/ButtonsContentModal";
 
 const Admin: FC = () => {
     const {data: user} = useGetMeDataQuery()

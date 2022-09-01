@@ -7,9 +7,9 @@ import {
     extensionChange,
     multipleChange,
     addAnswer
-} from "../../../store/reducers/admin/testSlice";
-import {useAppDispatch} from "../../../hooks/redux";
-import {IQuestion} from "../../../models/ITest";
+} from "../../store/reducers/admin/testSlice";
+import {useAppDispatch} from "../../hooks/redux";
+import {IQuestion} from "../../models/ITest";
 import Answer from "./Answer";
 
 interface QuestionProps {
